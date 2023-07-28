@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SingleBoardView: View {
     
-    @ObservedObject var viewModel = ScoreModel()
+    @StateObject var viewModel = iphoneScoreModel()
     
     @State var isDownward: Bool = false
     @State var isUpward: Bool = false
@@ -22,7 +22,8 @@ struct SingleBoardView: View {
             HStack {
                 ZStack {
                     Score(player: .player1)
-                    Score(player: .player1)
+                        .environmentObject(viewModel)
+//                    Score(player: .player1)
                     
                     Color.black
                         .frame(height: 1)
@@ -35,7 +36,8 @@ struct SingleBoardView: View {
                 Set()
                 ZStack {
                     Score(player: .player2)
-                    Score(player: .player2)
+                        .environmentObject(viewModel)
+//                    Score(player: .player2)
                 }
             }
         }

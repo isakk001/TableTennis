@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ScoreboardView: View {
-    @ObservedObject var viewModel = ScoreModel()
+    @ObservedObject var viewModel = iphoneScoreModel()
     
     var body: some View {
         HStack {

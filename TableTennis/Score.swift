@@ -25,7 +25,7 @@ enum Symbol {
 
 struct Score: View {
     
-    @ObservedObject var viewModel = ScoreModel()
+    @EnvironmentObject var viewModel: iphoneScoreModel
     
     var player: Player
     // TODO: set - score
@@ -71,21 +71,26 @@ struct Score: View {
     }
     
     func updateScore(_ gesture: DragGesture.Value) {
-        if (gesture.translation.height > 0) && (checkPlayer(player) < 11) {
+        // TODO: onChange로 수정
+        if gesture.translation.height > 0 {
             if player == .player1 {
                 viewModel.player1 += 1
                 viewModel.session.sendMessage(["player1": viewModel.player1], replyHandler: nil)
+                print("sessionTest(iphone) : \(viewModel.player1)")
             } else {
                 viewModel.player2 += 1
-                viewModel.session.sendMessage(["player1": viewModel.player2], replyHandler: nil)
+                viewModel.session.sendMessage(["player2": viewModel.player2], replyHandler: nil)
+                print("sessionTest(iphone) : \(viewModel.player2)")
             }
-        } else if (gesture.translation.height < 0) && (checkPlayer(player) > 0) {
+        } else {
             if player == .player1 {
                 viewModel.player1 -= 1
                 viewModel.session.sendMessage(["player1": viewModel.player1], replyHandler: nil)
+                print("sessionTest(iphone) : \(viewModel.player1)")
             } else {
                 viewModel.player2 -= 1
-                viewModel.session.sendMessage(["player1": viewModel.player2], replyHandler: nil)
+                viewModel.session.sendMessage(["player2": viewModel.player2], replyHandler: nil)
+                print("sessionTest(iphone) : \(viewModel.player2)")
             }
         }
     }

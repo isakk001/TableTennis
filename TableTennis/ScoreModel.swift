@@ -8,7 +8,7 @@
 import Foundation
 import WatchConnectivity
 
-final class ScoreModel: NSObject, WCSessionDelegate, ObservableObject {
+class iphoneScoreModel: NSObject, ObservableObject, WCSessionDelegate {
     
     @Published var player1: Int = 0
     @Published var player2: Int = 0
@@ -22,10 +22,14 @@ final class ScoreModel: NSObject, WCSessionDelegate, ObservableObject {
         session.activate()
     }
     
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    }
+
+    
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         DispatchQueue.main.async {
-            self.player1 = message["leftPlayer"] as? Int ?? self.player1
-            self.player2 = message["rightPlayer"] as? Int ?? self.player2
+            self.player1 = message["player1"] as? Int ?? self.player1
+            self.player2 = message["player2"] as? Int ?? self.player2
         }
     }
     
@@ -33,8 +37,5 @@ final class ScoreModel: NSObject, WCSessionDelegate, ObservableObject {
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-    }
-    
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
 }

@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Foundation
 import WatchConnectivity
 
 
 struct ContentView: View {
     
-    @ObservedObject var viewModel = ContentViewModel()
-    @State var lastScore: Int = 0
+    @StateObject var viewModel = watchScoreModel()
+//    @State var lastScore: Int = 0
     
     var body: some View {
         VStack {
@@ -41,11 +42,11 @@ struct ContentView: View {
                         Text("L")
                             .font(.system(size: 13).width(.condensed))
                             .padding(.top, 10)
-                        Text("\(Int(viewModel.player1))")
+                        Text("\(viewModel.player1)")
                             .font(.system(size: 70).width(.condensed))
                             .multilineTextAlignment(.center)
                             .focusable()
-                        .digitalCrownRotation($viewModel.player1, from: 0.0, through: 11.0, by: 0.01, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: false)
+//                        .digitalCrownRotation($viewModel.player1, from: 0.0, through: 11.0, by: 0.01, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: false)
                     }
                     .frame(width: 85, height: 95, alignment: .center)
                     .background(.white.opacity(0.2))
@@ -76,7 +77,7 @@ struct ContentView: View {
                         Text("R")
                             .font(.system(size: 13).width(.condensed))
                             .padding(.top, 10)
-                        Text("\(Int(viewModel.player2))")
+                        Text("\(viewModel.player2)")
                             .font(.system(size: 70).width(.condensed))
                             .multilineTextAlignment(.center)
                     }
@@ -98,17 +99,19 @@ struct ContentView: View {
             }
             .padding(.bottom, -10)
             .onChange(of: viewModel.player1) { newValue in
-                if abs(Int(newValue) - lastScore) >= 1 {
-                    lastScore = Int(newValue)
+//                if abs(newValue - lastScore) >= 1 {
+//                    lastScore = newValue
+                viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
+                print("sessionTest : \(viewModel.player1)")
                     WKInterfaceDevice.current().play(.notification)
-                    viewModel.session.sendMessage(["player1" : lastScore], replyHandler: nil)
-                }
+//                }
             }
             .onChange(of: viewModel.player2) { newValue in
-                        WKInterfaceDevice.current().play(.notification)
+                //                        WKInterfaceDevice.current().play(.notification)
                 viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
+                print("sessionTest : \(viewModel.player2)")
                 WKInterfaceDevice.current().play(.notification)
-        }
+            }
         }
     }
 }
@@ -130,9 +133,9 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
-final class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
+class watchScoreModel: NSObject, WCSessionDelegate, ObservableObject {
     
-    @Published var player1: Double = 0.0
+    @Published var player1: Int = 0
     @Published var player2: Int = 0
 
     var session: WCSession
@@ -140,7 +143,7 @@ final class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
     init(session: WCSession = .default) {
         self.session = session
         super.init()
-        session.delegate = self
+        self.session.delegate = self
         session.activate()
     }
     
@@ -150,7 +153,8 @@ final class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         DispatchQueue.main.async {
-            self.player1 = message["player1"] as? Double ?? self.player1
+            print("iphone: \(message)")
+            self.player1 = message["player1"] as? Int ?? self.player1
             self.player2 = message["player2"] as? Int ?? self.player2
         }
     }
