@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B04C3A02A71FB0300B89F0C /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C39F2A71FB0300B89F0C /* ScoreboardView.swift */; };
+		5B04C3A42A71FB3F00B89F0C /* SingleBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C3A32A71FB3F00B89F0C /* SingleBoardView.swift */; };
+		5B04C3A62A7203AB00B89F0C /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C3A52A7203AB00B89F0C /* ScoreModel.swift */; };
+		5B04C3A82A720F3B00B89F0C /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C3A72A720F3B00B89F0C /* Score.swift */; };
+		5B04C3AA2A720F4500B89F0C /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C3A92A720F4500B89F0C /* Set.swift */; };
 		F194F5682A6D16F500D94EC8 /* TableTennisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194F5672A6D16F500D94EC8 /* TableTennisApp.swift */; };
 		F194F56A2A6D16F500D94EC8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194F5692A6D16F500D94EC8 /* ContentView.swift */; };
 		F194F56C2A6D16F600D94EC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F194F56B2A6D16F600D94EC8 /* Assets.xcassets */; };
@@ -44,6 +49,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B04C39F2A71FB0300B89F0C /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
+		5B04C3A32A71FB3F00B89F0C /* SingleBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleBoardView.swift; sourceTree = "<group>"; };
+		5B04C3A52A7203AB00B89F0C /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
+		5B04C3A72A720F3B00B89F0C /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		5B04C3A92A720F4500B89F0C /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		F194F5642A6D16F500D94EC8 /* TableTennis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableTennis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F194F5672A6D16F500D94EC8 /* TableTennisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTennisApp.swift; sourceTree = "<group>"; };
 		F194F5692A6D16F500D94EC8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +108,11 @@
 			children = (
 				F194F5672A6D16F500D94EC8 /* TableTennisApp.swift */,
 				F194F5692A6D16F500D94EC8 /* ContentView.swift */,
+				5B04C39F2A71FB0300B89F0C /* ScoreboardView.swift */,
+				5B04C3A52A7203AB00B89F0C /* ScoreModel.swift */,
+				5B04C3A32A71FB3F00B89F0C /* SingleBoardView.swift */,
+				5B04C3A72A720F3B00B89F0C /* Score.swift */,
+				5B04C3A92A720F4500B89F0C /* Set.swift */,
 				F194F56B2A6D16F600D94EC8 /* Assets.xcassets */,
 				F194F56D2A6D16F600D94EC8 /* Preview Content */,
 			);
@@ -238,8 +253,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B04C3A62A7203AB00B89F0C /* ScoreModel.swift in Sources */,
 				F194F56A2A6D16F500D94EC8 /* ContentView.swift in Sources */,
+				5B04C3AA2A720F4500B89F0C /* Set.swift in Sources */,
+				5B04C3A42A71FB3F00B89F0C /* SingleBoardView.swift in Sources */,
+				5B04C3A02A71FB0300B89F0C /* ScoreboardView.swift in Sources */,
 				F194F5682A6D16F500D94EC8 /* TableTennisApp.swift in Sources */,
+				5B04C3A82A720F3B00B89F0C /* Score.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,8 +413,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -423,8 +442,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
