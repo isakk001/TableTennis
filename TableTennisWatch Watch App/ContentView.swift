@@ -8,76 +8,119 @@
 import SwiftUI
 import WatchConnectivity
 
+
 struct ContentView: View {
     
     @ObservedObject var viewModel = ContentViewModel()
     @State var lastScore: Int = 0
     
     var body: some View {
-        HStack {
-            VStack {
-                Text("\(Int(viewModel.player1))")
-                    .font(.largeTitle)
-                    .focusable()
-                    .digitalCrownRotation($viewModel.player1, from: 0.0, through: 11.0, by: 0.01, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: false)
-                Button {
-                    viewModel.player1 += 1
-//                    viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
-//                    WKInterfaceDevice.current().play(.notification)
-                    /* WKInterfaceDevice.current().play(.) <- .play(.) 괄호 안 . 오른쪽에서 esc로 자동완성 목록들을 찾아보면 여러 햅틱 종류가 있음
-                                    */
-                } label: {
-                    Image(systemName: "plus.circle")
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                }
-                Button {
-                    viewModel.player1 -= 1
-//                    viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
-//                    WKInterfaceDevice.current().play(.notification)
-                } label: {
-                    Image(systemName: "minus.circle")
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                }
+        VStack {
+            HStack {
+                Image(systemName: "person.circle.fill")
+                    .resizable()
+                    .frame(width: 15, height: 15)
+                Text("1-2")
+                Image(systemName: "person.circle.fill")
+                    .resizable()
+                    .frame(width: 15, height: 15)
             }
-            VStack {
-                Text(viewModel.player2.description)
-                    .font(.largeTitle)
-                Button {
-                    viewModel.player2 += 1
-//                    viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
-//                    WKInterfaceDevice.current().play(.notification)
-                } label: {
-                    Image(systemName: "plus.circle")
-                        .resizable()
-                        .frame(width: 25, height: 25)
+            HStack {
+                VStack {
+                    Button {
+                        viewModel.player1 += 1
+    //                    viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
+    //                    WKInterfaceDevice.current().play(.notification)
+                    } label: {
+                        Image(systemName: "arrowtriangle.up.fill")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                    }
+                    .buttonStyle(Buttons())
+                    VStack {
+                        Text("L")
+                            .font(.system(size: 13).width(.condensed))
+                            .padding(.top, 10)
+                        Text("\(Int(viewModel.player1))")
+                            .font(.system(size: 70).width(.condensed))
+                            .multilineTextAlignment(.center)
+                            .focusable()
+                        .digitalCrownRotation($viewModel.player1, from: 0.0, through: 11.0, by: 0.01, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: false)
+                    }
+                    .frame(width: 85, height: 95, alignment: .center)
+                    .background(.white.opacity(0.2))
+                    .cornerRadius(10)
+                    Button {
+                        viewModel.player1 -= 1
+    //                    viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
+    //                    WKInterfaceDevice.current().play(.notification)
+                    } label: {
+                        Image(systemName: "arrowtriangle.down.fill")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                    }
+                    .buttonStyle(Buttons())
                 }
-                Button {
-                    viewModel.player2 -= 1
-//                    viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
-//                    WKInterfaceDevice.current().play(.notification)
-                } label: {
-                    Image(systemName: "minus.circle")
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                }
+                VStack {
+                    Button {
+                        viewModel.player2 += 1
+    //                    viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
+    //                    WKInterfaceDevice.current().play(.notification)
+                    } label: {
+                        Image(systemName: "arrowtriangle.up.fill")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                    }
+                    .buttonStyle(Buttons())
+                    VStack {
+                        Text("R")
+                            .font(.system(size: 13).width(.condensed))
+                            .padding(.top, 10)
+                        Text("\(Int(viewModel.player2))")
+                            .font(.system(size: 70).width(.condensed))
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(width: 85, height: 95, alignment: .center)
+                    .background(.white.opacity(0.2))
+                    .cornerRadius(10)
+                    Button {
+                        viewModel.player2 -= 1
+    //                    viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
+    //                    WKInterfaceDevice.current().play(.notification)
+                    } label: {
+                        Image(systemName: "arrowtriangle.down.fill")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                    }
+                    .buttonStyle(Buttons())
 
+                }
             }
-        }
-        .onChange(of: viewModel.player1) { newValue in
-            if abs(Int(newValue) - lastScore) >= 1 {
-                lastScore = Int(newValue)
-                WKInterfaceDevice.current().play(.notification)
-                viewModel.session.sendMessage(["player1" : lastScore], replyHandler: nil)
-            }
-        }
-        .onChange(of: viewModel.player2) { newValue in
+            .padding(.bottom, -10)
+            .onChange(of: viewModel.player1) { newValue in
+                if abs(Int(newValue) - lastScore) >= 1 {
+                    lastScore = Int(newValue)
                     WKInterfaceDevice.current().play(.notification)
-            viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
-            WKInterfaceDevice.current().play(.notification)
+                    viewModel.session.sendMessage(["player1" : lastScore], replyHandler: nil)
+                }
+            }
+            .onChange(of: viewModel.player2) { newValue in
+                        WKInterfaceDevice.current().play(.notification)
+                viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
+                WKInterfaceDevice.current().play(.notification)
+        }
         }
     }
+}
+
+struct Buttons: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+            configuration.label
+                .frame(width: 70, height: 15)
+                .padding()
+                .background(.white.opacity(0.2))
+                .cornerRadius(10)
+        }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -85,7 +128,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
 
 
 final class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {

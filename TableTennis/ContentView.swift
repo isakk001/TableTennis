@@ -8,6 +8,7 @@
 import SwiftUI
 import WatchConnectivity
 
+
 struct ContentView: View {
     
     @ObservedObject var viewModel = ContentViewModel()
