@@ -23,6 +23,7 @@ struct CoinTossView: View {
             .rotation3DEffect(.degrees(animation3d), axis: (x: 1.0, y: 0, z: 0))
             .scaleEffect(scaleAmount)
             .onTapGesture {
+                if isCoinTossing() { return }
                 withAnimation(.linear(duration: duration / 2)) {
                     self.scaleAmount = 3.0
                 }
@@ -50,6 +51,10 @@ struct CoinTossView: View {
                 }
             }
         }
+    }
+
+    private func isCoinTossing() -> Bool {
+        return animation3d > 0.0
     }
 }
 
