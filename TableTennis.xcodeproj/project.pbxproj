@@ -19,6 +19,9 @@
 		BFCDD1B42A75481500A94198 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BFCDD1B22A75481500A94198 /* SF-Pro-Text-Semibold.otf */; };
 		BFCDD1B52A75481500A94198 /* SF-Compact-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BFCDD1B32A75481500A94198 /* SF-Compact-Rounded-Semibold.otf */; };
 		BFCDD1B72A7548F100A94198 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDD1B62A7548F100A94198 /* TestView.swift */; };
+		BFCDD1B92A754AC900A94198 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDD1B82A754AC900A94198 /* StartView.swift */; };
+		BFCDD1BD2A754C3C00A94198 /* SF-Compact-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BFCDD1BB2A754C3C00A94198 /* SF-Compact-Rounded-Semibold.otf */; };
+		BFCDD1BE2A754C3C00A94198 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BFCDD1BC2A754C3C00A94198 /* SF-Pro-Text-Semibold.otf */; };
 		F194F5682A6D16F500D94EC8 /* TableTennisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194F5672A6D16F500D94EC8 /* TableTennisApp.swift */; };
 		F194F56A2A6D16F500D94EC8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194F5692A6D16F500D94EC8 /* ContentView.swift */; };
 		F194F56C2A6D16F600D94EC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F194F56B2A6D16F600D94EC8 /* Assets.xcassets */; };
@@ -69,6 +72,10 @@
 		BFCDD1B22A75481500A94198 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		BFCDD1B32A75481500A94198 /* SF-Compact-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Semibold.otf"; sourceTree = "<group>"; };
 		BFCDD1B62A7548F100A94198 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		BFCDD1B82A754AC900A94198 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		BFCDD1BB2A754C3C00A94198 /* SF-Compact-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Semibold.otf"; sourceTree = "<group>"; };
+		BFCDD1BC2A754C3C00A94198 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
+		BFCDD1BF2A754C5500A94198 /* TableTennisWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "TableTennisWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F194F5642A6D16F500D94EC8 /* TableTennis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableTennis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F194F5672A6D16F500D94EC8 /* TableTennisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTennisApp.swift; sourceTree = "<group>"; };
 		F194F5692A6D16F500D94EC8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -134,6 +141,7 @@
 		BF833BC02A74BD9500F17B33 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BFCDD1B82A754AC900A94198 /* StartView.swift */,
 				F194F57D2A6D187100D94EC8 /* ContentView.swift */,
 				BFA69ACB2A735876007DC6B9 /* CoinTossView.swift */,
 				F1EF1AED2A70CA120084E728 /* EndView.swift */,
@@ -164,6 +172,7 @@
 			children = (
 				F194F57F2A6D187200D94EC8 /* Assets.xcassets */,
 				F194F5812A6D187200D94EC8 /* Preview Content */,
+				BFCDD1BA2A754C2A00A94198 /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -173,6 +182,15 @@
 			children = (
 				BFCDD1B32A75481500A94198 /* SF-Compact-Rounded-Semibold.otf */,
 				BFCDD1B22A75481500A94198 /* SF-Pro-Text-Semibold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		BFCDD1BA2A754C2A00A94198 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BFCDD1BB2A754C3C00A94198 /* SF-Compact-Rounded-Semibold.otf */,
+				BFCDD1BC2A754C3C00A94198 /* SF-Pro-Text-Semibold.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -218,6 +236,7 @@
 		F194F57A2A6D187100D94EC8 /* TableTennisWatch Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				BFCDD1BF2A754C5500A94198 /* TableTennisWatch-Watch-App-Info.plist */,
 				F194F57B2A6D187100D94EC8 /* TableTennisWatchApp.swift */,
 				BF833BC02A74BD9500F17B33 /* Views */,
 				BF833BC12A74BD9D00F17B33 /* ViewModels */,
@@ -330,6 +349,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCDD1BE2A754C3C00A94198 /* SF-Pro-Text-Semibold.otf in Resources */,
+				BFCDD1BD2A754C3C00A94198 /* SF-Compact-Rounded-Semibold.otf in Resources */,
 				F194F5832A6D187200D94EC8 /* Preview Assets.xcassets in Resources */,
 				F194F5802A6D187200D94EC8 /* Assets.xcassets in Resources */,
 			);
@@ -362,6 +383,7 @@
 				F1EF1AEE2A70CA120084E728 /* EndView.swift in Sources */,
 				BF833BC42A74BE6400F17B33 /* ScoreViewModel.swift in Sources */,
 				F194F57E2A6D187100D94EC8 /* ContentView.swift in Sources */,
+				BFCDD1B92A754AC900A94198 /* StartView.swift in Sources */,
 				BFA69ACC2A735877007DC6B9 /* CoinTossView.swift in Sources */,
 				F194F57C2A6D187100D94EC8 /* TableTennisWatchApp.swift in Sources */,
 			);
@@ -571,6 +593,7 @@
 				DEVELOPMENT_TEAM = 69BY22GUTU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TableTennisWatch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = TableTennisWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = yisak.TableTennis;
@@ -601,6 +624,7 @@
 				DEVELOPMENT_TEAM = 69BY22GUTU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TableTennisWatch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = TableTennisWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = yisak.TableTennis;
