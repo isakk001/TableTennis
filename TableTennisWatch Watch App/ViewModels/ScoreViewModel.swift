@@ -12,6 +12,9 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
 
     @Published var player1: Int = 0
     @Published var player2: Int = 0
+    
+    @Published var set1: Int = 0
+    @Published var set2: Int = 0
 
     var session: WCSession
 
@@ -31,6 +34,8 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
             print("iphone: \(message)")
             self.player1 = message["player1"] as? Int ?? self.player1
             self.player2 = message["player2"] as? Int ?? self.player2
+            self.set1 = message["set1"] as? Int ?? self.set1
+            self.set2 = message["set2"] as? Int ?? self.set2
         }
     }
 }

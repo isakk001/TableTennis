@@ -18,7 +18,7 @@ struct ContentView: View {
                 Image(systemName: "person.circle.fill")
                     .resizable()
                     .frame(width: 15, height: 15)
-                Text("1-2")
+                Text("\(viewModel.set1) - \(viewModel.set2)")
                 Image(systemName: "person.circle.fill")
                     .resizable()
                     .frame(width: 15, height: 15)
@@ -26,7 +26,13 @@ struct ContentView: View {
             HStack {
                 VStack {
                     Button {
-                        viewModel.player1 += 1
+                        if viewModel.player1 < 11 {
+                            viewModel.player1 += 1
+                        } else {
+                            viewModel.set1 += 0
+                            viewModel.player1 = 0
+                            viewModel.session.sendMessage(["set1" : viewModel.set1], replyHandler: nil)
+                        }
     //                    viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
     //                    WKInterfaceDevice.current().play(.notification)
                     } label: {
@@ -49,7 +55,9 @@ struct ContentView: View {
                     .background(.white.opacity(0.2))
                     .cornerRadius(10)
                     Button {
-                        viewModel.player1 -= 1
+                        if viewModel.player1 > 0 {
+                            viewModel.player1 -= 1
+                        }
     //                    viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
     //                    WKInterfaceDevice.current().play(.notification)
                     } label: {
@@ -61,7 +69,13 @@ struct ContentView: View {
                 }
                 VStack {
                     Button {
-                        viewModel.player2 += 1
+                        if viewModel.player2 < 11 {
+                            viewModel.player2 += 1
+                        } else {
+                            viewModel.set2 += 1
+                            viewModel.player2 = 0
+                            viewModel.session.sendMessage(["set2" : viewModel.set2], replyHandler: nil)
+                        }
     //                    viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
     //                    WKInterfaceDevice.current().play(.notification)
                     } label: {
@@ -82,7 +96,9 @@ struct ContentView: View {
                     .background(.white.opacity(0.2))
                     .cornerRadius(10)
                     Button {
-                        viewModel.player2 -= 1
+                        if viewModel.player2 > 0 {
+                            viewModel.player2 -= 1
+                        }
     //                    viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
     //                    WKInterfaceDevice.current().play(.notification)
                     } label: {
