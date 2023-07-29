@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  ScoreView.swift
 //  TableTennisWatch Watch App
 //
 //  Created by Yisak on 2023/07/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ScoreView: View {
     
     @StateObject var viewModel = ScoreViewModel()
 //    @State var lastScore: Int = 0
@@ -141,6 +141,6 @@ struct Buttons: ButtonStyle {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ScoreView()
     }
 }

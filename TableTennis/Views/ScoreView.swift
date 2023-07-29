@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  ScoreView.swift
 //  TableTennis
 //
 //  Created by Yisak on 2023/07/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ScoreView: View {
     
     @ObservedObject var viewModel = ContentViewModel()
 
@@ -143,6 +143,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ScoreView()
     }
 }
