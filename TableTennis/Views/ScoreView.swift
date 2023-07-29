@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ScoreView: View {
     
-    @ObservedObject var viewModel = ContentViewModel()
+    @ObservedObject var viewModel = ScoreViewModel()
 
     var body: some View {
         ZStack {

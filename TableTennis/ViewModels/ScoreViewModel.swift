@@ -1,5 +1,5 @@
 //
-//  ContentViewModel.swift
+//  ScoreViewModel.swift
 //  TableTennis
 //
 //  Created by 허준혁 on 2023/07/29.
@@ -8,7 +8,7 @@
 import Foundation
 import WatchConnectivity
 
-final class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
+final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
 
     @Published var player1: Int = 0
     @Published var player2: Int = 0
