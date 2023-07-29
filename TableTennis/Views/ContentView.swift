@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import WatchConnectivity
-
 
 struct ContentView: View {
     
@@ -66,37 +64,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-    }
-}
-
-
-final class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
-    
-    @Published var player1: Int = 0
-    @Published var player2: Int = 0
-    
-    var session: WCSession
-    
-    init(session: WCSession = .default) {
-        self.session = session
-        super.init()
-        session.delegate = self
-        session.activate()
-    }
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        DispatchQueue.main.async {
-            self.player1 = message["player1"] as? Int ?? self.player1
-            self.player2 = message["player2"] as? Int ?? self.player2
-        }
-    }
-    
-    func sessionDidBecomeInactive(_ session: WCSession) {
-    }
-    
-    func sessionDidDeactivate(_ session: WCSession) {
-    }
-    
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
 }

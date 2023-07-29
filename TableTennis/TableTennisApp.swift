@@ -11,7 +11,7 @@ import SwiftUI
 struct TableTennisApp: App {
     var body: some Scene {
         WindowGroup {
-            ScoreboardView()
+            ContentView()
         }
     }
 }
