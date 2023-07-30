@@ -1,4 +1,3 @@
-//
 //  StartView.swift
 //  TableTennis
 //
@@ -6,6 +5,7 @@
 //
 
 import SwiftUI
+import WatchConnectivity
 
 struct CustomButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
@@ -18,16 +18,28 @@ struct CustomButtonStyle: ButtonStyle {
 }
 
 struct StartView: View {
+    @State private var showScoreView = false
+
     var body: some View {
         NavigationView {
             VStack {
                 TitleView()
 
-                NavigationLink(destination: ScoreView()) {
+                NavigationLink(destination: ScoreView(), isActive: $showScoreView) {
                     Text("Play")
                         .font(.custom("SFProText-Semibold", size: 17))
+                        .onTapGesture {
+                            self.showScoreView = true
+                            WatchSessionManager.sharedManager.sendPlayCommand()
+                        }
                 }
                 .buttonStyle(CustomButtonStyle())
+            }
+            .onAppear {
+                WatchSessionManager.sharedManager.startSession()
+            }
+            .onReceive(WatchSessionManager.sharedManager.$showScoreView) { value in
+                self.showScoreView = value
             }
         }
     }
@@ -48,5 +60,48 @@ struct TitleView: View {
 struct StartView_Previews: PreviewProvider {
     static var previews: some View {
         StartView()
+    }
+}
+
+final class WatchSessionManager: NSObject, ObservableObject, WCSessionDelegate {
+    static let sharedManager = WatchSessionManager()
+    @Published var showScoreView = false
+
+    private override init() {
+        super.init()
+    }
+
+    private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
+
+    func startSession() {
+        session?.delegate = self
+        session?.activate()
+    }
+
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
+
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let command = message["command"] as? String, command == "play" {
+            DispatchQueue.main.async {
+                self.showScoreView = true
+            }
+        }
+    }
+
+    func sendPlayCommand() {
+        guard WCSession.default.isReachable else {
+            print("Not Reachable")
+            return
+        }
+        let message = ["command": "play"]
+        WCSession.default.sendMessage(message, replyHandler: nil, errorHandler: { error in
+            print(error.localizedDescription)
+        })
+    }
+
+    func sessionDidBecomeInactive(_ session: WCSession) {}
+
+    func sessionDidDeactivate(_ session: WCSession) {
+        WCSession.default.activate()
     }
 }
