@@ -13,13 +13,14 @@ struct TableTennisWatch_Watch_AppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TabView(selection: $selectedTab) {
-                EndView(selectedTab: $selectedTab)
-                    .tag(0)
-                ContentView()
-                    .tag(1)
-            }
-            .tabViewStyle(PageTabViewStyle())
+            StartView()
+//            TabView(selection: $selectedTab) {
+//                EndView(selectedTab: $selectedTab)
+//                    .tag(0)
+//                ContentView()
+//                    .tag(1)
+//            }
+//            .tabViewStyle(PageTabViewStyle())
         }
     }
 }

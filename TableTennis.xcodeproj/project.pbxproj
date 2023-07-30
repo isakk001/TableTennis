@@ -12,13 +12,21 @@
 		5B04C3A62A7203AB00B89F0C /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C3A52A7203AB00B89F0C /* ScoreModel.swift */; };
 		5B04C3A82A720F3B00B89F0C /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C3A72A720F3B00B89F0C /* Score.swift */; };
 		5B04C3AA2A720F4500B89F0C /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C3A92A720F4500B89F0C /* Set.swift */; };
+		BF833BBF2A74BD6300F17B33 /* ScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF833BBE2A74BD6300F17B33 /* ScoreViewModel.swift */; };
+		BF833BC42A74BE6400F17B33 /* ScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF833BC32A74BE6400F17B33 /* ScoreViewModel.swift */; };
 		BFA69ACC2A735877007DC6B9 /* CoinTossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA69ACB2A735876007DC6B9 /* CoinTossView.swift */; };
+		BFCDD1AF2A75472E00A94198 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDD1AE2A75472E00A94198 /* StartView.swift */; };
+		BFCDD1B42A75481500A94198 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BFCDD1B22A75481500A94198 /* SF-Pro-Text-Semibold.otf */; };
+		BFCDD1B52A75481500A94198 /* SF-Compact-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BFCDD1B32A75481500A94198 /* SF-Compact-Rounded-Semibold.otf */; };
+		BFCDD1B92A754AC900A94198 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDD1B82A754AC900A94198 /* StartView.swift */; };
+		BFCDD1BD2A754C3C00A94198 /* SF-Compact-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BFCDD1BB2A754C3C00A94198 /* SF-Compact-Rounded-Semibold.otf */; };
+		BFCDD1BE2A754C3C00A94198 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BFCDD1BC2A754C3C00A94198 /* SF-Pro-Text-Semibold.otf */; };
 		F194F5682A6D16F500D94EC8 /* TableTennisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194F5672A6D16F500D94EC8 /* TableTennisApp.swift */; };
-		F194F56A2A6D16F500D94EC8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194F5692A6D16F500D94EC8 /* ContentView.swift */; };
+		F194F56A2A6D16F500D94EC8 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194F5692A6D16F500D94EC8 /* ScoreView.swift */; };
 		F194F56C2A6D16F600D94EC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F194F56B2A6D16F600D94EC8 /* Assets.xcassets */; };
 		F194F56F2A6D16F600D94EC8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F194F56E2A6D16F600D94EC8 /* Preview Assets.xcassets */; };
 		F194F57C2A6D187100D94EC8 /* TableTennisWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194F57B2A6D187100D94EC8 /* TableTennisWatchApp.swift */; };
-		F194F57E2A6D187100D94EC8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194F57D2A6D187100D94EC8 /* ContentView.swift */; };
+		F194F57E2A6D187100D94EC8 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194F57D2A6D187100D94EC8 /* ScoreView.swift */; };
 		F194F5802A6D187200D94EC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F194F57F2A6D187200D94EC8 /* Assets.xcassets */; };
 		F194F5832A6D187200D94EC8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F194F5822A6D187200D94EC8 /* Preview Assets.xcassets */; };
 		F194F5862A6D187200D94EC8 /* TableTennisWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F194F5792A6D187100D94EC8 /* TableTennisWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -55,15 +63,25 @@
 		5B04C3A52A7203AB00B89F0C /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
 		5B04C3A72A720F3B00B89F0C /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		5B04C3A92A720F4500B89F0C /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
+		BF833BBE2A74BD6300F17B33 /* ScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewModel.swift; sourceTree = "<group>"; };
+		BF833BC32A74BE6400F17B33 /* ScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewModel.swift; sourceTree = "<group>"; };
 		BFA69ACB2A735876007DC6B9 /* CoinTossView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTossView.swift; sourceTree = "<group>"; };
+		BFCDD1AE2A75472E00A94198 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		BFCDD1B02A7547FC00A94198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BFCDD1B22A75481500A94198 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
+		BFCDD1B32A75481500A94198 /* SF-Compact-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Semibold.otf"; sourceTree = "<group>"; };
+		BFCDD1B82A754AC900A94198 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		BFCDD1BB2A754C3C00A94198 /* SF-Compact-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Rounded-Semibold.otf"; sourceTree = "<group>"; };
+		BFCDD1BC2A754C3C00A94198 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
+		BFCDD1BF2A754C5500A94198 /* TableTennisWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "TableTennisWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F194F5642A6D16F500D94EC8 /* TableTennis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableTennis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F194F5672A6D16F500D94EC8 /* TableTennisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTennisApp.swift; sourceTree = "<group>"; };
-		F194F5692A6D16F500D94EC8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F194F5692A6D16F500D94EC8 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		F194F56B2A6D16F600D94EC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F194F56E2A6D16F600D94EC8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F194F5792A6D187100D94EC8 /* TableTennisWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TableTennisWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F194F57B2A6D187100D94EC8 /* TableTennisWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTennisWatchApp.swift; sourceTree = "<group>"; };
-		F194F57D2A6D187100D94EC8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F194F57D2A6D187100D94EC8 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		F194F57F2A6D187200D94EC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F194F5822A6D187200D94EC8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F1EF1AED2A70CA120084E728 /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
@@ -87,6 +105,93 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF833BBA2A74B77200F17B33 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BFCDD1AE2A75472E00A94198 /* StartView.swift */,
+				F194F5692A6D16F500D94EC8 /* ScoreView.swift */,
+				BF833BBC2A74BD1E00F17B33 /* NY */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BF833BBC2A74BD1E00F17B33 /* NY */ = {
+			isa = PBXGroup;
+			children = (
+				5B04C39F2A71FB0300B89F0C /* ScoreboardView.swift */,
+				5B04C3A52A7203AB00B89F0C /* ScoreModel.swift */,
+				5B04C3A32A71FB3F00B89F0C /* SingleBoardView.swift */,
+				5B04C3A72A720F3B00B89F0C /* Score.swift */,
+				5B04C3A92A720F4500B89F0C /* Set.swift */,
+			);
+			path = NY;
+			sourceTree = "<group>";
+		};
+		BF833BBD2A74BD4100F17B33 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BF833BBE2A74BD6300F17B33 /* ScoreViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BF833BC02A74BD9500F17B33 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BFCDD1B82A754AC900A94198 /* StartView.swift */,
+				F194F57D2A6D187100D94EC8 /* ScoreView.swift */,
+				BFA69ACB2A735876007DC6B9 /* CoinTossView.swift */,
+				F1EF1AED2A70CA120084E728 /* EndView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BF833BC12A74BD9D00F17B33 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BF833BC32A74BE6400F17B33 /* ScoreViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BF833BC52A74BEB000F17B33 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F194F56B2A6D16F600D94EC8 /* Assets.xcassets */,
+				F194F56D2A6D16F600D94EC8 /* Preview Content */,
+				BFCDD1B12A75480100A94198 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BF833BC62A74BECB00F17B33 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F194F57F2A6D187200D94EC8 /* Assets.xcassets */,
+				F194F5812A6D187200D94EC8 /* Preview Content */,
+				BFCDD1BA2A754C2A00A94198 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BFCDD1B12A75480100A94198 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BFCDD1B32A75481500A94198 /* SF-Compact-Rounded-Semibold.otf */,
+				BFCDD1B22A75481500A94198 /* SF-Pro-Text-Semibold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		BFCDD1BA2A754C2A00A94198 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BFCDD1BB2A754C3C00A94198 /* SF-Compact-Rounded-Semibold.otf */,
+				BFCDD1BC2A754C3C00A94198 /* SF-Pro-Text-Semibold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		F194F55B2A6D16F500D94EC8 = {
 			isa = PBXGroup;
 			children = (
@@ -108,15 +213,11 @@
 		F194F5662A6D16F500D94EC8 /* TableTennis */ = {
 			isa = PBXGroup;
 			children = (
+				BFCDD1B02A7547FC00A94198 /* Info.plist */,
 				F194F5672A6D16F500D94EC8 /* TableTennisApp.swift */,
-				F194F5692A6D16F500D94EC8 /* ContentView.swift */,
-				5B04C39F2A71FB0300B89F0C /* ScoreboardView.swift */,
-				5B04C3A52A7203AB00B89F0C /* ScoreModel.swift */,
-				5B04C3A32A71FB3F00B89F0C /* SingleBoardView.swift */,
-				5B04C3A72A720F3B00B89F0C /* Score.swift */,
-				5B04C3A92A720F4500B89F0C /* Set.swift */,
-				F194F56B2A6D16F600D94EC8 /* Assets.xcassets */,
-				F194F56D2A6D16F600D94EC8 /* Preview Content */,
+				BF833BBA2A74B77200F17B33 /* Views */,
+				BF833BBD2A74BD4100F17B33 /* ViewModels */,
+				BF833BC52A74BEB000F17B33 /* Resources */,
 			);
 			path = TableTennis;
 			sourceTree = "<group>";
@@ -132,12 +233,11 @@
 		F194F57A2A6D187100D94EC8 /* TableTennisWatch Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				BFCDD1BF2A754C5500A94198 /* TableTennisWatch-Watch-App-Info.plist */,
 				F194F57B2A6D187100D94EC8 /* TableTennisWatchApp.swift */,
-				F194F57D2A6D187100D94EC8 /* ContentView.swift */,
-				BFA69ACB2A735876007DC6B9 /* CoinTossView.swift */,
-				F194F57F2A6D187200D94EC8 /* Assets.xcassets */,
-				F194F5812A6D187200D94EC8 /* Preview Content */,
-				F1EF1AED2A70CA120084E728 /* EndView.swift */,
+				BF833BC02A74BD9500F17B33 /* Views */,
+				BF833BC12A74BD9D00F17B33 /* ViewModels */,
+				BF833BC62A74BECB00F17B33 /* Resources */,
 			);
 			path = "TableTennisWatch Watch App";
 			sourceTree = "<group>";
@@ -235,6 +335,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCDD1B42A75481500A94198 /* SF-Pro-Text-Semibold.otf in Resources */,
+				BFCDD1B52A75481500A94198 /* SF-Compact-Rounded-Semibold.otf in Resources */,
 				F194F56F2A6D16F600D94EC8 /* Preview Assets.xcassets in Resources */,
 				F194F56C2A6D16F600D94EC8 /* Assets.xcassets in Resources */,
 			);
@@ -244,6 +346,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCDD1BE2A754C3C00A94198 /* SF-Pro-Text-Semibold.otf in Resources */,
+				BFCDD1BD2A754C3C00A94198 /* SF-Compact-Rounded-Semibold.otf in Resources */,
 				F194F5832A6D187200D94EC8 /* Preview Assets.xcassets in Resources */,
 				F194F5802A6D187200D94EC8 /* Assets.xcassets in Resources */,
 			);
@@ -256,8 +360,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCDD1AF2A75472E00A94198 /* StartView.swift in Sources */,
+				BF833BBF2A74BD6300F17B33 /* ScoreViewModel.swift in Sources */,
 				5B04C3A62A7203AB00B89F0C /* ScoreModel.swift in Sources */,
-				F194F56A2A6D16F500D94EC8 /* ContentView.swift in Sources */,
+				F194F56A2A6D16F500D94EC8 /* ScoreView.swift in Sources */,
 				5B04C3AA2A720F4500B89F0C /* Set.swift in Sources */,
 				5B04C3A42A71FB3F00B89F0C /* SingleBoardView.swift in Sources */,
 				5B04C3A02A71FB0300B89F0C /* ScoreboardView.swift in Sources */,
@@ -271,7 +377,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1EF1AEE2A70CA120084E728 /* EndView.swift in Sources */,
-				F194F57E2A6D187100D94EC8 /* ContentView.swift in Sources */,
+				BF833BC42A74BE6400F17B33 /* ScoreViewModel.swift in Sources */,
+				F194F57E2A6D187100D94EC8 /* ScoreView.swift in Sources */,
+				BFCDD1B92A754AC900A94198 /* StartView.swift in Sources */,
 				BFA69ACC2A735877007DC6B9 /* CoinTossView.swift in Sources */,
 				F194F57C2A6D187100D94EC8 /* TableTennisWatchApp.swift in Sources */,
 			);
@@ -410,10 +518,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TableTennis/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TableTennis/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 69BY22GUTU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TableTennis/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -426,9 +535,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yisak.TableTennis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -440,10 +552,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TableTennis/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TableTennis/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 69BY22GUTU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TableTennis/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -456,9 +569,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yisak.TableTennis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -469,10 +585,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TableTennisWatch Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TableTennisWatch Watch App/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 69BY22GUTU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TableTennisWatch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = TableTennisWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = yisak.TableTennis;
@@ -499,10 +616,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TableTennisWatch Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TableTennisWatch Watch App/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 69BY22GUTU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TableTennisWatch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = TableTennisWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = yisak.TableTennis;

@@ -11,7 +11,11 @@ import SwiftUI
 struct TableTennisApp: App {
     var body: some Scene {
         WindowGroup {
+<<<<<<< HEAD
             ContentView()
+=======
+            StartView()
+>>>>>>> 40bfd38d81b0cbe97a4af912983e4a19e6242795
         }
     }
 }
