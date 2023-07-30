@@ -12,7 +12,7 @@ import WatchConnectivity
 
 struct ContentView: View {
     
-    @StateObject var viewModel = watchScoreModel()
+    @StateObject var viewModel = ContentViewModel()
 //    @State var lastScore: Int = 0
     
     var body: some View {
@@ -133,7 +133,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
-class watchScoreModel: NSObject, WCSessionDelegate, ObservableObject {
+class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
     
     @Published var player1: Int = 0
     @Published var player2: Int = 0
