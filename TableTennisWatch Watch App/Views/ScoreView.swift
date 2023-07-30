@@ -126,6 +126,7 @@ struct ScoreView: View {
                 WKInterfaceDevice.current().play(.notification)
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 

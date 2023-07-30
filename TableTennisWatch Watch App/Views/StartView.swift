@@ -19,16 +19,16 @@ struct CustomButtonStyle: ButtonStyle {
 
 struct StartView: View {
     var body: some View {
-        VStack {
-            TitleView()
+        NavigationView {
+            VStack {
+                TitleView()
 
-            Button(action: {
-                print("Button tapped!")
-            }) {
-                Text("Play")
-                    .font(.custom("SFProText-Semibold", size: 17))
+                NavigationLink(destination: ScoreView()) {
+                    Text("Play")
+                        .font(.custom("SFProText-Semibold", size: 17))
+                }
+                .buttonStyle(CustomButtonStyle())
             }
-            .buttonStyle(CustomButtonStyle())
         }
     }
 }

@@ -138,6 +138,7 @@ struct ScoreView: View {
                 Text("Page Controllers")
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
