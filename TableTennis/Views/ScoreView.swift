@@ -118,13 +118,13 @@ struct ScoreView: View {
                 }
             }
             .onChange(of: viewModel.set1) { newValue in
-                if newValue == 1 {
+                if newValue == 5 {
                     viewModel.isWin = 0
                     pageManager.pageState = .resultView
                 }
             }
             .onChange(of: viewModel.set2) { newValue in
-                if newValue == 1 {
+                if newValue == 5 {
                     viewModel.isWin = 1
                     pageManager.pageState = .resultView
                 }
