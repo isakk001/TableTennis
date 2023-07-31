@@ -118,7 +118,7 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
                 self.player1 -= 1
             }
         } else {
-            if self.player2 > 2 {
+            if self.player2 > 0 {
                 self.player2 -= 1
             }
         }
