@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CoinTossView: View {
+    let namespace: Namespace.ID
     @ObservedObject var viewModel: ScoreViewModel
     @State private var animation3d = 0.0
     @State private var scaleAmount: CGFloat = 1.0
@@ -30,6 +31,7 @@ struct CoinTossView: View {
                 .aspectRatio(contentMode: .fit)
                 .rotation3DEffect(.degrees(animation3d), axis: (x: 1.0, y: 0, z: 0))
                 .scaleEffect(scaleAmount)
+                .matchedGeometryEffect(id: "img", in: namespace)
             Button {
                 isTapped.toggle()
                 if isTapped {} else {
@@ -104,9 +106,9 @@ struct TapSetButtonStyle: ButtonStyle {
             .padding(EdgeInsets(top: 10, leading: 0, bottom: -20, trailing: 0))
     }
 }
-
-struct CoinTossView_Previews: PreviewProvider {
-    static var previews: some View {
-        CoinTossView(viewModel: ScoreViewModel())
-    }
-}
+//
+//struct CoinTossView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CoinTossView(viewModel: ScoreViewModel())
+//    }
+//}

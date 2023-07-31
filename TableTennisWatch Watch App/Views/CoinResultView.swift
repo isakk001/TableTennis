@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CoinResultView: View {
+    let namespace: Namespace.ID
     @ObservedObject var viewModel: ScoreViewModel
     
     var body: some View {
@@ -19,6 +20,7 @@ struct CoinResultView: View {
             Image(viewModel.servePlayer == 0 ? "Coin_You" : "Coin_Partner")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .matchedGeometryEffect(id: "img", in: namespace)
             Button {
                 PageManager.shared.pageState = .scoreView
             } label: {
@@ -28,9 +30,9 @@ struct CoinResultView: View {
         }
     }
 }
-
-struct CoinResultView_Previews: PreviewProvider {
-    static var previews: some View {
-        CoinResultView(viewModel: ScoreViewModel())
-    }
-}
+//
+//struct CoinResultView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CoinResultView(viewModel: ScoreViewModel())
+//    }
+//}

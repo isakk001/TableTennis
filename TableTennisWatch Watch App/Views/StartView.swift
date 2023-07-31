@@ -34,6 +34,7 @@ class PageManager : ObservableObject {
 }
 
 struct StartView: View {
+    @Namespace var namespace
     @StateObject var viewModel = ScoreViewModel()
     @StateObject var pageManager = PageManager.shared
     
@@ -43,9 +44,9 @@ struct StartView: View {
             case .progressBarView:
                 StartPlayView()
             case .coinTossView:
-                CoinTossView(viewModel: viewModel)
+                CoinTossView(namespace: namespace, viewModel: viewModel)
             case .coinResultView:
-                CoinResultView(viewModel: viewModel)
+                CoinResultView(namespace: namespace, viewModel: viewModel)
             case .scoreView:
                 TabView(selection: $pageManager.tabState) {
                     RestartView()
