@@ -34,7 +34,9 @@ struct ScoreView: View {
                         .font(.system(size: 70).width(.condensed))
                         .padding(.bottom, -10)
                         .frame(width: 85, height: 90)
-                        .background(viewModel.servePlayer == 0 ? Color("Fills_Gradient_End") : .white.opacity(0.2))
+                        .background(viewModel.servePlayer == 0
+                             ? LinearGradient(colors: [Color("Fills_Gradient_Start"), Color("Fills_Gradient_End")], startPoint: .top, endPoint: .bottom)
+                             : LinearGradient(colors: [.white.opacity(0.2)], startPoint: .top, endPoint: .bottom))
                         .cornerRadius(10)
                         .animation(.easeInOut, value: viewModel.set1)
                     Button {
@@ -57,7 +59,9 @@ struct ScoreView: View {
                         .font(.system(size: 70).width(.condensed))
                         .padding(.bottom, -10)
                         .frame(width: 85, height: 90)
-                        .background(viewModel.servePlayer == 1 ? Color("Fills_Gradient_End") : .white.opacity(0.2))
+                        .background(viewModel.servePlayer == 1
+                             ? LinearGradient(colors: [Color("Fills_Gradient_Start"), Color("Fills_Gradient_End")], startPoint: .top, endPoint: .bottom)
+                             : LinearGradient(colors: [.white.opacity(0.2)], startPoint: .top, endPoint: .bottom))
                         .cornerRadius(10)
                         .animation(.easeInOut, value: viewModel.set2)
                     Button {
