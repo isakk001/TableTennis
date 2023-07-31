@@ -36,6 +36,8 @@
 		F194F5832A6D187200D94EC8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F194F5822A6D187200D94EC8 /* Preview Assets.xcassets */; };
 		F194F5862A6D187200D94EC8 /* TableTennisWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F194F5792A6D187100D94EC8 /* TableTennisWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F1EF1AEE2A70CA120084E728 /* RestartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EF1AED2A70CA120084E728 /* RestartView.swift */; };
+		FFA10C022A7781B60056B16A /* PageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA10C012A7781B60056B16A /* PageState.swift */; };
+		FFA10C042A7782040056B16A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA10C032A7782040056B16A /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,8 @@
 		F194F57F2A6D187200D94EC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F194F5822A6D187200D94EC8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F1EF1AED2A70CA120084E728 /* RestartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartView.swift; sourceTree = "<group>"; };
+		FFA10C012A7781B60056B16A /* PageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageState.swift; sourceTree = "<group>"; };
+		FFA10C032A7782040056B16A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 				F194F5692A6D16F500D94EC8 /* ScoreView.swift */,
 				5BA4F5C42A7743BB006B9131 /* PlayResultView.swift */,
 				BF833BBC2A74BD1E00F17B33 /* NY */,
+				FFA10C032A7782040056B16A /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				BF833BBE2A74BD6300F17B33 /* ScoreViewModel.swift */,
+				FFA10C012A7781B60056B16A /* PageState.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -384,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFA10C022A7781B60056B16A /* PageState.swift in Sources */,
 				BFCDD1AF2A75472E00A94198 /* StartView.swift in Sources */,
 				BF833BBF2A74BD6300F17B33 /* ScoreViewModel.swift in Sources */,
 				5B04C3A62A7203AB00B89F0C /* ScoreModel.swift in Sources */,
@@ -393,6 +400,7 @@
 				5B04C3AA2A720F4500B89F0C /* Set.swift in Sources */,
 				5B04C3A42A71FB3F00B89F0C /* SingleBoardView.swift in Sources */,
 				5B04C3A02A71FB0300B89F0C /* ScoreboardView.swift in Sources */,
+				FFA10C042A7782040056B16A /* ContentView.swift in Sources */,
 				F194F5682A6D16F500D94EC8 /* TableTennisApp.swift in Sources */,
 				5B04C3A82A720F3B00B89F0C /* Score.swift in Sources */,
 			);

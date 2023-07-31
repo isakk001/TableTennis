@@ -10,9 +10,9 @@ import SwiftUI
 
 struct ScoreView: View {
     
-    @StateObject var viewModel = ScoreViewModel()
+    @ObservedObject var viewModel: ScoreViewModel
+    @ObservedObject var pageManager: PageManager
     @State var endGame: Bool = false
-    @State var isWin: Bool = false
     
     var body: some View {
         ZStack {
@@ -115,21 +115,18 @@ struct ScoreView: View {
                         : AnyView(Color("Fills_Primary"))
                     )
                     .cornerRadius(8)
-                    NavigationLink(destination: PlayResultView(isWin: isWin), isActive: $endGame) {
-                        EmptyView()
-                    }
                 }
             }
             .onChange(of: viewModel.set1) { newValue in
-                if newValue == 5 {
-                    endGame = true
-                    isWin = true
+                if newValue == 1 {
+                    viewModel.isWin = 0
+                    pageManager.pageState = .resultView
                 }
             }
             .onChange(of: viewModel.set2) { newValue in
-                if newValue == 5 {
-                    endGame = true
-                    isWin = false
+                if newValue == 1 {
+                    viewModel.isWin = 1
+                    pageManager.pageState = .resultView
                 }
             }
         }
@@ -141,10 +138,10 @@ struct ScoreView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            ScoreView()
+            ScoreView(viewModel: ScoreViewModel(), pageManager: PageManager.shared)
         }
     }
 }

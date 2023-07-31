@@ -9,9 +9,10 @@ import SwiftUI
 import SpriteKit
 
 struct PlayResultView: View {
-    let backgroundColor: String = "BG_Primary"
+    @ObservedObject var pageManager: PageManager
     
-    let isWin: Bool
+    let backgroundColor: String = "BG_Primary"
+    let isWin: Int
     
     enum Result {
         case win
@@ -33,20 +34,34 @@ struct PlayResultView: View {
                 .ignoresSafeArea()
             
             VStack {
-                    Image(showResult(isWin).0)
-                        .resizable()
-                        .frame(width: 140, height: 140)
-                        .padding()
+                Image(showResult(isWin).0)
+                    .resizable()
+                    .frame(width: 140, height: 140)
+                    .padding()
                 
                 Text(showResult(isWin).1)
                     .foregroundColor(.white)
                     .font(.system(size: 40).weight(.semibold))
+                Button(action: {
+                    pageManager.pageState = .startView
+                }) {
+                    Label("Restart", systemImage: "arrow.counterclockwise")
+                        .labelStyle(.titleAndIcon)
+                        .font(.system(size: 17).weight(.semibold))
+                        .foregroundColor(.white)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 28)
+                        .background(Color("Fills_Primary"))
+                        .cornerRadius(16)
+                }
+                .padding(.top, 16)
             }
         }
+        .navigationBarBackButtonHidden()
     }
     
-    func showResult(_ isWin: Bool) -> (String, String) {
-        if isWin {
+    func showResult(_ isWin: Int) -> (String, String) {
+        if isWin == 0 {
             return Result.win.detail
         } else {
             return Result.lose.detail
@@ -56,6 +71,8 @@ struct PlayResultView: View {
 
 struct PlayResultView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayResultView(isWin: false)
+        NavigationStack {
+            PlayResultView(pageManager: PageManager.shared, isWin: 0)
+        }
     }
 }

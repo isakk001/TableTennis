@@ -19,23 +19,22 @@ struct CustomButtonStyle: ButtonStyle {
 
 struct StartView: View {
     @State private var showScoreView = false
+    @ObservedObject var pageManager: PageManager
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color.black
-                    .edgesIgnoringSafeArea(.all)
-                VStack {
-                    TitleView()
-                    NavigationLink(destination: ScoreView(), isActive: $showScoreView) {
-                        Text("Play")
-                            .font(.system(size: 17).weight(.semibold))
-                            .onTapGesture {
-                                self.showScoreView = true
-                            }
-                    }
-                    .buttonStyle(CustomButtonStyle())
+        ZStack {
+            Color.black
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                TitleView()
+                Button(action: {
+                    self.showScoreView = true
+                    pageManager.pageState = .boardView
+                }) {
+                    Text("Play")
+                        .font(.system(size: 17).weight(.semibold))
                 }
+                .buttonStyle(CustomButtonStyle())
             }
         }
     }
@@ -58,6 +57,6 @@ struct TitleView: View {
 
 struct StartView_Previews: PreviewProvider {
     static var previews: some View {
-        StartView()
+        StartView(pageManager: PageManager.shared)
     }
 }
