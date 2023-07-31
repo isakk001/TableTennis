@@ -20,9 +20,9 @@ struct ScoreView: View {
         var label: String {
             switch self {
             case .you:
-                return "You(ME)"
+                return "YOU"
             case .partner:
-                return "Partner"
+                return "PTR"
             }
         }
     }
@@ -50,7 +50,8 @@ struct ScoreView: View {
                 HStack(spacing: 2){
                     Text(Player.you.label)
                         .font(.system(size: 13))
-                        .frame(width: 50, alignment: .trailing)
+//                        .frame(width: 50, alignment: .trailing)
+                    
                     Image(systemName: Symbol.person.name)
                         .font(.system(size: 13))
                 }
@@ -63,7 +64,7 @@ struct ScoreView: View {
                         .font(.system(size: 13))
                     Text(Player.partner.label)
                         .font(.system(size: 13))
-                        .frame(width: 50, alignment: .leading)
+//                        .frame(width: 50, alignment: .leading)
                 }
             }
             HStack {
