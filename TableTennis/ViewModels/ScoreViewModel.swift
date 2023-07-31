@@ -30,12 +30,28 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
     }
 
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        DispatchQueue.main.async {
-            self.player1 = message["player1"] as? Int ?? self.player1
-            self.player2 = message["player2"] as? Int ?? self.player2
-            self.set1 = message["set1"] as? Int ?? self.set1
-            self.set2 = message["set2"] as? Int ?? self.set2
-            self.servePlayer = message["servePlayer"] as? Int ?? self.servePlayer
+        if let command = message["command"] as? String {
+            DispatchQueue.main.async {
+                if command == "StartView" {
+                    PageManager.shared.pageState = .startView
+                } else if command == "CoinTossView" {
+                    PageManager.shared.pageState = .coinTossView
+                } else if command == "CoinResultView" {
+                    PageManager.shared.pageState = .coinResultView
+                } else if command == "ScoreView" {
+                    PageManager.shared.pageState = .scoreView
+                } else if command == "ResultView" {
+                    PageManager.shared.pageState = .resultView
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.player1 = message["player1"] as? Int ?? self.player1
+                self.player2 = message["player2"] as? Int ?? self.player2
+                self.set1 = message["set1"] as? Int ?? self.set1
+                self.set2 = message["set2"] as? Int ?? self.set2
+                self.servePlayer = message["servePlayer"] as? Int ?? self.servePlayer
+            }
         }
     }
 
@@ -144,5 +160,9 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
         } else {
             return 1
         }
+    }
+
+    func setServePlayer() {
+        self.servePlayer = Int.random(in: 0...1)
     }
 }

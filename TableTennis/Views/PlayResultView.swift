@@ -10,9 +10,9 @@ import SpriteKit
 
 struct PlayResultView: View {
     @ObservedObject var pageManager: PageManager
+    @ObservedObject var viewModel: ScoreViewModel
     
     let backgroundColor: String = "BG_Primary"
-    let isWin: Int
     
     enum Result {
         case win
@@ -34,16 +34,17 @@ struct PlayResultView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Image(showResult(isWin).0)
+                Image(showResult(viewModel.isWin).0)
                     .resizable()
                     .frame(width: 100, height: 100)
                     .padding(.bottom, 16)
-                Text(showResult(isWin).1)
+                Text(showResult(viewModel.isWin).1)
                     .foregroundColor(.white)
                     .font(.system(size: 34).weight(.semibold))
                     .padding(.bottom, 36)
                 Button(action: {
                     pageManager.pageState = .startView
+                    viewModel.session.sendMessage(["command": "StartView"], replyHandler: nil)
                 }) {
                     Label("Restart", systemImage: "arrow.counterclockwise")
                         .labelStyle(.titleAndIcon)
@@ -71,7 +72,7 @@ struct PlayResultView: View {
 struct PlayResultView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            PlayResultView(pageManager: PageManager.shared, isWin: 0)
+            PlayResultView(pageManager: PageManager.shared, viewModel: ScoreViewModel())
         }
     }
 }

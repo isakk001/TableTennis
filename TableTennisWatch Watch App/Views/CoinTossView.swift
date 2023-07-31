@@ -51,6 +51,7 @@ struct CoinTossView: View {
                         withAnimation(.linear(duration: 0.2)) {
                             PageManager.shared.pageState = .coinResultView
                         }
+                        viewModel.session.sendMessage(["command": "CoinResultView"], replyHandler: nil)
                     }
                 }
             } label: {
@@ -63,6 +64,7 @@ struct CoinTossView: View {
         }
         .onAppear {
             viewModel.setServePlayer()
+            viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
             if viewModel.servePlayer == 0 {
                 self.maxRotations = 16
             } else {

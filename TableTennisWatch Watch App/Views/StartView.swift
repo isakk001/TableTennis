@@ -18,7 +18,7 @@ struct CustomButtonStyle: ButtonStyle {
 }
 
 enum PageState {
-    case progressBarView
+    case startView
     case coinTossView
     case coinResultView
     case scoreView
@@ -28,7 +28,7 @@ class PageManager : ObservableObject {
     static let shared = PageManager()
     private init() {}
     
-    @Published var pageState: PageState = .progressBarView
+    @Published var pageState: PageState = .startView
     @Published var tabState: Int = 1
     @Published var isGameEnd: Bool = false
 }
@@ -41,8 +41,8 @@ struct StartView: View {
     var body: some View {
         VStack {
             switch pageManager.pageState {
-            case .progressBarView:
-                StartPlayView()
+            case .startView:
+                StartPlayView(viewModel: viewModel)
             case .coinTossView:
                 CoinTossView(namespace: namespace, viewModel: viewModel)
             case .coinResultView:
@@ -79,6 +79,7 @@ struct LogoView: View {
 }
 
 struct StartPlayView : View {
+    @ObservedObject var viewModel: ScoreViewModel
     
     var body: some View {
         VStack {
@@ -90,6 +91,7 @@ struct StartPlayView : View {
                 withAnimation(.linear(duration: 0.2)) {
                     PageManager.shared.pageState = .coinTossView
                 }
+                viewModel.session.sendMessage(["command": "CoinTossView"], replyHandler: nil)
             } label: {
                 Text("Play")
                     .font(.custom("SFProText-Semibold", size: 17))

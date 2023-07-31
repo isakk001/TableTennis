@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct CoinTossView: View {
-    
-    @ObservedObject var pageManager: PageManager
-
+    @ObservedObject var viewModel: ScoreViewModel
     @State private var animation3d = 0.0
     @State private var scaleAmount: CGFloat = 1.0
     @State private var isFront = true
@@ -20,7 +18,6 @@ struct CoinTossView: View {
     private let rotationAngle = 90.0
 
     var body: some View {
-        
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
             VStack {
@@ -33,7 +30,6 @@ struct CoinTossView: View {
                     .aspectRatio(contentMode: .fit)
                     .rotation3DEffect(.degrees(animation3d), axis: (x: 1.0, y: 0, z: 0))
                     .scaleEffect(scaleAmount)
-    //                .matchedGeometryEffect(id: "img", in: namespace)
                     .padding(.bottom, 10)
                 Button {
                     isTapped.toggle()
@@ -50,10 +46,11 @@ struct CoinTossView: View {
                         animateRotation()
                         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
                             self.animation3d = 0.0
-                        
+                            
                             withAnimation(.linear(duration: 0.2)) {
                                 PageManager.shared.pageState = .coinResultView
                             }
+                            viewModel.session.sendMessage(["command": "CoinResultView"], replyHandler: nil)
                         }
                     }
                 } label: {
@@ -65,14 +62,14 @@ struct CoinTossView: View {
                 }
                 .buttonStyle(TapSetButtonStyle())
             }
-//            .onAppear {
-//    //            viewModel.setServePlayer()
-//    //            if viewModel.servePlayer == 0 {
-//    //                self.maxRotations = 16
-//    //            } else {
-//    //                self.maxRotations = 18
-//    //            }
-//        }
+            .onAppear {
+                viewModel.setServePlayer()
+                if viewModel.servePlayer == 0 {
+                    self.maxRotations = 16
+                } else {
+                    self.maxRotations = 18
+                }
+            }
         }
     }
 
@@ -116,6 +113,6 @@ struct TapSetButtonStyle: ButtonStyle {
 
 struct CoinTossView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinTossView(pageManager: PageManager.shared)
+        CoinTossView(viewModel: ScoreViewModel())
     }
 }

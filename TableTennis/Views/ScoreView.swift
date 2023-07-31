@@ -121,18 +121,19 @@ struct ScoreView: View {
                 if newValue == 5 {
                     viewModel.isWin = 0
                     pageManager.pageState = .resultView
+                    viewModel.session.sendMessage(["command": "ResultView"], replyHandler: nil)
                 }
             }
             .onChange(of: viewModel.set2) { newValue in
                 if newValue == 5 {
                     viewModel.isWin = 1
                     pageManager.pageState = .resultView
+                    viewModel.session.sendMessage(["command": "ResultView"], replyHandler: nil)
                 }
             }
         }
         .onAppear {
             viewModel.endGame()
-            viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
         }
         .navigationBarBackButtonHidden()
     }

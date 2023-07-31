@@ -23,6 +23,7 @@ struct CoinResultView: View {
                 .matchedGeometryEffect(id: "img", in: namespace)
             Button {
                 PageManager.shared.pageState = .scoreView
+                viewModel.session.sendMessage(["command": "ScoreView"], replyHandler: nil)
             } label: {
                 Text("Set")
                     .fontWeight(.semibold)

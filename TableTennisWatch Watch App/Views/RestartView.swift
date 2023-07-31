@@ -9,7 +9,6 @@ import SwiftUI
 import WatchKit
 
 struct RestartView: View {
-    @StateObject var pageManager = PageManager.shared
     @ObservedObject var viewModel: ScoreViewModel
     @State private var isEnding = false
     
@@ -29,12 +28,13 @@ struct RestartView: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            if !pageManager.isGameEnd {
+            if !PageManager.shared.isGameEnd {
                 VStack {
                     Button {
                         PageManager.shared.isGameEnd = true
                         PageManager.shared.tabState = 1
                         viewModel.setRestart()
+                        viewModel.session.sendMessage(["command": "ResultView"], replyHandler: nil)
                     } label: {
                         Image(systemName: System.end.button.0)
                             .resizable()
@@ -54,7 +54,8 @@ struct RestartView: View {
             VStack {
                 Button {
                     PageManager.shared.isGameEnd = false
-                    PageManager.shared.pageState = .progressBarView
+                    viewModel.session.sendMessage(["command": "StartView"], replyHandler: nil)
+                    PageManager.shared.pageState = .startView
                     PageManager.shared.tabState = 1
                     viewModel.setRestart()
                 } label: {

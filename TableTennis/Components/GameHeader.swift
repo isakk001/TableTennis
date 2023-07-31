@@ -50,6 +50,7 @@ struct GameHeader: View {
             Button(action: {
                 viewModel.isWin = viewModel.checkWinner()
                 pageManager.pageState = .resultView
+                viewModel.session.sendMessage(["command": "ResultView"], replyHandler: nil)
             }) {
                 ZStack {
                     Rectangle()
@@ -87,6 +88,7 @@ struct GameHeader: View {
             
             Button(action: {
                 viewModel.endGame()
+                viewModel.session.sendMessage(["command": "StartView"], replyHandler: nil)
                 pageManager.pageState = .startView
             }) {
                 ZStack {

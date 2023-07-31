@@ -18,8 +18,8 @@ struct CustomButtonStyle: ButtonStyle {
 }
 
 struct StartView: View {
-    @State private var showCoinView = false
-    @ObservedObject var pageManager: PageManager
+    @State private var showScoreView = false
+    @ObservedObject var viewModel: ScoreViewModel
     
     var body: some View {
         ZStack {
@@ -28,8 +28,9 @@ struct StartView: View {
             VStack {
                 TitleView()
                 Button(action: {
-                    self.showCoinView = true
-                    pageManager.pageState = .coinTossView
+                    self.showScoreView = true
+                    PageManager.shared.pageState = .coinTossView
+                    viewModel.session.sendMessage(["command": "CoinTossView"], replyHandler: nil)
                 }) {
                     Text("Play")
                         .font(.system(size: 17).weight(.semibold))
@@ -57,6 +58,6 @@ struct TitleView: View {
 
 struct StartView_Previews: PreviewProvider {
     static var previews: some View {
-        StartView(pageManager: PageManager.shared)
+        StartView(viewModel: ScoreViewModel())
     }
 }

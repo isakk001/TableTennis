@@ -9,10 +9,10 @@ import Foundation
 
 enum PageState {
     case startView
-    case boardView
-    case resultView
     case coinTossView
     case coinResultView
+    case scoreView
+    case resultView
 }
 
 class PageManager : ObservableObject {

@@ -143,9 +143,6 @@ struct ScoreView: View {
                 }
             }
         }
-        .onAppear {
-            viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
-        }
     }
 }
 
