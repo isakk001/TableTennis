@@ -33,41 +33,36 @@ class PageManager : ObservableObject {
     @Published var isGameEnd: Bool = false
 }
 
-
 struct StartView: View {
+    @StateObject var viewModel = ScoreViewModel()
+    @State private var path = NavigationPath()
+    @State var progress: CGFloat = 0.0
     @StateObject var pageManager = PageManager.shared
     
     var body: some View {
         NavigationView {
             VStack {
-                //                         TitleView()
-                
-                VStack {
-                    switch pageManager.pageState {
-                        case .progressBarView:
-                            StartPlayView()
-                        case .coinTossView:
-                            CoinTossView()
-                        case .coinResultView:
-                            CoinResultView()
-                        case .scoreView:
-                            TabView(selection: $pageManager.tabState) {
-                                RestartView()
-                                    .tag(0)
-                                VStack{
-                                    if pageManager.isGameEnd {
-                                        PlayResultView()
-                                    } else {
-                                        ScoreView()
-                                    }
+                switch pageManager.pageState {
+                    case .progressBarView:
+                        StartPlayView()
+                    case .coinTossView:
+                        CoinTossView(viewModel: viewModel)
+                    case .coinResultView:
+                        CoinResultView(viewModel: viewModel)
+                    case .scoreView:
+                        TabView(selection: $pageManager.tabState) {
+                            RestartView()
+                                .tag(0)
+                            VStack{
+                                if pageManager.isGameEnd {
+                                    PlayResultView()
+                                } else {
+                                    ScoreView(viewModel: viewModel)
                                 }
-                                .tag(1)
                             }
-                    }
+                            .tag(1)
+                        }
                 }
-            }
-            .onAppear {
-                WatchSessionManager.sharedManager.startSession()
             }
         }
     }
