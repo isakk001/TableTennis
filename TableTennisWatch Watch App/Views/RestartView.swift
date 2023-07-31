@@ -36,6 +36,7 @@ struct RestartView: View {
             }
             VStack {
                 Button {
+                    PageManager.shared.isGameEnd = false
                     PageManager.shared.pageState = .progressBarView
                     //PageManager.shared.tabState = 1
                 } label: {
