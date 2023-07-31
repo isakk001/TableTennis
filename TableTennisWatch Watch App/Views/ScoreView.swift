@@ -133,12 +133,12 @@ struct ScoreView: View {
                 WKInterfaceDevice.current().play(.notification)
             }
             .onChange(of: viewModel.set1) { newValue in
-                if newValue == 5 {
+                if newValue == 3 {
                     pageManager.isGameEnd = true
                 }
             }
             .onChange(of: viewModel.set2) { newValue in
-                if newValue == 5 {
+                if newValue == 3 {
                     pageManager.isGameEnd = true
                 }
             }
