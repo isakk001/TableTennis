@@ -86,7 +86,9 @@ struct StartPlayView : View {
                 .padding(10)
             Spacer()
             Button {
-                PageManager.shared.pageState = .coinTossView
+                withAnimation(.linear(duration: 0.2)) {
+                    PageManager.shared.pageState = .coinTossView
+                }
             } label: {
                 Text("Play")
                     .font(.custom("SFProText-Semibold", size: 17))

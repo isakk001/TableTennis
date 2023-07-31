@@ -28,24 +28,8 @@ struct CoinTossView: View {
             Image(isFront ? "Coin_You" : "Coin_Partner")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-//                .padding(50)
                 .rotation3DEffect(.degrees(animation3d), axis: (x: 1.0, y: 0, z: 0))
                 .scaleEffect(scaleAmount)
-//                .onTapGesture {
-//                    if isCoinTossing() { return }
-//                    withAnimation(.linear(duration: duration / 2)) {
-//                        self.scaleAmount = 3.0
-//                    }
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + duration / 2) {
-//                        withAnimation(.linear(duration: duration / 2)) {
-//                            self.scaleAmount = 1.0
-//                        }
-//                    }
-//                    animateRotation()
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-//                        self.animation3d = 0.0
-//                    }
-//            }
             Button {
                 isTapped.toggle()
                 if isTapped {} else {
@@ -61,7 +45,8 @@ struct CoinTossView: View {
                     animateRotation()
                     DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
                         self.animation3d = 0.0
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    
+                        withAnimation(.linear(duration: 0.2)) {
                             PageManager.shared.pageState = .coinResultView
                         }
                     }
