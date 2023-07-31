@@ -11,7 +11,7 @@ import SpriteKit
 struct PlayResultView: View {
     let backgroundColor: String = "BG_Primary"
     
-    @State var isWin: Bool = false
+    let isWin: Bool
     
     enum Result {
         case win
@@ -56,6 +56,6 @@ struct PlayResultView: View {
 
 struct PlayResultView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayResultView()
+        PlayResultView(isWin: false)
     }
 }

@@ -10,8 +10,10 @@ import SwiftUI
 
 struct ScoreView: View {
     
-    @ObservedObject var viewModel = ScoreViewModel()
-
+    @StateObject var viewModel = ScoreViewModel()
+    @State var endGame: Bool = false
+    @State var isWin: Bool = false
+    
     var body: some View {
         ZStack {
             Color("BG_Primary")
@@ -111,8 +113,26 @@ struct ScoreView: View {
                         : AnyView(Color("Fills_Primary"))
                     )
                     .cornerRadius(8)
+                    NavigationLink(destination: PlayResultView(isWin: isWin), isActive: $endGame) {
+                        EmptyView()
+                    }
                 }
             }
+            .onChange(of: viewModel.set1) { newValue in
+                if newValue == 5 {
+                    endGame = true
+                    isWin = true
+                }
+            }
+            .onChange(of: viewModel.set2) { newValue in
+                if newValue == 5 {
+                    endGame = true
+                    isWin = false
+                }
+            }
+        }
+        .onAppear {
+            viewModel.endGame()
         }
         .navigationBarBackButtonHidden()
     }
@@ -120,6 +140,8 @@ struct ScoreView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreView()
+        NavigationStack {
+            ScoreView()
+        }
     }
 }

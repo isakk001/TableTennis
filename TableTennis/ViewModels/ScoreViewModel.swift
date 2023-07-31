@@ -125,4 +125,16 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
         self.player1 = 0
         self.player2 = 0
     }
+    
+    func checkGameSet() -> Bool {
+        self.set1 == 3 || self.set2 == 3
+    }
+    
+    func checkWinner() -> Int {
+        if self.set1 > self.set2 {
+            return 0
+        } else {
+            return 1
+        }
+    }
 }
