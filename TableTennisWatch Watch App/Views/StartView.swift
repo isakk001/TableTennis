@@ -53,9 +53,9 @@ struct StartView: View {
                         .tag(0)
                     VStack{
                         if pageManager.isGameEnd {
-                            PlayResultView()
+                            PlayResultView(isWin: viewModel.checkWinner())
                         } else {
-                            ScoreView(viewModel: viewModel)
+                            ScoreView(viewModel: viewModel, pageManager: pageManager)
                         }
                     }
                     .tag(1)

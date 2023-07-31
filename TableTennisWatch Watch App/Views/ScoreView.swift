@@ -11,6 +11,7 @@ import WatchConnectivity
 struct ScoreView: View {
 
     @ObservedObject var viewModel: ScoreViewModel
+    @ObservedObject var pageManager: PageManager
 //    @State var lastScore: Int = 0
     
     enum Player {
@@ -131,6 +132,16 @@ struct ScoreView: View {
                 viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
                 WKInterfaceDevice.current().play(.notification)
             }
+            .onChange(of: viewModel.set1) { newValue in
+                if newValue == 5 {
+                    pageManager.isGameEnd = true
+                }
+            }
+            .onChange(of: viewModel.set2) { newValue in
+                if newValue == 5 {
+                    pageManager.isGameEnd = true
+                }
+            }
         }
         .onAppear {
             viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
@@ -150,6 +161,6 @@ struct PlusMinusButtonStyle: ButtonStyle {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreView(viewModel: ScoreViewModel())
+        ScoreView(viewModel: ScoreViewModel(), pageManager: PageManager.shared)
     }
 }

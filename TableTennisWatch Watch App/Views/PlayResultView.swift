@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlayResultView: View {
     
-    @State private var isWin = true
+    let isWin: Int
     
     enum Result {
         case win
@@ -39,8 +39,8 @@ struct PlayResultView: View {
         }
     }
     
-    func showResult(_ isWin: Bool) -> (String, String) {
-        if isWin {
+    func showResult(_ isWin: Int) -> (String, String) {
+        if isWin == 0 {
             return Result.win.detail
         } else {
             return Result.lose.detail
@@ -50,6 +50,6 @@ struct PlayResultView: View {
 
 struct PlayResultView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayResultView()
+        PlayResultView(isWin: 0)
     }
 }
