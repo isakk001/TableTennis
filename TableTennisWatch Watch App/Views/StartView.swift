@@ -12,7 +12,7 @@ struct CustomButtonStyle: ButtonStyle {
         configuration.label
             .padding(EdgeInsets(top: 15, leading: 70, bottom: 15, trailing: 70))
             .foregroundColor(.white)
-            .background(LinearGradient(gradient: Gradient(colors: [Color(red: 0.33725490196078434, green: 0.5215686274509804, blue: 0.9058823529411765), Color(red: 0.12156862745098039, green: 0.8862745098039215, blue: 0.8549019607843137)]), startPoint: .topTrailing, endPoint: .bottomLeading))
+            .background(LinearGradient(colors: [Color("Fills_Gradient_Start"), Color("Fills_Gradient_End")], startPoint: .topTrailing, endPoint: .bottomLeading))
             .cornerRadius(30)
     }
 }
@@ -34,34 +34,31 @@ class PageManager : ObservableObject {
 }
 
 struct StartView: View {
+    @Namespace var namespace
     @StateObject var viewModel = ScoreViewModel()
-    @State private var path = NavigationPath()
-    @State var progress: CGFloat = 0.0
     @StateObject var pageManager = PageManager.shared
     
     var body: some View {
-        NavigationView {
-            VStack {
-                switch pageManager.pageState {
-                    case .progressBarView:
-                        StartPlayView()
-                    case .coinTossView:
-                        CoinTossView(viewModel: viewModel)
-                    case .coinResultView:
-                        CoinResultView(viewModel: viewModel)
-                    case .scoreView:
-                        TabView(selection: $pageManager.tabState) {
-                            RestartView()
-                                .tag(0)
-                            VStack{
-                                if pageManager.isGameEnd {
-                                    PlayResultView()
-                                } else {
-                                    ScoreView(viewModel: viewModel)
-                                }
-                            }
-                            .tag(1)
+        VStack {
+            switch pageManager.pageState {
+            case .progressBarView:
+                StartPlayView()
+            case .coinTossView:
+                CoinTossView(namespace: namespace, viewModel: viewModel)
+            case .coinResultView:
+                CoinResultView(namespace: namespace, viewModel: viewModel)
+            case .scoreView:
+                TabView(selection: $pageManager.tabState) {
+                    RestartView()
+                        .tag(0)
+                    VStack{
+                        if pageManager.isGameEnd {
+                            PlayResultView()
+                        } else {
+                            ScoreView(viewModel: viewModel)
                         }
+                    }
+                    .tag(1)
                 }
             }
         }
@@ -90,7 +87,9 @@ struct StartPlayView : View {
                 .padding(10)
             Spacer()
             Button {
-                PageManager.shared.pageState = .coinTossView
+                withAnimation(.linear(duration: 0.2)) {
+                    PageManager.shared.pageState = .coinTossView
+                }
             } label: {
                 Text("Play")
                     .font(.custom("SFProText-Semibold", size: 17))

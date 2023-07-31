@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CoinTossView: View {
+    let namespace: Namespace.ID
     @ObservedObject var viewModel: ScoreViewModel
     @State private var animation3d = 0.0
     @State private var scaleAmount: CGFloat = 1.0
@@ -28,24 +29,9 @@ struct CoinTossView: View {
             Image(isFront ? "Coin_You" : "Coin_Partner")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-//                .padding(50)
                 .rotation3DEffect(.degrees(animation3d), axis: (x: 1.0, y: 0, z: 0))
                 .scaleEffect(scaleAmount)
-//                .onTapGesture {
-//                    if isCoinTossing() { return }
-//                    withAnimation(.linear(duration: duration / 2)) {
-//                        self.scaleAmount = 3.0
-//                    }
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + duration / 2) {
-//                        withAnimation(.linear(duration: duration / 2)) {
-//                            self.scaleAmount = 1.0
-//                        }
-//                    }
-//                    animateRotation()
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-//                        self.animation3d = 0.0
-//                    }
-//            }
+                .matchedGeometryEffect(id: "img", in: namespace)
             Button {
                 isTapped.toggle()
                 if isTapped {} else {
@@ -61,7 +47,8 @@ struct CoinTossView: View {
                     animateRotation()
                     DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
                         self.animation3d = 0.0
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    
+                        withAnimation(.linear(duration: 0.2)) {
                             PageManager.shared.pageState = .coinResultView
                         }
                     }
@@ -120,9 +107,9 @@ struct TapSetButtonStyle: ButtonStyle {
             .padding(EdgeInsets(top: 10, leading: 0, bottom: -20, trailing: 0))
     }
 }
-
-struct CoinTossView_Previews: PreviewProvider {
-    static var previews: some View {
-        CoinTossView(viewModel: ScoreViewModel())
-    }
-}
+//
+//struct CoinTossView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CoinTossView(viewModel: ScoreViewModel())
+//    }
+//}
