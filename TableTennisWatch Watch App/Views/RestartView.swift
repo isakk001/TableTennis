@@ -12,44 +12,59 @@ struct RestartView: View {
     @StateObject var pageManager = PageManager.shared
     @State private var isEnding = false
     
+    enum System {
+        case end
+        case restart
+        
+        var button: (String, String) {
+            switch self {
+            case .end:
+                return ("xmark", "End")
+            case .restart:
+                return ("arrow.counterclockwise", "Restart")
+            }
+        }
+    }
+    
     var body: some View {
-        HStack {
+        HStack(spacing: 20) {
             if !pageManager.isGameEnd {
                 VStack {
                     Button {
                         PageManager.shared.isGameEnd = true
                         PageManager.shared.tabState = 1
                     } label: {
-                        Image(systemName: "xmark")
+                        Image(systemName: System.end.button.0)
                             .resizable()
                             .frame(width: 16, height: 16, alignment: .center)
                             .foregroundColor(.red)
                             .fontWeight(.semibold)
                     }
                     .frame(width: 80, height: 45)
-                    .background(Color.red.opacity(0.2))
-                    .cornerRadius(25)
-                    Text("End")
+                    .background(Color.red.opacity(0.3))
+                    .cornerRadius(20)
+                    Text(System.end.button.1)
                         .multilineTextAlignment(.center)
                         .font(.system(size: 17).weight(.medium))
                 }
             }
+            
             VStack {
                 Button {
                     PageManager.shared.isGameEnd = false
                     PageManager.shared.pageState = .progressBarView
                     PageManager.shared.tabState = 1
                 } label: {
-                    Image(systemName: "arrow.counterclockwise")
+                    Image(systemName: System.restart.button.0)
                         .resizable()
-                        .frame(width: 20, height: 20, alignment: .center)
+                        .frame(width: 16, height: 16, alignment: .center)
                         .foregroundColor(.white)
                         .fontWeight(.medium)
                 }
                 .frame(width: 80, height: 45)
-                .background(Color.white.opacity(0.2))
-                .cornerRadius(25)
-                Text("Restart")
+                .background(Color.white.opacity(0.3))
+                .cornerRadius(20)
+                Text(System.restart.button.1)
                     .multilineTextAlignment(.center)
                     .font(.system(size: 17).weight(.medium))
             }
