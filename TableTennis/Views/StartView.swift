@@ -57,7 +57,7 @@ struct TitleView: View {
                 .padding(EdgeInsets(top: 0, leading: 200, bottom: -5, trailing: 200))
             Text("Let's play Table Tennis!")
                 .font(.system(size: 25).weight(.semibold))
-                .foregroundColor(Color(red: 0.5568627715110779, green: 0.5568627715110779, blue: 0.5764706134796143))
+                .foregroundColor(Color(.gray))
         }
         .padding(.vertical, 45)
     }
