@@ -10,6 +10,7 @@ import WatchKit
 
 struct RestartView: View {
     @StateObject var pageManager = PageManager.shared
+    @ObservedObject var viewModel: ScoreViewModel
     @State private var isEnding = false
     
     enum System {
@@ -33,6 +34,7 @@ struct RestartView: View {
                     Button {
                         PageManager.shared.isGameEnd = true
                         PageManager.shared.tabState = 1
+                        viewModel.setRestart()
                     } label: {
                         Image(systemName: System.end.button.0)
                             .resizable()
@@ -54,6 +56,7 @@ struct RestartView: View {
                     PageManager.shared.isGameEnd = false
                     PageManager.shared.pageState = .progressBarView
                     PageManager.shared.tabState = 1
+                    viewModel.setRestart()
                 } label: {
                     Image(systemName: System.restart.button.0)
                         .resizable()
@@ -76,6 +79,6 @@ struct RestartView: View {
 
 struct RestartView_Previews: PreviewProvider {
     static var previews: some View {
-        RestartView()
+        RestartView(viewModel: ScoreViewModel())
     }
 }

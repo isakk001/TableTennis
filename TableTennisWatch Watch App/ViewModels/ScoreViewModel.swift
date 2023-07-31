@@ -123,4 +123,11 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
     func setServePlayer() {
         self.servePlayer = Int.random(in: 0...1)
     }
+    
+    func setRestart() {
+        self.player1 = 0
+        self.player2 = 0
+        self.set1 = 0
+        self.set2 = 0
+    }
 }

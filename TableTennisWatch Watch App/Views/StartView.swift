@@ -49,7 +49,7 @@ struct StartView: View {
                 CoinResultView(namespace: namespace, viewModel: viewModel)
             case .scoreView:
                 TabView(selection: $pageManager.tabState) {
-                    RestartView()
+                    RestartView(viewModel: viewModel)
                         .tag(0)
                     VStack{
                         if pageManager.isGameEnd {
