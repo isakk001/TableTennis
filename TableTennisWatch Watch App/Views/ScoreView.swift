@@ -27,15 +27,8 @@ struct ScoreView: View {
             HStack {
                 VStack {
                     Button {
-                        if viewModel.player1 < 11 {
-                            viewModel.player1 += 1
-                        } else {
-                            viewModel.set1 += 0
-                            viewModel.player1 = 0
-                            viewModel.session.sendMessage(["set1" : viewModel.set1], replyHandler: nil)
-                        }
-    //                    viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
-    //                    WKInterfaceDevice.current().play(.notification)
+                        viewModel.plusScore(player: 0)
+                        viewModel.session.sendMessage(["set1" : viewModel.set1], replyHandler: nil)
                     } label: {
                         Image(systemName: "plus").bold()
                     }
@@ -44,19 +37,12 @@ struct ScoreView: View {
                     Text("\(viewModel.player1)")
                         .font(.system(size: 70).width(.condensed))
                         .padding(.bottom, -10)
-
-//                       .focusable()
-                    //                        .digitalCrownRotation($viewModel.player1, from: 0.0, through: 11.0, by: 0.01, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: false)
                         .frame(width: 85, height: 90)
-                        .background(.white.opacity(0.2))
+                        .background(viewModel.servePlayer == 0 ? Color("Fills_Gradient_End") : .white.opacity(0.2))
                         .cornerRadius(10)
-                    
+                        .animation(.easeInOut, value: viewModel.set1)
                     Button {
-                        if viewModel.player1 > 0 {
-                            viewModel.player1 -= 1
-                        }
-    //                    viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
-    //                    WKInterfaceDevice.current().play(.notification)
+                        viewModel.minusScore(player: 0)
                     } label: {
                         Image(systemName: "minus").bold()
                     }
@@ -64,15 +50,8 @@ struct ScoreView: View {
                 }
                 VStack {
                     Button {
-                        if viewModel.player2 < 11 {
-                            viewModel.player2 += 1
-                        } else {
-                            viewModel.set2 += 1
-                            viewModel.player2 = 0
-                            viewModel.session.sendMessage(["set2" : viewModel.set2], replyHandler: nil)
-                        }
-    //                    viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
-    //                    WKInterfaceDevice.current().play(.notification)
+                        viewModel.plusScore(player: 1)
+                        viewModel.session.sendMessage(["set2" : viewModel.set2], replyHandler: nil)
                     } label: {
                         Image(systemName: "plus").bold()
                     }
@@ -82,29 +61,22 @@ struct ScoreView: View {
                         .font(.system(size: 70).width(.condensed))
                         .padding(.bottom, -10)
                         .frame(width: 85, height: 90)
-                        .background(.white.opacity(0.2))
+                        .background(viewModel.servePlayer == 1 ? Color("Fills_Gradient_End") : .white.opacity(0.2))
                         .cornerRadius(10)
+                        .animation(.easeInOut, value: viewModel.set2)
                     Button {
-                        if viewModel.player2 > 0 {
-                            viewModel.player2 -= 1
-                        }
-    //                    viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
-    //                    WKInterfaceDevice.current().play(.notification)
+                        viewModel.minusScore(player: 1)
                     } label: {
                         Image(systemName: "minus").bold()
                     }
                     .buttonStyle(PlusMinusButtonStyle())
-
                 }
             }
             .padding(.bottom, -15)
             .onChange(of: viewModel.player1) { newValue in
-//                if abs(newValue - lastScore) >= 1 {
-//                    lastScore = newValue
                 viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
                 print("sessionTest : \(viewModel.player1)")
                     WKInterfaceDevice.current().play(.notification)
-//                }
             }
             .onChange(of: viewModel.player2) { newValue in
                 //                        WKInterfaceDevice.current().play(.notification)
@@ -132,33 +104,3 @@ struct ContentView_Previews: PreviewProvider {
         ScoreView()
     }
 }
-
-
-//class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
-//
-//    @Published var player1: Int = 0
-//    @Published var player2: Int = 0
-//
-//    var session: WCSession
-//
-//    init(session: WCSession = .default) {
-//        self.session = session
-//        super.init()
-//        self.session.delegate = self
-//        session.activate()
-//    }
-//
-//    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-//
-//    }
-//
-//    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-//        DispatchQueue.main.async {
-//            print("iphone: \(message)")
-//            self.player1 = message["player1"] as? Int ?? self.player1
-//            self.player2 = message["player2"] as? Int ?? self.player2
-//        }
-//
-//        ScoreView()
-//    }
-//}
