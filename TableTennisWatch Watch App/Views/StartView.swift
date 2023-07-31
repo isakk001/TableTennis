@@ -43,6 +43,9 @@ struct StartView: View {
             switch pageManager.pageState {
             case .startView:
                 StartPlayView(viewModel: viewModel)
+                    .onAppear {
+                        viewModel.setRestart()
+                    }
             case .coinTossView:
                 CoinTossView(namespace: namespace, viewModel: viewModel)
             case .coinResultView:
@@ -53,7 +56,7 @@ struct StartView: View {
                         .tag(0)
                     VStack{
                         if pageManager.isGameEnd {
-                            PlayResultView(isWin: viewModel.checkWinner())
+                            PlayResultView(isWin: viewModel.isWin)
                         } else {
                             ScoreView(viewModel: viewModel, pageManager: pageManager)
                         }

@@ -16,6 +16,7 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
     @Published var set1: Int = 0
     @Published var set2: Int = 0
     @Published var limitScore: Int = 10
+    @Published var isWin: Int = 0
     
     @Published var servePlayer: Int = 0
     
@@ -147,17 +148,17 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
         self.set2 = 0
     }
     
-    func checkWinner() -> Int {
+    func checkWinner() {
         if self.set1 > self.set2 {
-            return 0
+            self.isWin = 0
         } else if self.set1 == self.set2 {
             if self.player1 >= self.player2 {
-                return 0
+                self.isWin = 0
             } else {
-                return 1
+                self.isWin = 1
             }
         } else {
-            return 1
+            self.isWin = 1
         }
     }
 }

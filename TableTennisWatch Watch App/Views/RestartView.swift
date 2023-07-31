@@ -33,8 +33,8 @@ struct RestartView: View {
                     Button {
                         PageManager.shared.isGameEnd = true
                         PageManager.shared.tabState = 1
-                        viewModel.setRestart()
                         viewModel.session.sendMessage(["command": "ResultView"], replyHandler: nil)
+                        viewModel.checkWinner()
                     } label: {
                         Image(systemName: System.end.button.0)
                             .resizable()
@@ -57,7 +57,7 @@ struct RestartView: View {
                     viewModel.session.sendMessage(["command": "StartView"], replyHandler: nil)
                     PageManager.shared.pageState = .startView
                     PageManager.shared.tabState = 1
-                    viewModel.setRestart()
+                    viewModel.checkWinner()
                 } label: {
                     Image(systemName: System.restart.button.0)
                         .resizable()
