@@ -22,7 +22,7 @@ struct PlayResultView: View {
             case .win:
                 return ("Result_Win", "You WIN!")
             case .lose:
-                return ("Result_Win", "Partner WIN!")
+                return ("Result_Lose", "Partner WIN!")
             }
         }
     }
