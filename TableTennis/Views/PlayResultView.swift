@@ -36,12 +36,12 @@ struct PlayResultView: View {
             VStack {
                 Image(showResult(isWin).0)
                     .resizable()
-                    .frame(width: 140, height: 140)
-                    .padding()
-                
+                    .frame(width: 100, height: 100)
+                    .padding(.bottom, 16)
                 Text(showResult(isWin).1)
                     .foregroundColor(.white)
-                    .font(.system(size: 40).weight(.semibold))
+                    .font(.system(size: 34).weight(.semibold))
+                    .padding(.bottom, 36)
                 Button(action: {
                     pageManager.pageState = .startView
                 }) {
@@ -49,12 +49,11 @@ struct PlayResultView: View {
                         .labelStyle(.titleAndIcon)
                         .font(.system(size: 17).weight(.semibold))
                         .foregroundColor(.white)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 28)
+                        .padding(.vertical, 12)
+                        .padding(.horizontal, 54)
                         .background(Color("Fills_Primary"))
-                        .cornerRadius(16)
+                        .cornerRadius(30)
                 }
-                .padding(.top, 16)
             }
         }
         .navigationBarBackButtonHidden()
