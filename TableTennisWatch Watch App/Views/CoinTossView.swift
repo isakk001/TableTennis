@@ -24,7 +24,7 @@ struct CoinTossView: View {
                 .font(.system(size: 17).weight(.semibold))
                 .frame(width: 150, height: 50, alignment: .topLeading)
                 .padding(.leading, -30)
-            Image(isFront ? "coin_front" : "coin_back")
+            Image(isFront ? "Coin_Partner" : "Coin_You")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
 //                .padding(50)
