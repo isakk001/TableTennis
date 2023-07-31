@@ -23,7 +23,8 @@ struct CoinResultView: View {
                 PageManager.shared.pageState = .scoreView
                 // navigation
             } label: {
-                Text("Set").bold()
+                Text("Set")
+                    .fontWeight(.semibold)
             }
             .buttonStyle(TapSetButtonStyle()) // CoinTossView에 코드 있음
         }

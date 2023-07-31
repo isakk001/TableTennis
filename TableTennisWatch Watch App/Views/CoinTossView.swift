@@ -68,7 +68,8 @@ struct CoinTossView: View {
                 }
             } label: {
                 if isTapped {
-                    Text("Tap").bold()
+                    Text("Tap")
+                        .fontWeight(.semibold)
                 }
             }
             .buttonStyle(TapSetButtonStyle())
