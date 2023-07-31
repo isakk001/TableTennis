@@ -101,6 +101,14 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
                 self.player2 -= 1
             }
         }
+        
+        if (self.player1 + self.player2) % 2 == 1 {
+            if self.servePlayer == 0 {
+                self.servePlayer = 1
+            } else {
+                self.servePlayer = 0
+            }
+        }
     }
     
     func checkDeuce() -> Bool {
