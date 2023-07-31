@@ -86,7 +86,8 @@ struct GameHeader: View {
             .foregroundColor(.white)
             
             Button(action: {
-                viewModel.restartGame()
+                viewModel.endGame()
+                pageManager.pageState = .startView
             }) {
                 ZStack {
                     Rectangle()
