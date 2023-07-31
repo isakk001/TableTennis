@@ -11,6 +11,8 @@ enum PageState {
     case startView
     case boardView
     case resultView
+    case coinTossView
+    case coinResultView
 }
 
 class PageManager : ObservableObject {

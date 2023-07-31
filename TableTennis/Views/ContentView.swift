@@ -13,12 +13,16 @@ struct ContentView: View {
     
     var body: some View {
         switch pageManager.pageState {
-        case .startView:
-            StartView(pageManager: pageManager)
-        case .boardView:
-            ScoreView(viewModel: viewModel, pageManager: pageManager)
-        case .resultView:
-            PlayResultView(pageManager: pageManager, isWin: viewModel.isWin)
+            case .startView:
+                StartView(pageManager: pageManager)
+            case .coinTossView:
+                CoinTossView(pageManager: pageManager)
+            case .coinResultView:
+                CoinResultView(pageManager: pageManager, viewModel: ScoreViewModel())
+            case .boardView:
+                ScoreView(viewModel: viewModel, pageManager: pageManager)
+            case .resultView:
+                PlayResultView(pageManager: pageManager, isWin: viewModel.isWin)
         }
     }
 }

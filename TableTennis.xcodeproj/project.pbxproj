@@ -26,6 +26,8 @@
 		BFCDD1BE2A754C3C00A94198 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BFCDD1BC2A754C3C00A94198 /* SF-Pro-Text-Semibold.otf */; };
 		F13E15092A76C1D200C876AB /* PlayResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E15082A76C1D200C876AB /* PlayResultView.swift */; };
 		F13E150B2A76D16200C876AB /* CoinResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13E150A2A76D16200C876AB /* CoinResultView.swift */; };
+		F14B3CB62A77894300A2DD2B /* CoinTossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14B3CB52A77894300A2DD2B /* CoinTossView.swift */; };
+		F14B3CB82A778B4D00A2DD2B /* CoinResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14B3CB72A778B4D00A2DD2B /* CoinResultView.swift */; };
 		F194F5682A6D16F500D94EC8 /* TableTennisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194F5672A6D16F500D94EC8 /* TableTennisApp.swift */; };
 		F194F56A2A6D16F500D94EC8 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F194F5692A6D16F500D94EC8 /* ScoreView.swift */; };
 		F194F56C2A6D16F600D94EC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F194F56B2A6D16F600D94EC8 /* Assets.xcassets */; };
@@ -86,6 +88,8 @@
 		BFCDD1BF2A754C5500A94198 /* TableTennisWatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "TableTennisWatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F13E15082A76C1D200C876AB /* PlayResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayResultView.swift; sourceTree = "<group>"; };
 		F13E150A2A76D16200C876AB /* CoinResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinResultView.swift; sourceTree = "<group>"; };
+		F14B3CB52A77894300A2DD2B /* CoinTossView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTossView.swift; sourceTree = "<group>"; };
+		F14B3CB72A778B4D00A2DD2B /* CoinResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinResultView.swift; sourceTree = "<group>"; };
 		F194F5642A6D16F500D94EC8 /* TableTennis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableTennis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F194F5672A6D16F500D94EC8 /* TableTennisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTennisApp.swift; sourceTree = "<group>"; };
 		F194F5692A6D16F500D94EC8 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				BFCDD1AE2A75472E00A94198 /* StartView.swift */,
+				F14B3CB52A77894300A2DD2B /* CoinTossView.swift */,
+				F14B3CB72A778B4D00A2DD2B /* CoinResultView.swift */,
 				F194F5692A6D16F500D94EC8 /* ScoreView.swift */,
 				5BA4F5C42A7743BB006B9131 /* PlayResultView.swift */,
 				BF833BBC2A74BD1E00F17B33 /* NY */,
@@ -390,10 +396,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F14B3CB82A778B4D00A2DD2B /* CoinResultView.swift in Sources */,
 				FFA10C022A7781B60056B16A /* PageState.swift in Sources */,
 				BFCDD1AF2A75472E00A94198 /* StartView.swift in Sources */,
 				BF833BBF2A74BD6300F17B33 /* ScoreViewModel.swift in Sources */,
 				5B04C3A62A7203AB00B89F0C /* ScoreModel.swift in Sources */,
+				F14B3CB62A77894300A2DD2B /* CoinTossView.swift in Sources */,
 				5BA4F5C52A7743BB006B9131 /* PlayResultView.swift in Sources */,
 				F194F56A2A6D16F500D94EC8 /* ScoreView.swift in Sources */,
 				5BA4F5D02A775A6A006B9131 /* GameHeader.swift in Sources */,

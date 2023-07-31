@@ -18,7 +18,7 @@ struct CustomButtonStyle: ButtonStyle {
 }
 
 struct StartView: View {
-    @State private var showScoreView = false
+    @State private var showCoinView = false
     @ObservedObject var pageManager: PageManager
     
     var body: some View {
@@ -28,8 +28,8 @@ struct StartView: View {
             VStack {
                 TitleView()
                 Button(action: {
-                    self.showScoreView = true
-                    pageManager.pageState = .boardView
+                    self.showCoinView = true
+                    pageManager.pageState = .coinTossView
                 }) {
                     Text("Play")
                         .font(.system(size: 17).weight(.semibold))
