@@ -44,33 +44,51 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
     
     
     func plusScore(player: Int) {
+        
         if player == 0 {
             self.player1 += 1
-            
-            if self.player1 > self.limitScore {
+        } else {
+            self.player2 += 1
+        }
+        
+        if checkDeuce() {
+            if (self.player1 - self.player2) == 2 {
                 self.player1 = 0
                 self.player2 = 0
                 self.set1 += 1
-            }
-        } else {
-            self.player2 += 1
-
-            if self.player2 > self.limitScore {
+            } else if (self.player2 - self.player1) == 2 {
                 self.player1 = 0
                 self.player2 = 0
                 self.set2 += 1
             }
-        }
-        
-        
-        if (self.player1 + self.player2) % 2 == 0 {
+            
             if self.servePlayer == 0 {
                 self.servePlayer = 1
             } else {
                 self.servePlayer = 0
             }
+            
+        } else {
+            if self.player1 > self.limitScore {
+                self.player1 = 0
+                self.player2 = 0
+                self.set1 += 1
+            }
+            
+            if self.player2 > self.limitScore {
+                self.player1 = 0
+                self.player2 = 0
+                self.set2 += 1
+            }
+            
+            if (self.player1 + self.player2) % 2 == 0 {
+                if self.servePlayer == 0 {
+                    self.servePlayer = 1
+                } else {
+                    self.servePlayer = 0
+                }
+            }
         }
-        
     }
     
     func minusScore(player: Int) {
@@ -82,6 +100,14 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
             if self.player2 > 2 {
                 self.player2 -= 1
             }
+        }
+    }
+    
+    func checkDeuce() -> Bool {
+        if self.player1 >= 10 && self.player2 >= 10 {
+            return true
+        } else {
+            return false
         }
     }
 }
