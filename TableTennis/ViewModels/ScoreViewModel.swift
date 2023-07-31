@@ -15,7 +15,10 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
     
     @Published var set1: Int = 0
     @Published var set2: Int = 0
-
+    @Published var limitScore: Int = 10
+    
+    @Published var servePlayer: Int = 0
+    
     var session: WCSession
 
     init(session: WCSession = .default) {
@@ -41,5 +44,73 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    }
+    
+    func plusScore(player: Int) {
+        
+        if player == 0 {
+            self.player1 += 1
+        } else {
+            self.player2 += 1
+        }
+        
+        if checkDeuce() {
+            if (self.player1 - self.player2) == 2 {
+                self.player1 = 0
+                self.player2 = 0
+                self.set1 += 1
+            } else if (self.player2 - self.player1) == 2 {
+                self.player1 = 0
+                self.player2 = 0
+                self.set2 += 1
+            }
+            
+            if self.servePlayer == 0 {
+                self.servePlayer = 1
+            } else {
+                self.servePlayer = 0
+            }
+            
+        } else {
+            if self.player1 > self.limitScore {
+                self.player1 = 0
+                self.player2 = 0
+                self.set1 += 1
+            }
+            
+            if self.player2 > self.limitScore {
+                self.player1 = 0
+                self.player2 = 0
+                self.set2 += 1
+            }
+            
+            if (self.player1 + self.player2) % 2 == 0 {
+                if self.servePlayer == 0 {
+                    self.servePlayer = 1
+                } else {
+                    self.servePlayer = 0
+                }
+            }
+        }
+    }
+    
+    func minusScore(player: Int) {
+        if player == 0 {
+            if self.player1 > 0 {
+                self.player1 -= 1
+            }
+        } else {
+            if self.player2 > 2 {
+                self.player2 -= 1
+            }
+        }
+    }
+    
+    func checkDeuce() -> Bool {
+        if self.player1 >= 10 && self.player2 >= 10 {
+            return true
+        } else {
+            return false
+        }
     }
 }
