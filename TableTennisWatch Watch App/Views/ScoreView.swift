@@ -122,15 +122,18 @@ struct ScoreView: View {
             .padding(.bottom, -15)
             .onChange(of: viewModel.player1) { newValue in
                 viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
-                print("sessionTest : \(viewModel.player1)")
+                viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
                 WKInterfaceDevice.current().play(.notification)
             }
             .onChange(of: viewModel.player2) { newValue in
                 //                        WKInterfaceDevice.current().play(.notification)
                 viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
-                print("sessionTest : \(viewModel.player2)")
+                viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
                 WKInterfaceDevice.current().play(.notification)
             }
+        }
+        .onAppear {
+            viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
         }
     }
 }

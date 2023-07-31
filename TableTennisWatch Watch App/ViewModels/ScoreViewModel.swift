@@ -39,6 +39,7 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
             self.player2 = message["player2"] as? Int ?? self.player2
             self.set1 = message["set1"] as? Int ?? self.set1
             self.set2 = message["set2"] as? Int ?? self.set2
+            self.servePlayer = message["servePlayer"] as? Int ?? self.servePlayer
         }
     }
     

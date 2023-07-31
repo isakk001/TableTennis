@@ -41,6 +41,7 @@ struct ScoreView: View {
                             Button {
                                 viewModel.minusScore(player: 0)
                                 viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
+                                viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
                             } label: {
                                 Image(systemName: "minus.circle.fill")
                                     .foregroundColor(.white)
@@ -90,6 +91,7 @@ struct ScoreView: View {
                             Button {
                                 viewModel.minusScore(player: 1)
                                 viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
+                                viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
                             } label: {
                                 Image(systemName: "minus.circle.fill")
                                     .foregroundColor(.white)
@@ -133,6 +135,7 @@ struct ScoreView: View {
         }
         .onAppear {
             viewModel.endGame()
+            viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
         }
         .navigationBarBackButtonHidden()
     }
