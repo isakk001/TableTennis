@@ -46,7 +46,9 @@ struct GameHeader: View {
     
     var body: some View {
         HStack(spacing: -28) {
-            Button(action: {}) {
+            Button(action: {
+                viewModel.endGame()
+            }) {
                 ZStack {
                     Rectangle()
                         .frame(width: 80, height: 44)
@@ -81,7 +83,9 @@ struct GameHeader: View {
             .frame(width: 500, height: 44)
             .foregroundColor(.white)
             
-            Button(action: {}) {
+            Button(action: {
+                viewModel.restartGame()
+            }) {
                 ZStack {
                     Rectangle()
                         .frame(width: 80, height: 44)

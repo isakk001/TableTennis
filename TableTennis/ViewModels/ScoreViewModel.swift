@@ -113,4 +113,16 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
             return false
         }
     }
+    
+    func endGame() {
+        self.player1 = 0
+        self.player2 = 0
+        self.set1 = 0
+        self.set2 = 0
+    }
+    
+    func restartGame() {
+        self.player1 = 0
+        self.player2 = 0
+    }
 }
