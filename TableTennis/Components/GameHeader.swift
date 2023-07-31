@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameHeader: View {
-    @ObservedObject var viewModel = ScoreViewModel()
+    @ObservedObject var viewModel: ScoreViewModel
     
     let fillColor: String = "Fills_Primary"
     let radius:CGFloat = 30
@@ -100,6 +100,6 @@ struct GameHeader: View {
 
 struct GameHeader_Previews: PreviewProvider {
     static var previews: some View {
-        GameHeader()
+        GameHeader(viewModel: ScoreViewModel())
     }
 }

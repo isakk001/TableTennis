@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-struct DividerView: View {
-    var body: some View {
-        HStack {
-            Spacer()
-            Divider()
-                .frame(maxWidth: 10)
-                .foregroundColor(.black)
-            Spacer()
-        }
-    }
-}
-
 
 struct ScoreView: View {
     
@@ -29,34 +17,7 @@ struct ScoreView: View {
             Color("BG_Primary")
                 .ignoresSafeArea()
             VStack {
-                HStack {
-                    Button(action: {}) {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.red)
-                    }
-                    .padding(.leading)
-                    Spacer()
-                    Label("You", systemImage: "person.circle.fill")
-                        .font(.system(size: 16).weight(.semibold).width(.compressed))
-                    Spacer()
-                    Text("\(viewModel.set1)-\(viewModel.set2)")
-                        .font(.system(size: 24).weight(.semibold).width(.compressed))
-                    Spacer()
-                    Label("Partner", systemImage: "person.circle.fill")
-                        .font(.system(size: 16).weight(.semibold).width(.compressed))
-                    Spacer()
-                    Button(action: {}) {
-                        Image(systemName: "arrow.counterclockwise")
-                    }
-                    .padding(.trailing)
-                }
-                .foregroundColor(.white)
-                .padding(12)
-                .background(Color("Fills_Primary"))
-                .cornerRadius(50)
-                .padding(.top)
-                .padding(.horizontal)
-                
+                GameHeader(viewModel: viewModel)
                 HStack {
                     ZStack {
                         VStack {
