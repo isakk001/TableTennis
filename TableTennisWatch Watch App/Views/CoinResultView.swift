@@ -16,7 +16,7 @@ struct CoinResultView: View {
                 .font(.system(size: 17).weight(.semibold))
                 .frame(width: 150, height: 50, alignment: .topLeading)
                 .padding(.leading, -30)
-            Image(isFrontSide ? "Coin_Partner" : "Coin_You")
+            Image(isFrontSide ? "Coin_You" : "Coin_Partner")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             Button {
