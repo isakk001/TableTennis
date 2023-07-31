@@ -19,6 +19,8 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
     @Published var isWin: Int = 0
     
     @Published var servePlayer: Int = 0
+
+    @Published var shouldStartAnimation: Bool = false
     
     var session: WCSession
     
@@ -47,6 +49,8 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
                 } else if command == "ResultView" {
                     PageManager.shared.isGameEnd = true
                     PageManager.shared.pageState = .scoreView
+                } else if command == "CoinToss" {
+                    self.shouldStartAnimation = true
                 }
             }
         } else {

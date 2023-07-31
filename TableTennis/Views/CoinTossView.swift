@@ -35,23 +35,8 @@ struct CoinTossView: View {
                     isTapped.toggle()
                     if isTapped {} else {
                         if isCoinTossing() { return }
-                        withAnimation(.linear(duration: duration / 2)) {
-                            self.scaleAmount = 3.0
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + duration / 2) {
-                            withAnimation(.linear(duration: duration / 2)) {
-                                self.scaleAmount = 1.0
-                            }
-                        }
-                        animateRotation()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                            self.animation3d = 0.0
-                            
-                            withAnimation(.linear(duration: 0.2)) {
-                                PageManager.shared.pageState = .coinResultView
-                            }
-                            viewModel.session.sendMessage(["command": "CoinResultView"], replyHandler: nil)
-                        }
+                        viewModel.session.sendMessage(["command": "CoinToss"], replyHandler: nil)
+                        startAnimation()
                     }
                 } label: {
                     if isTapped {
@@ -68,6 +53,12 @@ struct CoinTossView: View {
                     self.maxRotations = 16
                 } else {
                     self.maxRotations = 18
+                }
+                viewModel.shouldStartAnimation = false
+            }
+            .onReceive(viewModel.$shouldStartAnimation) { newValue in
+                if newValue {
+                    startAnimation()
                 }
             }
         }
@@ -89,6 +80,26 @@ struct CoinTossView: View {
 
     private func isCoinTossing() -> Bool {
         return animation3d > 0.0
+    }
+
+    private func startAnimation() {
+        withAnimation(.linear(duration: duration / 2)) {
+            self.scaleAmount = 3.0
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration / 2) {
+            withAnimation(.linear(duration: duration / 2)) {
+                self.scaleAmount = 1.0
+            }
+        }
+        animateRotation()
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            self.animation3d = 0.0
+
+            withAnimation(.linear(duration: 0.2)) {
+                PageManager.shared.pageState = .coinResultView
+            }
+            viewModel.session.sendMessage(["command": "CoinResultView"], replyHandler: nil)
+        }
     }
 }
 
