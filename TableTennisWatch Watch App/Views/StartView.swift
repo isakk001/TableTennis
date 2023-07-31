@@ -35,7 +35,7 @@ class PageManager : ObservableObject {
 
 
 struct StartView: View {
-    
+    @StateObject var viewModel = ScoreViewModel()
     @State private var path = NavigationPath()
     @State var progress: CGFloat = 0.0
     @StateObject var pageManager = PageManager.shared
@@ -51,9 +51,9 @@ struct StartView: View {
                                 case .progressBarView:
                                     ProgressBarView()
                                 case .coinTossView:
-                                    CoinTossView()
+                                    CoinTossView(viewModel: viewModel)
                                 case .coinResultView:
-                                    CoinResultView()
+                                    CoinResultView(viewModel: viewModel)
                                 case .scoreView:
                                     TabView(selection: $pageManager.tabState) {
                                         RestartView()
@@ -62,7 +62,7 @@ struct StartView: View {
                                             if pageManager.isGameEnd {
                                                 PlayResultView()
                                             } else {
-                                                ScoreView()
+                                                ScoreView(viewModel: viewModel)
                                             }
                                         }
                                         .tag(1)

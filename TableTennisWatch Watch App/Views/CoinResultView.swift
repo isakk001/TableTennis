@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct CoinResultView: View {
-    @State private var isFrontSide = true
+    @ObservedObject var viewModel: ScoreViewModel
     
     var body: some View {
         VStack {
-            Text(isFrontSide ? "First Server: \nYou" : "First Server: \nPartner")
+            Text(viewModel.servePlayer == 0 ? "First Server: \nYou" : "First Server: \nPartner")
                 .font(.system(size: 17).weight(.semibold))
                 .frame(width: 150, height: 50, alignment: .topLeading)
                 .padding(.leading, -30)
-            Image(isFrontSide ? "Coin_You" : "Coin_Partner")
+            Image(viewModel.servePlayer == 0 ? "Coin_You" : "Coin_Partner")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             Button {
@@ -32,6 +32,6 @@ struct CoinResultView: View {
 
 struct CoinResultView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinResultView()
+        CoinResultView(viewModel: ScoreViewModel())
     }
 }

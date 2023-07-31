@@ -9,8 +9,8 @@ import SwiftUI
 import WatchConnectivity
 
 struct ScoreView: View {
-    
-    @StateObject var viewModel = ScoreViewModel()
+
+    @ObservedObject var viewModel: ScoreViewModel
 //    @State var lastScore: Int = 0
     
     var body: some View {
@@ -101,6 +101,6 @@ struct PlusMinusButtonStyle: ButtonStyle {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreView()
+        ScoreView(viewModel: ScoreViewModel())
     }
 }

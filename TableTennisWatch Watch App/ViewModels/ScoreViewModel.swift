@@ -118,4 +118,8 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
             return false
         }
     }
+
+    func setServePlayer() {
+        self.servePlayer = Int.random(in: 0...1)
+    }
 }
