@@ -32,17 +32,10 @@ struct StartView: View {
                             .font(.system(size: 17).weight(.semibold))
                             .onTapGesture {
                                 self.showScoreView = true
-                                WatchSessionManager.sharedManager.sendPlayCommand()
                             }
                     }
                     .buttonStyle(CustomButtonStyle())
                 }
-                .onAppear {
-                    WatchSessionManager.sharedManager.startSession()
-                }
-                .onReceive(WatchSessionManager.sharedManager.$showScoreView) { value in
-                    self.showScoreView = value
-            }
             }
         }
     }
@@ -66,48 +59,5 @@ struct TitleView: View {
 struct StartView_Previews: PreviewProvider {
     static var previews: some View {
         StartView()
-    }
-}
-
-final class WatchSessionManager: NSObject, ObservableObject, WCSessionDelegate {
-    static let sharedManager = WatchSessionManager()
-    @Published var showScoreView = false
-    
-    private override init() {
-        super.init()
-    }
-    
-    private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
-    
-    func startSession() {
-        session?.delegate = self
-        session?.activate()
-    }
-    
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if let command = message["command"] as? String, command == "play" {
-            DispatchQueue.main.async {
-                self.showScoreView = true
-            }
-        }
-    }
-    
-    func sendPlayCommand() {
-        guard WCSession.default.isReachable else {
-            print("Not Reachable")
-            return
-        }
-        let message = ["command": "play"]
-        WCSession.default.sendMessage(message, replyHandler: nil, errorHandler: { error in
-            print(error.localizedDescription)
-        })
-    }
-    
-    func sessionDidBecomeInactive(_ session: WCSession) {}
-    
-    func sessionDidDeactivate(_ session: WCSession) {
-        WCSession.default.activate()
     }
 }
