@@ -22,7 +22,6 @@ enum PageState {
     case coinTossView
     case coinResultView
     case scoreView
-    case playResultView
 }
 
 class PageManager : ObservableObject {
@@ -31,6 +30,7 @@ class PageManager : ObservableObject {
     
     @Published var pageState: PageState = .progressBarView
     @Published var tabState: Int = 1
+    @Published var isGameEnd: Bool = false
 }
 
 
@@ -58,11 +58,15 @@ struct StartView: View {
                                     TabView(selection: $pageManager.tabState) {
                                         RestartView()
                                             .tag(0)
-                                        ScoreView()
-                                            .tag(1)
+                                        VStack{
+                                            if pageManager.isGameEnd {
+                                                PlayResultView()
+                                            } else {
+                                                ScoreView()
+                                            }
+                                        }
+                                        .tag(1)
                                     }
-                                case .playResultView:
-                                    PlayResultView()
                             }
                         }
                 
