@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameHeader: View {
     @ObservedObject var viewModel: ScoreViewModel
+    @ObservedObject var pageManager: PageManager
     
     let fillColor: String = "Fills_Primary"
     let radius:CGFloat = 30
@@ -47,7 +48,8 @@ struct GameHeader: View {
     var body: some View {
         HStack(spacing: -28) {
             Button(action: {
-                viewModel.endGame()
+                viewModel.isWin = viewModel.checkWinner()
+                pageManager.pageState = .resultView
             }) {
                 ZStack {
                     Rectangle()
@@ -104,6 +106,6 @@ struct GameHeader: View {
 
 struct GameHeader_Previews: PreviewProvider {
     static var previews: some View {
-        GameHeader(viewModel: ScoreViewModel())
+        GameHeader(viewModel: ScoreViewModel(), pageManager: PageManager.shared)
     }
 }

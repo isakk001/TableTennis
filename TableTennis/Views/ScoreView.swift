@@ -19,7 +19,7 @@ struct ScoreView: View {
             Color("BG_Primary")
                 .ignoresSafeArea()
             VStack {
-                GameHeader(viewModel: viewModel)
+                GameHeader(viewModel: viewModel, pageManager: pageManager)
                 HStack {
                     ZStack {
                         VStack {
