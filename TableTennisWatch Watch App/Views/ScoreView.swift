@@ -17,12 +17,8 @@ struct ScoreView: View {
         VStack {
             HStack {
                 Image(systemName: "person.circle.fill")
-                    .resizable()
-                    .frame(width: 15, height: 15)
                 Text("\(viewModel.set1) - \(viewModel.set2)")
                 Image(systemName: "person.circle.fill")
-                    .resizable()
-                    .frame(width: 15, height: 15)
             }
             HStack {
                 VStack {
@@ -85,14 +81,13 @@ struct ScoreView: View {
                 WKInterfaceDevice.current().play(.notification)
             }
         }
-        .navigationBarBackButtonHidden()
     }
 }
 
 struct PlusMinusButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
             configuration.label
-                .frame(width: 70, height: 15)
+                .frame(width: 70, height: 13)
                 .padding()
                 .background(.white.opacity(0.2))
                 .cornerRadius(10)

@@ -21,11 +21,10 @@ struct CoinResultView: View {
                 .aspectRatio(contentMode: .fit)
             Button {
                 PageManager.shared.pageState = .scoreView
-                // navigation
             } label: {
                 Text("Set").bold()
             }
-            .buttonStyle(TapSetButtonStyle()) // CoinTossView에 코드 있음
+            .buttonStyle(TapSetButtonStyle())
         }
     }
 }
