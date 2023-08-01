@@ -12,7 +12,7 @@ struct CustomButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .padding(EdgeInsets(top: 15, leading: 95, bottom: 15, trailing: 95))
+            .padding(EdgeInsets(top: 16, leading: 96, bottom: 16, trailing: 96))
             .foregroundColor(.white)
             .background(LinearGradient(gradient: Gradient(colors: [Color(colors.gradientStart.name), Color(colors.gradientEnd.name)]), startPoint: .bottomLeading, endPoint: .topTrailing))
             .cornerRadius(30)

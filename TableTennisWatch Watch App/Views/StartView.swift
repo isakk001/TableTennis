@@ -8,12 +8,16 @@ import SwiftUI
 import WatchConnectivity
 
 struct CustomButtonStyle: ButtonStyle {
+    let colors = Colors.self
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .padding(EdgeInsets(top: 15, leading: 70, bottom: 15, trailing: 70))
+            .frame(maxWidth: .infinity)
+            .padding(EdgeInsets(top: 12, leading: 72, bottom: 12, trailing: 72))
             .foregroundColor(.white)
-            .background(LinearGradient(gradient: Gradient(colors: [Color("Fills_Gradient_Start"), Color("Fills_Gradient_End")]), startPoint: .bottomLeading, endPoint: .topTrailing))
+            .background(LinearGradient(gradient: Gradient(colors: [Color(colors.gradientStart.name), Color(colors.gradientEnd.name)]), startPoint: .bottomLeading, endPoint: .topTrailing))
             .cornerRadius(30)
+            .padding(EdgeInsets(top: 0, leading: 8, bottom: -20, trailing: 8))
     }
 }
 
@@ -88,20 +92,24 @@ struct LogoView: View {
 struct StartPlayView : View {
     @ObservedObject var viewModel: ScoreViewModel
     
+    @State var buttonText = "Play"
+    
     var body: some View {
         VStack {
             Spacer()
+            
             LogoView()
                 .padding(10)
+            
             Spacer()
+            
             Button {
                 withAnimation(.linear(duration: 0.2)) {
                     PageManager.shared.pageState = .coinTossView
                 }
                 viewModel.session.sendMessage(["command": "CoinTossView"], replyHandler: nil)
             } label: {
-                Text("Play")
-                    .font(.system(size: 17))
+                Text(buttonText)
                     .fontWeight(.semibold)
             }
             .buttonStyle(CustomButtonStyle())

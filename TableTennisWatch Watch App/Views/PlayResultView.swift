@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PlayResultView: View {
-    
     let isWin: Int
     
     enum Result {
@@ -29,14 +28,12 @@ struct PlayResultView: View {
         VStack {
             Image(showResult(isWin).0)
                 .resizable()
-                .frame(width: 60, height: 60)
+                .scaledToFit()
                 .padding()
             
             Text(showResult(isWin).1)
-                .font(
-                    .system(size: 24)
-                    .weight(.semibold)
-                )
+                .font(.system(size: 24))
+                .fontWeight(.semibold)
         }
     }
     

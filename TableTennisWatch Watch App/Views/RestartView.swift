@@ -10,6 +10,7 @@ import WatchKit
 
 struct RestartView: View {
     @ObservedObject var viewModel: ScoreViewModel
+    
     @State private var isEnding = false
     
     enum System {
@@ -17,11 +18,12 @@ struct RestartView: View {
         case restart
         
         var button: (String, String) {
+            let symbols = Symbols.self
             switch self {
             case .end:
-                return ("xmark", "End")
+                return (symbols.end.name, "End")
             case .restart:
-                return ("arrow.counterclockwise", "Restart")
+                return (symbols.restart.name, "Restart")
             }
         }
     }
@@ -36,18 +38,14 @@ struct RestartView: View {
                         viewModel.session.sendMessage(["command": "ResultView"], replyHandler: nil)
                         viewModel.checkWinner()
                     } label: {
-                        Image(systemName: System.end.button.0)
-                            .resizable()
-                            .frame(width: 16, height: 16, alignment: .center)
-                            .foregroundColor(.red)
-                            .fontWeight(.semibold)
+                            Image(systemName: System.end.button.0)
+                                .foregroundColor(.red)
+                                .fontWeight(.semibold)
                     }
-                    .frame(width: 80, height: 45)
-                    .background(Color.red.opacity(0.3))
-                    .cornerRadius(20)
+                    .buttonStyle(BorderedButtonStyle(tint: .red))
+                    
                     Text(System.end.button.1)
                         .multilineTextAlignment(.center)
-                        .font(.system(size: 17).weight(.medium))
                 }
             }
             
@@ -60,19 +58,15 @@ struct RestartView: View {
                     viewModel.checkWinner()
                 } label: {
                     Image(systemName: System.restart.button.0)
-                        .resizable()
-                        .frame(width: 16, height: 16, alignment: .center)
                         .foregroundColor(.white)
-                        .fontWeight(.medium)
+                        .fontWeight(.semibold)
                 }
-                .frame(width: 80, height: 45)
-                .background(Color.white.opacity(0.3))
-                .cornerRadius(20)
+
                 Text(System.restart.button.1)
                     .multilineTextAlignment(.center)
-                    .font(.system(size: 17).weight(.medium))
             }
         }
+        .padding(.top, 28)
     }
 }
 

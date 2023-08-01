@@ -31,7 +31,7 @@ struct PlayerScoreView: View {
                         viewModel.session.sendMessage(["player\(player + 1)" : getPlayerScore(player)], replyHandler: nil)
                         viewModel.session.sendMessage(["set\(player + 1)" : getPlayerSet(player)], replyHandler: nil)
                     } label: {
-                        Image(systemName: symbols.plus.name)
+                        Image(systemName: symbols.circlePlus.name)
                             .font(.system(size: 30))
                             .foregroundColor(.white)
                             .opacity(0.7)
@@ -48,7 +48,7 @@ struct PlayerScoreView: View {
                         viewModel.session.sendMessage(["player\(player + 1)" : getPlayerScore(player)], replyHandler: nil)
                         viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
                     } label: {
-                        Image(systemName: symbols.minus.name)
+                        Image(systemName: symbols.circleMinus.name)
                             .font(.system(size: 30))
                             .foregroundColor(.white)
                             .opacity(0.7)

@@ -8,11 +8,117 @@
 import SwiftUI
 import WatchConnectivity
 
+struct PlayerScoreView: View {
+    @ObservedObject var viewModel: ScoreViewModel
+    
+    var player: Int
+    
+    let symbols = Symbols.self
+    let mark = "Icon_Watch"
+    
+    var body: some View {
+        VStack(spacing: -4) {
+            Button {
+                viewModel.plusScore(player: player)
+                viewModel.session.sendMessage(["set\(player + 1)" : getPlayerSet(player)], replyHandler: nil)
+            } label: {
+                Image(systemName: symbols.plus.name)
+                    .fontWeight(.semibold)
+            }
+            .buttonStyle(PlusMinusButtonStyle())
+            
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(setFillsColor(checkServer(viewModel.servePlayer, player)))
+                
+                Text("\(getPlayerScore(player))")
+                    .font(.system(size: 70))
+                    .animation(.easeInOut, value: getPlayerSet(player))
+                
+                if let markView = markServer(checkServer(viewModel.servePlayer, player), player) {
+                    markView
+                }
+            }
+            .padding(EdgeInsets(top: 12, leading: 4, bottom: 12, trailing: 4))
+            
+            Button {
+                viewModel.minusScore(player: player)
+            } label: {
+                Image(systemName: symbols.minus.name)
+                    .fontWeight(.semibold)
+            }
+            .buttonStyle(PlusMinusButtonStyle())
+        }
+    }
+    
+    func getPlayerScore(_ player: Int) -> Int {
+        if player == 0 {
+            return viewModel.player1
+        } else {
+            return viewModel.player2
+        }
+    }
+    
+    func getPlayerSet(_ player: Int) -> Int {
+        if player == 0 {
+            return viewModel.set1
+        } else {
+            return viewModel.set2
+        }
+    }
+    
+    func checkServer(_ server: Int, _ player: Int) -> Bool {
+        if server == player {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func markServer(_ isServer: Bool, _ player: Int) -> AnyView? {
+        var markView: AnyView?
+        
+        if isServer {
+            markView = AnyView(
+            Image(mark)
+                .resizable()
+                .scaledToFit()
+                .scaleEffect(0.6)
+                .padding(EdgeInsets(top: 56, leading: 56, bottom: 0, trailing: 0)))
+        }
+        
+        return markView
+    }
+    
+    func setFillsColor(_ isServer: Bool) -> AnyShapeStyle {
+        let colors = Colors.self
+        
+        if isServer {
+            let fillsView = LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(colors.gradientStart.name),
+                    Color(colors.gradientEnd.name)
+                ]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            
+            return AnyShapeStyle(fillsView)
+        } else {
+            let fillsView = Color(colors.fillsPrimary.name)
+            
+            return AnyShapeStyle(fillsView)
+        }
+    }
+}
+
+
 struct ScoreView: View {
 
     @ObservedObject var viewModel: ScoreViewModel
     @ObservedObject var pageManager: PageManager
-//    @State var lastScore: Int = 0
+    
+    let symbols = Symbols.self
     
     enum Player {
         case you
@@ -28,103 +134,31 @@ struct ScoreView: View {
         }
     }
     
-    enum Symbols {
-        case person
-        case plus
-        case minus
-        
-        var name: String {
-            switch self {
-            case .person:
-                return "person.circle.fill"
-            case .plus:
-                return "plus"
-            case .minus:
-                return "minus"
-            }
-        }
-    }
-    
     var body: some View {
         VStack {
             HStack(spacing: 6) {
                 HStack(spacing: 2){
                     Text(Player.you.label)
-                        .font(.system(size: 13))
-//                        .frame(width: 50, alignment: .trailing)
                     
-                    Image(systemName: Symbols.person.name)
-                        .font(.system(size: 13))
+                    Image(systemName: symbols.person.name)
                 }
+                .font(.system(size: 13))
                 
                 Text("\(viewModel.set1) - \(viewModel.set2)")
                     .fontWeight(.semibold)
                 
                 HStack(spacing: 2) {
-                    Image(systemName: Symbols.person.name)
-                        .font(.system(size: 13))
+                    Image(systemName: symbols.person.name)
+                    
                     Text(Player.partner.label)
-                        .font(.system(size: 13))
-//                        .frame(width: 50, alignment: .leading)
                 }
+                .font(.system(size: 13))
             }
+            
             HStack {
-                VStack {
-                    Button {
-                        viewModel.plusScore(player: 0)
-                        viewModel.session.sendMessage(["set1" : viewModel.set1], replyHandler: nil)
-                    } label: {
-                        Image(systemName: Symbols.plus.name).bold()
-                    }
-                    .buttonStyle(PlusMinusButtonStyle())
-                    
-                    ZStack {
-                        Text("\(viewModel.player1)")
-                            .font(.system(size: 70).width(.condensed))
-                            .padding(.bottom, -10)
-                            .frame(width: 85, height: 90)
-                            .background(viewModel.servePlayer == 0
-                                        ? LinearGradient(colors: [Color("Fills_Gradient_Start"), Color("Fills_Gradient_End")], startPoint: .top, endPoint: .bottom)
-                                        : LinearGradient(colors: [.white.opacity(0.2)], startPoint: .top, endPoint: .bottom))
-                            .cornerRadius(10)
-                        .animation(.easeInOut, value: viewModel.set1)
-                        
-//                        Image("Icon_Watch")
-//                            .resizable()
-//                            .padding(EdgeInsets(top: 75, leading: 75, bottom: 5, trailing: 15))
-                    }
-                    Button {
-                        viewModel.minusScore(player: 0)
-                    } label: {
-                        Image(systemName: Symbols.minus.name).bold()
-                    }
-                    .buttonStyle(PlusMinusButtonStyle())
-                }
-                VStack {
-                    Button {
-                        viewModel.plusScore(player: 1)
-                        viewModel.session.sendMessage(["set2" : viewModel.set2], replyHandler: nil)
-                    } label: {
-                        Image(systemName: Symbols.plus.name).bold()
-                    }
-                    .buttonStyle(PlusMinusButtonStyle())
-                    
-                    Text("\(viewModel.player2)")
-                        .font(.system(size: 70).width(.condensed))
-                        .padding(.bottom, -10)
-                        .frame(width: 85, height: 90)
-                        .background(viewModel.servePlayer == 1
-                                    ? LinearGradient(colors: [Color("Fills_Gradient_Start"), Color("Fills_Gradient_End")], startPoint: .top, endPoint: .bottom)
-                                    : LinearGradient(colors: [.white.opacity(0.2)], startPoint: .top, endPoint: .bottom))
-                        .cornerRadius(10)
-                        .animation(.easeInOut, value: viewModel.set2)
-                    Button {
-                        viewModel.minusScore(player: 1)
-                    } label: {
-                        Image(systemName: Symbols.minus.name).bold()
-                    }
-                    .buttonStyle(PlusMinusButtonStyle())
-                }
+                PlayerScoreView(viewModel: viewModel, player: 0)
+                
+                PlayerScoreView(viewModel: viewModel, player: 1)
             }
             .padding(.bottom, -15)
             .onChange(of: viewModel.player1) { newValue in
@@ -153,13 +187,16 @@ struct ScoreView: View {
 }
 
 struct PlusMinusButtonStyle: ButtonStyle {
+    let colors = Colors.self
+    
     func makeBody(configuration: Self.Configuration) -> some View {
-            configuration.label
-                .frame(width: 70, height: 13)
-                .padding()
-                .background(.white.opacity(0.2))
-                .cornerRadius(10)
-        }
+        configuration.label
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+            .background(Color(colors.fillsPrimary.name))
+            .cornerRadius(10)
+            .padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

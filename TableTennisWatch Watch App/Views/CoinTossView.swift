@@ -16,32 +16,51 @@ struct CoinTossView: View {
     @State private var maxRotations = 16
     private let duration = 3.0
     private let rotationAngle = 90.0
+    
+    let buttonText = "Toss"
+    let id = "img"
+    
+    enum Description {
+        case beforeToss
+        case afterToss
+        
+        var text: (String, String) {
+            switch self {
+            case .beforeToss:
+                return ("Lets'decide \nthe first server.", "")
+            case .afterToss:
+                return ("Coin_You", "Coin_Partner")
+            }
+        }
+    }
 
     var body: some View {
         
                 
         VStack {
-            Text(isCoinTossed() == false ? "Let's decide \nthe first server." : "")
-                .font(.system(size: 17).weight(.semibold))
-                .frame(width: 150, height: 50, alignment: .topLeading)
-                .padding(.leading, -30)
-            Image(isFront ? "Coin_You" : "Coin_Partner")
+            Text(showDescriptionBefore(isCoinTossed()))
+                .fontWeight(.semibold)
+                .padding(.leading, -56)
+            
+            Image(showDescriptionAfter(isFront))
                 .resizable()
-                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
                 .rotation3DEffect(.degrees(animation3d), axis: (x: 1.0, y: 0, z: 0))
                 .scaleEffect(scaleAmount)
-                .matchedGeometryEffect(id: "img", in: namespace)
+                .matchedGeometryEffect(id: id, in: namespace)
+                .padding(.vertical, 8)
+            
             Button {
                 guard isCoinTossed() == false else { return }
                 viewModel.session.sendMessage(["command": "CoinToss"], replyHandler: nil)
                 startAnimation()
             } label: {
                 if isCoinTossed() == false {
-                    Text("Tap")
+                    Text(buttonText)
                         .fontWeight(.semibold)
                 }
             }
-            .buttonStyle(TapSetButtonStyle())
+            .buttonStyle(CustomButtonStyle())
         }
         .onAppear {
             viewModel.setServePlayer()
@@ -60,22 +79,24 @@ struct CoinTossView: View {
         }
     }
 
-    private func animateRotation() {
-        for i in 0..<maxRotations {
-            let delay = duration / Double(maxRotations) * Double(i)
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                withAnimation(Animation.linear(duration: self.duration / Double(self.maxRotations))) {
-                    self.animation3d = self.rotationAngle * Double(i + 1)
-                    if i % 2 == 1 {
-                        self.isFront.toggle()
-                    }
-                }
-            }
-        }
-    }
-
     private func isCoinTossed() -> Bool {
         return animation3d > 0.0
+    }
+    
+    func showDescriptionBefore(_ isCoinTossed: Bool) -> String {
+        if isCoinTossed {
+            return Description.beforeToss.text.1
+        } else {
+            return Description.beforeToss.text.0
+        }
+    }
+    
+    func showDescriptionAfter(_ isFront: Bool) -> String {
+        if isFront {
+            return Description.afterToss.text.0
+        } else {
+            return Description.afterToss.text.1
+        }
     }
 
     private func startAnimation() {
@@ -97,26 +118,22 @@ struct CoinTossView: View {
             viewModel.session.sendMessage(["command": "CoinResultView"], replyHandler: nil)
         }
     }
-}
-
-struct TapSetButtonStyle: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .frame(width: 130, height: 32)
-            .background(
-                LinearGradient(
-                    stops: [
-                        Gradient.Stop(color: Color(red: 0.12, green: 0.89, blue: 0.85), location: 0.00),Gradient.Stop(color: Color(red: 0.34, green: 0.52, blue: 0.91), location: 1.00),
-                    ],
-                    startPoint: UnitPoint(x: 0, y: 0),
-                    endPoint: UnitPoint(x: 1, y: 1)
-                )
-            )
-            .cornerRadius(30)
-            .padding(EdgeInsets(top: 10, leading: 0, bottom: -20, trailing: 0))
+    
+    private func animateRotation() {
+        for i in 0..<maxRotations {
+            let delay = duration / Double(maxRotations) * Double(i)
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                withAnimation(Animation.linear(duration: self.duration / Double(self.maxRotations))) {
+                    self.animation3d = self.rotationAngle * Double(i + 1)
+                    if i % 2 == 1 {
+                        self.isFront.toggle()
+                    }
+                }
+            }
+        }
     }
 }
-//
+
 //struct CoinTossView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        CoinTossView(viewModel: ScoreViewModel())

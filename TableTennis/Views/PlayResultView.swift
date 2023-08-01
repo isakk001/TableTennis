@@ -41,7 +41,6 @@ struct PlayResultView: View {
                     .resizable()
                     .scaledToFit()
                     .padding(EdgeInsets(top: 80, leading: 0, bottom: 0, trailing: 0))
-                    .padding(.bottom, 16)
                 
                 Text(showResult(viewModel.isWin).1)
                     .foregroundColor(.white)

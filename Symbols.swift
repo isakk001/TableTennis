@@ -11,6 +11,8 @@ enum Symbols {
     case person
     case plus
     case minus
+    case circlePlus
+    case circleMinus
     case end
     case restart
     
@@ -19,8 +21,12 @@ enum Symbols {
         case .person:
             return "person.circle.fill"
         case .plus:
-            return "plus.circle.fill"
+            return "plus"
         case .minus:
+            return "minus"
+        case .circlePlus:
+            return "plus.circle.fill"
+        case .circleMinus:
             return "minus.circle.fill"
         case .end:
             return "xmark"

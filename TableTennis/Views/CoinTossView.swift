@@ -17,7 +17,7 @@ struct CoinTossView: View {
     private let rotationAngle = 90.0
     
     let colors = Colors.self
-    let buttonText = "Flip"
+    let buttonText = "Toss"
     
     enum Description {
         case beforeToss
