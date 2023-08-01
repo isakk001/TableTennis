@@ -13,7 +13,6 @@ struct CoinTossView: View {
     @State private var animation3d = 0.0
     @State private var scaleAmount: CGFloat = 1.0
     @State private var isFront = true
-    @State private var isTapped = true
     @State private var maxRotations = 16
     private let duration = 3.0
     private let rotationAngle = 90.0
@@ -22,7 +21,7 @@ struct CoinTossView: View {
         
                 
         VStack {
-            Text(isTapped ? "Let's decide \nthe first server." : "")
+            Text(isCoinTossed() == false ? "Let's decide \nthe first server." : "")
                 .font(.system(size: 17).weight(.semibold))
                 .frame(width: 150, height: 50, alignment: .topLeading)
                 .padding(.leading, -30)
@@ -33,14 +32,11 @@ struct CoinTossView: View {
                 .scaleEffect(scaleAmount)
                 .matchedGeometryEffect(id: "img", in: namespace)
             Button {
-                isTapped.toggle()
-                if isTapped {} else {
-                    if isCoinTossing() { return }
-                    viewModel.session.sendMessage(["command": "CoinToss"], replyHandler: nil)
-                    startAnimation()
-                }
+                guard isCoinTossed() == false else { return }
+                viewModel.session.sendMessage(["command": "CoinToss"], replyHandler: nil)
+                startAnimation()
             } label: {
-                if isTapped {
+                if isCoinTossed() == false {
                     Text("Tap")
                         .fontWeight(.semibold)
                 }
@@ -78,7 +74,7 @@ struct CoinTossView: View {
         }
     }
 
-    private func isCoinTossing() -> Bool {
+    private func isCoinTossed() -> Bool {
         return animation3d > 0.0
     }
 
