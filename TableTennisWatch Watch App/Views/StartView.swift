@@ -97,7 +97,8 @@ struct StartPlayView : View {
                 viewModel.session.sendMessage(["command": "CoinTossView"], replyHandler: nil)
             } label: {
                 Text("Play")
-                    .font(.custom("SFProText-Semibold", size: 17))
+                    .font(.system(size: 17))
+                    .fontWeight(.semibold)
             }
             .buttonStyle(CustomButtonStyle())
         }

@@ -60,6 +60,8 @@ struct GameHeader: View {
                         .cornerRadius(radius)
                     
                     Image(systemName: Symbol.end.name)
+                        .font(.system(size: 20))
+                        .fontWeight(.semibold)
                         .foregroundColor(.red)
                         .padding(.trailing, radius)
                 }
@@ -70,16 +72,20 @@ struct GameHeader: View {
                 
                 HStack {
                     Label(Player.you.label, systemImage: Symbol.person.name)
+                        .font(.system(size: 20))
                         .padding(.leading, 20)
                     
                     Spacer()
                     
                     Text("\(viewModel.set1)-\(viewModel.set2)")
-                        .font(.system(size: 24).weight(.semibold).width(.compressed))
+                        .font(.system(size: 32))
+                        .fontWeight(.bold)
+                        .fontWidth(.compressed)
                     
                     Spacer()
                     
                     Label(Player.partner.label, systemImage: Symbol.person.name)
+                        .font(.system(size: 20))
                         .padding(.trailing, 20)
                 }
             }
@@ -99,6 +105,8 @@ struct GameHeader: View {
                         .cornerRadius(radius)
                     
                     Image(systemName: Symbol.restart.name)
+                        .font(.system(size: 20))
+                        .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .padding(.trailing, -radius)
                 }

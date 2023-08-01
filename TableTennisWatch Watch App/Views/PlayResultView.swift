@@ -31,10 +31,11 @@ struct PlayResultView: View {
                 .resizable()
                 .frame(width: 60, height: 60)
                 .padding()
+            
             Text(showResult(isWin).1)
                 .font(
                     .system(size: 24)
-                .weight(.semibold)
+                    .weight(.semibold)
                 )
         }
     }

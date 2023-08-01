@@ -13,7 +13,6 @@
 		5B04C3A82A720F3B00B89F0C /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C3A72A720F3B00B89F0C /* Score.swift */; };
 		5B04C3AA2A720F4500B89F0C /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C3A92A720F4500B89F0C /* Set.swift */; };
 		5BA4F5C52A7743BB006B9131 /* PlayResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA4F5C42A7743BB006B9131 /* PlayResultView.swift */; };
-		5BA4F5CB2A774AA8006B9131 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4F5C92A774AA8006B9131 /* Assets.xcassets */; };
 		5BA4F5D02A775A6A006B9131 /* GameHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA4F5CF2A775A6A006B9131 /* GameHeader.swift */; };
 		BF833BBF2A74BD6300F17B33 /* ScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF833BBE2A74BD6300F17B33 /* ScoreViewModel.swift */; };
 		BF833BC42A74BE6400F17B33 /* ScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF833BC32A74BE6400F17B33 /* ScoreViewModel.swift */; };
@@ -73,7 +72,6 @@
 		5B04C3A72A720F3B00B89F0C /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		5B04C3A92A720F4500B89F0C /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		5BA4F5C42A7743BB006B9131 /* PlayResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayResultView.swift; sourceTree = "<group>"; };
-		5BA4F5C92A774AA8006B9131 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BA4F5CF2A775A6A006B9131 /* GameHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHeader.swift; sourceTree = "<group>"; };
 		BF833BBE2A74BD6300F17B33 /* ScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewModel.swift; sourceTree = "<group>"; };
 		BF833BC32A74BE6400F17B33 /* ScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewModel.swift; sourceTree = "<group>"; };
@@ -252,7 +250,6 @@
 				BF833BBA2A74B77200F17B33 /* Views */,
 				BF833BBD2A74BD4100F17B33 /* ViewModels */,
 				BF833BC52A74BEB000F17B33 /* Resources */,
-				5BA4F5C92A774AA8006B9131 /* Assets.xcassets */,
 			);
 			path = TableTennis;
 			sourceTree = "<group>";
@@ -374,7 +371,6 @@
 				BFCDD1B52A75481500A94198 /* SF-Compact-Rounded-Semibold.otf in Resources */,
 				F194F56F2A6D16F600D94EC8 /* Preview Assets.xcassets in Resources */,
 				F194F56C2A6D16F600D94EC8 /* Assets.xcassets in Resources */,
-				5BA4F5CB2A774AA8006B9131 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

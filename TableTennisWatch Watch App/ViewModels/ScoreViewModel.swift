@@ -15,6 +15,7 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
     
     @Published var set1: Int = 0
     @Published var set2: Int = 0
+    
     @Published var limitScore: Int = 10
     @Published var isWin: Int = 0
     
