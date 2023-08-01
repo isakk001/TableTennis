@@ -89,7 +89,7 @@ struct GameHeader: View {
                         .padding(.trailing, 20)
                 }
             }
-            .frame(width: 500, height: 44)
+            .frame(width: 440, height: 44)
             .foregroundColor(.white)
             
             Button(action: {
