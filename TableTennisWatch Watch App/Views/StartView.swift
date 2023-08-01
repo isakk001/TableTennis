@@ -79,7 +79,7 @@ struct LogoView: View {
                 .scaledToFit()
             
             Text(phrase)
-                .foregroundColor(Color.gray)
+                .foregroundColor(.gray)
                 .font(.system(size: 15))
         }
     }

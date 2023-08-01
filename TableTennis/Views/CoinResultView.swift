@@ -10,28 +10,58 @@ import SwiftUI
 struct CoinResultView: View {
     @ObservedObject var viewModel: ScoreViewModel
     
+    let colors = Colors.self
+    let buttonText = "Set"
+    
+    enum Server {
+        case you
+        case partner
+        
+        var result: (String, String) {
+            switch self {
+            case .you:
+                return ("First Server: You", "Coin_You")
+            case .partner:
+                return ("First Server: Partner", "Coin_Partner")
+            }
+        }
+    }
+    
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+            Color(colors.backgroundPrimary.name)
+                .ignoresSafeArea()
+            
             VStack {
-                Text(viewModel.servePlayer == 0 ? "First Server: You" : "First Server: Partner")
-                    .font(.system(size: 24).weight(.semibold))
+                Text(checkServer(viewModel.servePlayer).0)
+                    .font(.system(size: 24))
+                    .fontWeight(.semibold)
                     .foregroundColor(.white)
-                    .padding(.top, 30)
-                Image(viewModel.servePlayer == 0 ? "Coin_You" : "Coin_Partner")
+                    .padding(.top, 60)
+                
+                Image(checkServer(viewModel.servePlayer).1)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .padding(.bottom, 10)
+                    .scaledToFit()
+                    .padding(.bottom, 16)
+                
                 Button {
                	    PageManager.shared.pageState = .scoreView
                     viewModel.session.sendMessage(["command": "ScoreView"], replyHandler: nil)
                 } label: {
-                    Text("Set")
+                    Text(buttonText)
                         .foregroundColor(.white)
                         .fontWeight(.semibold)
                 }
                 .buttonStyle(TapSetButtonStyle())
             }
+        }
+    }
+    
+    func checkServer(_ server: Int) -> (String, String) {
+        if server == 0 {
+            return Server.you.result
+        } else {
+            return Server.partner.result
         }
     }
 }

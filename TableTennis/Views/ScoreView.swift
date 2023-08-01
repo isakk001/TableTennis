@@ -7,114 +7,163 @@
 
 import SwiftUI
 
+struct PlayerScoreView: View {
+    @ObservedObject var viewModel: ScoreViewModel
+    
+    var player: Int
+    
+    let mark = "Icon_Phone"
+    let symbols = Symbols.self
+    let colors = Colors.self
+    
+    let uiscreen = UIScreen.main.bounds
+    
+    var body: some View {
+        ZStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(setFillsColor(checkServer(viewModel.servePlayer, player)))
+                    .padding(EdgeInsets(top: -12, leading: 56, bottom: -12, trailing: 56))
+                
+                VStack {
+                    Button {
+                        viewModel.plusScore(player: player)
+                        viewModel.session.sendMessage(["player\(player + 1)" : getPlayerScore(player)], replyHandler: nil)
+                        viewModel.session.sendMessage(["set\(player + 1)" : getPlayerSet(player)], replyHandler: nil)
+                    } label: {
+                        Image(systemName: symbols.plus.name)
+                            .font(.system(size: 30))
+                            .foregroundColor(.white)
+                            .opacity(0.7)
+                    }
+                    
+                    Text( String(format: "%02d", getPlayerScore(player)))
+                        .font(.system(size: 180))
+                        .fontWeight(.semibold)
+                        .fontWidth(.compressed)
+                        .foregroundColor(.white)
+                    
+                    Button {
+                        viewModel.minusScore(player: player)
+                        viewModel.session.sendMessage(["player\(player + 1)" : getPlayerScore(player)], replyHandler: nil)
+                        viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
+                    } label: {
+                        Image(systemName: symbols.minus.name)
+                            .font(.system(size: 30))
+                            .foregroundColor(.white)
+                            .opacity(0.7)
+                    }
+                }
+                
+                if let markView = markServer(checkServer(viewModel.servePlayer, player), player) {
+                    ZStack {
+                        markView
+                    }
+                }
+            }
+        }
+    }
+    
+    func getPlayerScore(_ player: Int) -> Int {
+        if player == 0 {
+            return viewModel.player1
+        } else {
+            return viewModel.player2
+        }
+    }
+    
+    func getPlayerSet(_ player: Int) -> Int {
+        if player == 0 {
+            return viewModel.set1
+        } else {
+            return viewModel.set2
+        }
+    }
+    
+    func checkServer(_ server: Int, _ player: Int) -> Bool {
+        if server == player {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func markServer(_ isServer: Bool, _ player: Int) -> AnyView? {
+        var markView: AnyView?
+        
+        if isServer {
+            if player == 0 {
+                markView = AnyView(
+                    ZStack {
+                        Image(mark)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(EdgeInsets(top: 8, leading: 0, bottom: 12, trailing: 0))
+                    }
+                    .padding(EdgeInsets(top: 200, leading: -176, bottom: 0, trailing: 0)))
+            } else {
+                markView = AnyView(
+                    ZStack {
+                        Image(mark)
+                            .resizable()
+                            .scaledToFit()
+                            .scaleEffect(x: -1, y: 1)
+                            .padding(EdgeInsets(top: 8, leading: 0, bottom: 12, trailing: 0))
+                    }
+                    .padding(EdgeInsets(top: 200, leading: 170, bottom: 0, trailing: -112)))
+            }
+        }
+        
+        return markView
+    }
+    
+    func setFillsColor(_ isServer: Bool) -> AnyShapeStyle {
+        let colors = Colors.self
+        
+        if isServer {
+            let fillsView = LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(colors.gradientStart.name),
+                    Color(colors.gradientEnd.name)
+                ]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            
+            return AnyShapeStyle(fillsView)
+        } else {
+            let fillsView = Color(colors.fillsPrimary.name)
+            
+            return AnyShapeStyle(fillsView)
+        }
+    }
+}
 
 struct ScoreView: View {
     
     @ObservedObject var viewModel: ScoreViewModel
     @ObservedObject var pageManager: PageManager
-    @State var endGame: Bool = false
+    @State var endGame = false
+    
+    let symbols = Symbols.self
+    let colors = Colors.self
     
     var body: some View {
         ZStack {
-            Color("BG_Primary")
+            Color(colors.backgroundPrimary.name)
                 .ignoresSafeArea()
-            VStack {
+            
+            VStack(spacing: 12) {
                 GameHeader(viewModel: viewModel, pageManager: pageManager)
-                HStack {
-                    ZStack {
-                        VStack {
-                            Button {
-                                viewModel.plusScore(player: 0)
-                                viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
-                                viewModel.session.sendMessage(["set1" : viewModel.set1], replyHandler: nil)
-                            } label: {
-                                Image(systemName: "plus.circle.fill")
-                                    .foregroundColor(.white)
-                                    .opacity(0.3)
-//                                    .padding()
-                            }
-                            Spacer()
-                            Text( String(format: "%02d", viewModel.player1))
-                                .font(.system(size: 200).weight(.semibold).width(.compressed))
-                                .foregroundColor(.white)
-                            Spacer()
-                            Button {
-                                viewModel.minusScore(player: 0)
-                                viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
-                                viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
-                            } label: {
-                                Image(systemName: "minus.circle.fill")
-                                    .foregroundColor(.white)
-                                    .opacity(0.3)
-//                                    .padding()
-                            }
-                        }
-                    }
-                    .frame(width: 240, height: 280)
-                    .background(
-                        viewModel.servePlayer == 0 ?
-                        AnyView(LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color("Fills_Gradient_Start"),
-                                Color("Fills_Gradient_Middle"),
-                                Color("Fills_Gradient_End")
-                            ]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ))
-                        : AnyView(Color("Fills_Primary"))
-                    )
-                    .cornerRadius(8)
-                    
+                HStack(spacing: -28) {
+                    PlayerScoreView(viewModel: viewModel, player: 0)
                     
                     Text(":")
-                        .font(.system(size: 100))
+                        .font(.system(size: 160))
                         .foregroundColor(.white)
+                        .padding(.bottom, 40)
                     
-                    ZStack {
-                        VStack {
-                            Button {
-                                viewModel.plusScore(player: 1)
-                                viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
-                                viewModel.session.sendMessage(["set2" : viewModel.set2], replyHandler: nil)
-                            } label: {
-                                Image(systemName: "plus.circle.fill")
-                                    .foregroundColor(.white)
-                                    .opacity(0.3)
-//                                    .padding()
-                            }
-                            Spacer()
-                            Text( String(format: "%02d", viewModel.player2))
-                                .font(.system(size: 200).weight(.semibold).width(.compressed))
-                                .foregroundColor(.white)
-                            Spacer()
-                            Button {
-                                viewModel.minusScore(player: 1)
-                                viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
-                                viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
-                            } label: {
-                                Image(systemName: "minus.circle.fill")
-                                    .foregroundColor(.white)
-                                    .opacity(0.3)
-//                                    .padding()
-                            }
-                        }
-                    }
-                    .frame(width: 240, height: 280)
-                    .background(
-                        viewModel.servePlayer == 1 ?
-                        AnyView(LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color("Fills_Gradient_Start"),
-                                Color("Fills_Gradient_Middle"),
-                                Color("Fills_Gradient_End")
-                            ]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ))
-                        : AnyView(Color("Fills_Primary"))
-                    )
-                    .cornerRadius(8)
+                    PlayerScoreView(viewModel: viewModel, player: 1)
                 }
             }
             .onChange(of: viewModel.set1) { newValue in

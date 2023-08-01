@@ -12,7 +12,7 @@ struct PlayResultView: View {
     @ObservedObject var pageManager: PageManager
     @ObservedObject var viewModel: ScoreViewModel
     
-    let backgroundColor: String = "BG_Primary"
+    let colors = Colors.self
     
     enum Result {
         case win
@@ -28,33 +28,41 @@ struct PlayResultView: View {
         }
     }
     
+    var symbols = Symbols.self
+    let buttonText = "Restart"
+    
     var body: some View {
         ZStack {
-            Color(backgroundColor)
+            Color(colors.backgroundPrimary.name)
                 .ignoresSafeArea()
             
             VStack {
                 Image(showResult(viewModel.isWin).0)
                     .resizable()
-                    .frame(width: 100, height: 100)
+                    .scaledToFit()
+                    .padding(EdgeInsets(top: 80, leading: 0, bottom: 0, trailing: 0))
                     .padding(.bottom, 16)
+                
                 Text(showResult(viewModel.isWin).1)
                     .foregroundColor(.white)
-                    .font(.system(size: 34).weight(.semibold))
+                    .font(.system(size: 34))
+                    .fontWeight(.semibold)
                     .padding(.bottom, 36)
+                
                 Button(action: {
                     pageManager.pageState = .startView
                     viewModel.session.sendMessage(["command": "StartView"], replyHandler: nil)
                 }) {
-                    Label("Restart", systemImage: "arrow.counterclockwise")
+                    Label(buttonText, systemImage: symbols.restart.name)
                         .labelStyle(.titleAndIcon)
-                        .font(.system(size: 17).weight(.semibold))
+                        .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .padding(.vertical, 12)
-                        .padding(.horizontal, 54)
-                        .background(Color("Fills_Primary"))
+                        .padding(.horizontal, 52)
+                        .background(Color(colors.fillsPrimary.name))
                         .cornerRadius(30)
                 }
+                .padding(.bottom, 36)
             }
         }
         .navigationBarBackButtonHidden()

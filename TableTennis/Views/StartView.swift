@@ -8,11 +8,13 @@ import SwiftUI
 import WatchConnectivity
 
 struct CustomButtonStyle: ButtonStyle {
+    let colors = Colors.self
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .padding(EdgeInsets(top: 15, leading: 95, bottom: 15, trailing: 95))
             .foregroundColor(.white)
-            .background(LinearGradient(gradient: Gradient(colors: [Color("Fills_Gradient_Start"), Color("Fills_Gradient_End")]), startPoint: .bottomLeading, endPoint: .topTrailing))
+            .background(LinearGradient(gradient: Gradient(colors: [Color(colors.gradientStart.name), Color(colors.gradientEnd.name)]), startPoint: .bottomLeading, endPoint: .topTrailing))
             .cornerRadius(30)
     }
 }
@@ -21,10 +23,14 @@ struct StartView: View {
     @State private var showScoreView = false
     @ObservedObject var viewModel: ScoreViewModel
     
+    let colors = Colors.self
+    let buttonText = "Play"
+    
     var body: some View {
         ZStack {
-            Color.black
-                .edgesIgnoringSafeArea(.all)
+            Color(colors.backgroundPrimary.name)
+                .ignoresSafeArea()
+            
             VStack {
                 TitleView()
                 
@@ -33,8 +39,8 @@ struct StartView: View {
                     PageManager.shared.pageState = .coinTossView
                     viewModel.session.sendMessage(["command": "CoinTossView"], replyHandler: nil)
                 }) {
-                    Text("Play")
-                        .font(.system(size: 17).weight(.semibold))
+                    Text(buttonText)
+                        .fontWeight(.semibold)
                 }
                 .buttonStyle(CustomButtonStyle())
             }
@@ -54,10 +60,11 @@ struct TitleView: View {
                 .padding(EdgeInsets(top: 0, leading: 200, bottom: -5, trailing: 200))
             
             Text(phrase)
-                .font(.system(size: 25).weight(.semibold))
-                .foregroundColor(Color(.gray))
+                .font(.system(size: 25))
+                .fontWeight(.semibold)
+                .foregroundColor(.gray)
         }
-        .padding(.vertical, 45)
+        .padding(.vertical, 44)
     }
 }
 

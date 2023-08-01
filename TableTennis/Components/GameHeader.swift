@@ -11,25 +11,10 @@ struct GameHeader: View {
     @ObservedObject var viewModel: ScoreViewModel
     @ObservedObject var pageManager: PageManager
     
-    let fillColor: String = "Fills_Primary"
+    let symbols = Symbols.self
+    let colors = Colors.self
     let radius:CGFloat = 30
     
-    enum Symbol {
-        case end
-        case restart
-        case person
-        
-        var name: String {
-            switch self {
-            case .end:
-                return "xmark"
-            case .restart:
-                return "arrow.counterclockwise"
-            case .person:
-                return "person.circle.fill"
-            }
-        }
-    }
     
     enum Player {
         case you
@@ -46,7 +31,7 @@ struct GameHeader: View {
     }
     
     var body: some View {
-        HStack(spacing: -28) {
+        HStack {
             Button(action: {
                 viewModel.isWin = viewModel.checkWinner()
                 pageManager.pageState = .resultView
@@ -54,24 +39,26 @@ struct GameHeader: View {
             }) {
                 ZStack {
                     Rectangle()
-                        .frame(width: 80, height: 44)
-                        .foregroundColor(Color(fillColor))
+                        .foregroundColor(Color(colors.fillsPrimary.name))
                         .padding(.trailing, radius)
                         .cornerRadius(radius)
+                        .padding(EdgeInsets(top: 8, leading: 0, bottom: 12, trailing: 0))
                     
-                    Image(systemName: Symbol.end.name)
-                        .font(.system(size: 20))
+                    Image(systemName: symbols.end.name)
+                        .font(.system(size: 21))
                         .fontWeight(.semibold)
                         .foregroundColor(.red)
                         .padding(.trailing, radius)
+                        .padding(.leading, 4)
                 }
+                .padding(EdgeInsets(top: 0, leading: 48, bottom: 0, trailing: 48))
             }
-
+            
             ZStack {
-                Color(fillColor)
+                Color(colors.fillsPrimary.name)
                 
                 HStack {
-                    Label(Player.you.label, systemImage: Symbol.person.name)
+                    Label(Player.you.label, systemImage: symbols.person.name)
                         .font(.system(size: 20))
                         .padding(.leading, 20)
                     
@@ -84,12 +71,12 @@ struct GameHeader: View {
                     
                     Spacer()
                     
-                    Label(Player.partner.label, systemImage: Symbol.person.name)
+                    Label(Player.partner.label, systemImage: symbols.person.name)
                         .font(.system(size: 20))
                         .padding(.trailing, 20)
                 }
             }
-            .frame(width: 440, height: 44)
+            .padding(EdgeInsets(top: 8, leading: -84, bottom: 12, trailing: -84))
             .foregroundColor(.white)
             
             Button(action: {
@@ -99,21 +86,24 @@ struct GameHeader: View {
             }) {
                 ZStack {
                     Rectangle()
-                        .frame(width: 80, height: 44)
-                        .foregroundColor(Color(fillColor))
+                        .foregroundColor(Color(colors.fillsPrimary.name))
                         .padding(.leading, radius)
                         .cornerRadius(radius)
+                        .padding(EdgeInsets(top: 8, leading: 0, bottom: 12, trailing: 0))
                     
-                    Image(systemName: Symbol.restart.name)
-                        .font(.system(size: 20))
+                    Image(systemName: symbols.restart.name)
+                        .font(.system(size: 21))
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
-                        .padding(.trailing, -radius)
+                        .padding(.leading, radius)
+                        .padding(.bottom, 4)
                 }
+                .padding(EdgeInsets(top: 0, leading: 48, bottom: 0, trailing: 48))
             }
         }
     }
 }
+
 
 struct GameHeader_Previews: PreviewProvider {
     static var previews: some View {

@@ -15,28 +15,50 @@ struct CoinTossView: View {
     @State private var maxRotations = 16
     private let duration = 3.0
     private let rotationAngle = 90.0
+    
+    let colors = Colors.self
+    let buttonText = "Flip"
+    
+    enum Description {
+        case beforeToss
+        case afterToss
+        
+        var text: (String, String) {
+            switch self {
+            case .beforeToss:
+                return ("Lets'decide the first server.", "")
+            case .afterToss:
+                return ("Coin_You", "Coin_Partner")
+            }
+        }
+    }
 
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+            Color(colors.backgroundPrimary.name)
+                .ignoresSafeArea()
+            
             VStack {
-                Text(isCoinTossed() == false ? "Let's decide the first server." : "")
-                    .font(.system(size: 24).weight(.semibold))
+                Text(showDescriptionBefore(isCoinTossed()))
+                    .font(.system(size: 24))
+                    .fontWeight(.semibold)
                     .foregroundColor(.white)
-                    .padding(.top, 30)
-                Image(isFront ? "Coin_You" : "Coin_Partner")
+                    .padding(.top, 60)
+                
+                Image(showDescriptionAfter(isFront))
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
                     .rotation3DEffect(.degrees(animation3d), axis: (x: 1.0, y: 0, z: 0))
                     .scaleEffect(scaleAmount)
-                    .padding(.bottom, 10)
+                    .padding(.bottom, 16)
+                
                 Button {
                     guard isCoinTossed() == false else { return }
                     viewModel.session.sendMessage(["command": "CoinToss"], replyHandler: nil)
                     startAnimation()
                 } label: {
                     if isCoinTossed() == false {
-                        Text("Tap")
+                        Text(buttonText)
                             .foregroundColor(.white)
                             .fontWeight(.semibold)
                     }
@@ -60,22 +82,24 @@ struct CoinTossView: View {
         }
     }
 
-    private func animateRotation() {
-        for i in 0..<maxRotations {
-            let delay = duration / Double(maxRotations) * Double(i)
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                withAnimation(Animation.linear(duration: self.duration / Double(self.maxRotations))) {
-                    self.animation3d = self.rotationAngle * Double(i + 1)
-                    if i % 2 == 1 {
-                        self.isFront.toggle()
-                    }
-                }
-            }
-        }
-    }
-
     private func isCoinTossed() -> Bool {
         return animation3d > 0.0
+    }
+    
+    func showDescriptionBefore(_ isCoinTossed: Bool) -> String {
+        if isCoinTossed {
+            return Description.beforeToss.text.1
+        } else {
+            return Description.beforeToss.text.0
+        }
+    }
+    
+    func showDescriptionAfter(_ isFront: Bool) -> String {
+        if isFront {
+            return Description.afterToss.text.0
+        } else {
+            return Description.afterToss.text.1
+        }
     }
 
     private func startAnimation() {
@@ -97,18 +121,33 @@ struct CoinTossView: View {
             viewModel.session.sendMessage(["command": "CoinResultView"], replyHandler: nil)
         }
     }
+    
+    private func animateRotation() {
+        for i in 0..<maxRotations {
+            let delay = duration / Double(maxRotations) * Double(i)
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                withAnimation(Animation.linear(duration: self.duration / Double(self.maxRotations))) {
+                    self.animation3d = self.rotationAngle * Double(i + 1)
+                    if i % 2 == 1 {
+                        self.isFront.toggle()
+                    }
+                }
+            }
+        }
+    }
 }
 
 struct TapSetButtonStyle: ButtonStyle {
+    let colors = Colors.self
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .padding(EdgeInsets(top: 10, leading: 70, bottom: 10, trailing: 70))
             .background(
                 LinearGradient(
                     gradient: Gradient(colors: [
-                        Color("Fills_Gradient_Start"),
-                        Color("Fills_Gradient_Middle"),
-                        Color("Fills_Gradient_End")
+                        Color(colors.gradientStart.name),
+                        Color(colors.gradientEnd.name)
                     ]),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing

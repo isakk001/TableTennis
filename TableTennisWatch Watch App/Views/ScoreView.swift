@@ -28,7 +28,7 @@ struct ScoreView: View {
         }
     }
     
-    enum Symbol {
+    enum Symbols {
         case person
         case plus
         case minus
@@ -53,7 +53,7 @@ struct ScoreView: View {
                         .font(.system(size: 13))
 //                        .frame(width: 50, alignment: .trailing)
                     
-                    Image(systemName: Symbol.person.name)
+                    Image(systemName: Symbols.person.name)
                         .font(.system(size: 13))
                 }
                 
@@ -61,7 +61,7 @@ struct ScoreView: View {
                     .fontWeight(.semibold)
                 
                 HStack(spacing: 2) {
-                    Image(systemName: Symbol.person.name)
+                    Image(systemName: Symbols.person.name)
                         .font(.system(size: 13))
                     Text(Player.partner.label)
                         .font(.system(size: 13))
@@ -74,7 +74,7 @@ struct ScoreView: View {
                         viewModel.plusScore(player: 0)
                         viewModel.session.sendMessage(["set1" : viewModel.set1], replyHandler: nil)
                     } label: {
-                        Image(systemName: Symbol.plus.name).bold()
+                        Image(systemName: Symbols.plus.name).bold()
                     }
                     .buttonStyle(PlusMinusButtonStyle())
                     
@@ -88,14 +88,15 @@ struct ScoreView: View {
                                         : LinearGradient(colors: [.white.opacity(0.2)], startPoint: .top, endPoint: .bottom))
                             .cornerRadius(10)
                         .animation(.easeInOut, value: viewModel.set1)
-                        Image("Icon_Watch")
-                            .resizable()
-                            .padding(EdgeInsets(top: 75, leading: 75, bottom: 5, trailing: 15))
+                        
+//                        Image("Icon_Watch")
+//                            .resizable()
+//                            .padding(EdgeInsets(top: 75, leading: 75, bottom: 5, trailing: 15))
                     }
                     Button {
                         viewModel.minusScore(player: 0)
                     } label: {
-                        Image(systemName: Symbol.minus.name).bold()
+                        Image(systemName: Symbols.minus.name).bold()
                     }
                     .buttonStyle(PlusMinusButtonStyle())
                 }
@@ -104,7 +105,7 @@ struct ScoreView: View {
                         viewModel.plusScore(player: 1)
                         viewModel.session.sendMessage(["set2" : viewModel.set2], replyHandler: nil)
                     } label: {
-                        Image(systemName: Symbol.plus.name).bold()
+                        Image(systemName: Symbols.plus.name).bold()
                     }
                     .buttonStyle(PlusMinusButtonStyle())
                     
@@ -120,7 +121,7 @@ struct ScoreView: View {
                     Button {
                         viewModel.minusScore(player: 1)
                     } label: {
-                        Image(systemName: Symbol.minus.name).bold()
+                        Image(systemName: Symbols.minus.name).bold()
                     }
                     .buttonStyle(PlusMinusButtonStyle())
                 }

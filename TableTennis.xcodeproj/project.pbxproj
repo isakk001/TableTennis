@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B0161912A78EB9400CD96C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0161902A78EB9400CD96C8 /* Colors.swift */; };
+		5B0161952A78F21200CD96C8 /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0161942A78F21200CD96C8 /* Symbols.swift */; };
 		5B04C3A02A71FB0300B89F0C /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C39F2A71FB0300B89F0C /* ScoreboardView.swift */; };
 		5B04C3A42A71FB3F00B89F0C /* SingleBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C3A32A71FB3F00B89F0C /* SingleBoardView.swift */; };
 		5B04C3A62A7203AB00B89F0C /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C3A52A7203AB00B89F0C /* ScoreModel.swift */; };
@@ -66,6 +68,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B0161902A78EB9400CD96C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		5B0161942A78F21200CD96C8 /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
 		5B04C39F2A71FB0300B89F0C /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
 		5B04C3A32A71FB3F00B89F0C /* SingleBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleBoardView.swift; sourceTree = "<group>"; };
 		5B04C3A52A7203AB00B89F0C /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
@@ -246,6 +250,8 @@
 			children = (
 				BFCDD1B02A7547FC00A94198 /* Info.plist */,
 				F194F5672A6D16F500D94EC8 /* TableTennisApp.swift */,
+				5B0161902A78EB9400CD96C8 /* Colors.swift */,
+				5B0161942A78F21200CD96C8 /* Symbols.swift */,
 				5BA4F5CE2A775A50006B9131 /* Components */,
 				BF833BBA2A74B77200F17B33 /* Views */,
 				BF833BBD2A74BD4100F17B33 /* ViewModels */,
@@ -396,11 +402,13 @@
 				FFA10C022A7781B60056B16A /* PageState.swift in Sources */,
 				BFCDD1AF2A75472E00A94198 /* StartView.swift in Sources */,
 				BF833BBF2A74BD6300F17B33 /* ScoreViewModel.swift in Sources */,
+				5B0161952A78F21200CD96C8 /* Symbols.swift in Sources */,
 				5B04C3A62A7203AB00B89F0C /* ScoreModel.swift in Sources */,
 				F14B3CB62A77894300A2DD2B /* CoinTossView.swift in Sources */,
 				5BA4F5C52A7743BB006B9131 /* PlayResultView.swift in Sources */,
 				F194F56A2A6D16F500D94EC8 /* ScoreView.swift in Sources */,
 				5BA4F5D02A775A6A006B9131 /* GameHeader.swift in Sources */,
+				5B0161912A78EB9400CD96C8 /* Colors.swift in Sources */,
 				5B04C3AA2A720F4500B89F0C /* Set.swift in Sources */,
 				5B04C3A42A71FB3F00B89F0C /* SingleBoardView.swift in Sources */,
 				5B04C3A02A71FB0300B89F0C /* ScoreboardView.swift in Sources */,
