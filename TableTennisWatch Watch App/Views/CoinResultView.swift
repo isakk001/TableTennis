@@ -32,7 +32,8 @@ struct CoinResultView: View {
         VStack {
             Text(checkServer(viewModel.servePlayer).0)
                 .fontWeight(.semibold)
-                .padding(.leading, -56)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 8)
             
             Image(checkServer(viewModel.servePlayer).1)
                 .resizable()

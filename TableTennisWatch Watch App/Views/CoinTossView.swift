@@ -40,7 +40,8 @@ struct CoinTossView: View {
         VStack {
             Text(showDescriptionBefore(isCoinTossed()))
                 .fontWeight(.semibold)
-                .padding(.leading, -56)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 8)
             
             Image(showDescriptionAfter(isFront))
                 .resizable()

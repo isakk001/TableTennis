@@ -61,6 +61,7 @@ struct PlayerScoreView: View {
                     }
                 }
             }
+            .padding(.bottom, 12)
         }
     }
     
