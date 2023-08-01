@@ -12,7 +12,7 @@ struct CustomButtonStyle: ButtonStyle {
         configuration.label
             .padding(EdgeInsets(top: 15, leading: 70, bottom: 15, trailing: 70))
             .foregroundColor(.white)
-            .background(LinearGradient(colors: [Color("Fills_Gradient_Start"), Color("Fills_Gradient_End")], startPoint: .topTrailing, endPoint: .bottomLeading))
+            .background(LinearGradient(gradient: Gradient(colors: [Color("Fills_Gradient_Start"), Color("Fills_Gradient_End")]), startPoint: .bottomLeading, endPoint: .topTrailing))
             .cornerRadius(30)
     }
 }

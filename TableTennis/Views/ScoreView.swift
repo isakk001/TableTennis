@@ -31,11 +31,11 @@ struct ScoreView: View {
                                 Image(systemName: "plus.circle.fill")
                                     .foregroundColor(.white)
                                     .opacity(0.3)
-                                    .padding()
+//                                    .padding()
                             }
                             Spacer()
                             Text( String(format: "%02d", viewModel.player1))
-                                .font(.system(size: 150).weight(.semibold).width(.compressed))
+                                .font(.system(size: 200).weight(.semibold).width(.compressed))
                                 .foregroundColor(.white)
                             Spacer()
                             Button {
@@ -46,7 +46,7 @@ struct ScoreView: View {
                                 Image(systemName: "minus.circle.fill")
                                     .foregroundColor(.white)
                                     .opacity(0.3)
-                                    .padding()
+//                                    .padding()
                             }
                         }
                     }
@@ -81,11 +81,11 @@ struct ScoreView: View {
                                 Image(systemName: "plus.circle.fill")
                                     .foregroundColor(.white)
                                     .opacity(0.3)
-                                    .padding()
+//                                    .padding()
                             }
                             Spacer()
                             Text( String(format: "%02d", viewModel.player2))
-                                .font(.system(size: 150).weight(.semibold).width(.compressed))
+                                .font(.system(size: 200).weight(.semibold).width(.compressed))
                                 .foregroundColor(.white)
                             Spacer()
                             Button {
@@ -96,7 +96,7 @@ struct ScoreView: View {
                                 Image(systemName: "minus.circle.fill")
                                     .foregroundColor(.white)
                                     .opacity(0.3)
-                                    .padding()
+//                                    .padding()
                             }
                         }
                     }
