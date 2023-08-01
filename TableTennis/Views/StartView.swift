@@ -27,6 +27,7 @@ struct StartView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 TitleView()
+                
                 Button(action: {
                     self.showScoreView = true
                     PageManager.shared.pageState = .coinTossView
@@ -42,13 +43,17 @@ struct StartView: View {
 }
 
 struct TitleView: View {
+    let logo = "AppLogo"
+    let phrase = "Let's play Table Tennis!"
+    
     var body: some View {
         VStack {
-            Image("AppLogo")
+            Image(logo)
                 .resizable()
                 .scaledToFit()
                 .padding(EdgeInsets(top: 0, leading: 200, bottom: -5, trailing: 200))
-            Text("Let's play Table Tennis!")
+            
+            Text(phrase)
                 .font(.system(size: 25).weight(.semibold))
                 .foregroundColor(Color(.gray))
         }

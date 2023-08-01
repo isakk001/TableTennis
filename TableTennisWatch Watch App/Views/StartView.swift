@@ -69,12 +69,16 @@ struct StartView: View {
 }
 
 struct LogoView: View {
+    let logo = "AppLogo"
+    let phrase = "Let's play Table Tennis!"
+    
     var body: some View {
         VStack {
-            Image("AppLogo")
+            Image(logo)
                 .resizable()
                 .scaledToFit()
-            Text("Let's play Table Tennis!")
+            
+            Text(phrase)
                 .foregroundColor(Color.gray)
                 .font(.system(size: 15))
         }
