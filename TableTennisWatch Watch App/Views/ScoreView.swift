@@ -78,15 +78,20 @@ struct ScoreView: View {
                     }
                     .buttonStyle(PlusMinusButtonStyle())
                     
-                    Text("\(viewModel.player1)")
-                        .font(.system(size: 70).width(.condensed))
-                        .padding(.bottom, -10)
-                        .frame(width: 85, height: 90)
-                        .background(viewModel.servePlayer == 0
-                                    ? LinearGradient(colors: [Color("Fills_Gradient_Start"), Color("Fills_Gradient_End")], startPoint: .top, endPoint: .bottom)
-                                    : LinearGradient(colors: [.white.opacity(0.2)], startPoint: .top, endPoint: .bottom))
-                        .cornerRadius(10)
+                    ZStack {
+                        Text("\(viewModel.player1)")
+                            .font(.system(size: 70).width(.condensed))
+                            .padding(.bottom, -10)
+                            .frame(width: 85, height: 90)
+                            .background(viewModel.servePlayer == 0
+                                        ? LinearGradient(colors: [Color("Fills_Gradient_Start"), Color("Fills_Gradient_End")], startPoint: .top, endPoint: .bottom)
+                                        : LinearGradient(colors: [.white.opacity(0.2)], startPoint: .top, endPoint: .bottom))
+                            .cornerRadius(10)
                         .animation(.easeInOut, value: viewModel.set1)
+                        Image("Icon_Watch")
+                            .resizable()
+                            .padding(EdgeInsets(top: 75, leading: 75, bottom: 5, trailing: 15))
+                    }
                     Button {
                         viewModel.minusScore(player: 0)
                     } label: {
