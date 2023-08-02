@@ -26,7 +26,7 @@ struct CoinTossView: View {
         var text: (String, String) {
             switch self {
             case .beforeToss:
-                return ("Lets'decide the first server.", "")
+                return ("Let's decide the first server.", "")
             case .afterToss:
                 return ("Coin_You", "Coin_Partner")
             }
