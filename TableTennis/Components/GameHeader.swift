@@ -13,7 +13,8 @@ struct GameHeader: View {
     
     let symbols = Symbols.self
     let colors = Colors.self
-    let radius:CGFloat = 30
+    let radius: CGFloat = 30
+    let gap: CGFloat = 4
     
     
     enum Player {
@@ -31,31 +32,28 @@ struct GameHeader: View {
     }
     
     var body: some View {
-        HStack {
-            Button(action: {
-                viewModel.isWin = viewModel.checkWinner()
-                pageManager.pageState = .resultView
-                viewModel.session.sendMessage(["command": "ResultView"], replyHandler: nil)
-            }) {
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(Color(colors.fillsPrimary.name))
-                        .padding(.trailing, radius)
-                        .cornerRadius(radius)
-                        .padding(EdgeInsets(top: 8, leading: 0, bottom: 12, trailing: 0))
-                    
-                    Image(systemName: symbols.end.name)
-                        .font(.system(size: 21))
-                        .fontWeight(.semibold)
-                        .foregroundColor(.red)
-                        .padding(.trailing, radius)
-                        .padding(.leading, 4)
-                }
-                .padding(EdgeInsets(top: 0, leading: 48, bottom: 0, trailing: 48))
-            }
+        ZStack {
+            RoundedRectangle(cornerRadius: 30)
+                .foregroundColor(Color(colors.fillsPrimary.name))
             
-            ZStack {
-                Color(colors.fillsPrimary.name)
+            HStack {
+                Button(action: {
+                    viewModel.isWin = viewModel.checkWinner()
+                    pageManager.pageState = .resultView
+                    viewModel.session.sendMessage(["command": "ResultView"], replyHandler: nil)
+                }) {
+                    ZStack {
+                        Image(systemName: symbols.end.name)
+                            .font(.system(size: 21))
+                            .fontWeight(.semibold)
+                            .foregroundColor(.red)
+                            .padding(.horizontal, radius)
+                    }
+                }
+                
+                Divider()
+                    .frame(width: gap)
+                    .background(Color(colors.backgroundPrimary.name))
                 
                 HStack {
                     Label(Player.you.label, systemImage: symbols.person.name)
@@ -75,32 +73,28 @@ struct GameHeader: View {
                         .font(.system(size: 20))
                         .padding(.trailing, 20)
                 }
-            }
-            .padding(EdgeInsets(top: 8, leading: -84, bottom: 12, trailing: -84))
-            .foregroundColor(.white)
-            
-            Button(action: {
-                viewModel.endGame()
-                viewModel.session.sendMessage(["command": "StartView"], replyHandler: nil)
-                pageManager.pageState = .startView
-            }) {
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(Color(colors.fillsPrimary.name))
-                        .padding(.leading, radius)
-                        .cornerRadius(radius)
-                        .padding(EdgeInsets(top: 8, leading: 0, bottom: 12, trailing: 0))
-                    
-                    Image(systemName: symbols.restart.name)
-                        .font(.system(size: 21))
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .padding(.leading, radius)
-                        .padding(.bottom, 4)
+                .foregroundColor(.white)
+                
+                Divider()
+                    .frame(width: gap)
+                    .background(Color(colors.backgroundPrimary.name))
+                
+                Button(action: {
+                    viewModel.endGame()
+                    viewModel.session.sendMessage(["command": "StartView"], replyHandler: nil)
+                    pageManager.pageState = .startView
+                }) {
+                    ZStack {
+                        Image(systemName: symbols.restart.name)
+                            .font(.system(size: 21))
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, radius)
+                    }
                 }
-                .padding(EdgeInsets(top: 0, leading: 48, bottom: 0, trailing: 48))
             }
         }
+        .padding(EdgeInsets(top: 8, leading: 0, bottom: 12, trailing: 0))
     }
 }
 
