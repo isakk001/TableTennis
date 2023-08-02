@@ -9,9 +9,6 @@ import SwiftUI
 import SpriteKit
 
 struct PlayResultView: View {
-    @ObservedObject var pageManager: PageManager
-    @ObservedObject var viewModel: ScoreViewModel
-    
     let colors = Colors.self
     let radius: CGFloat = 30
     
@@ -38,20 +35,20 @@ struct PlayResultView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Image(showResult(viewModel.isWin).0)
+                Image(showResult(ScoreViewModel.shared.isWin).0)
                     .resizable()
                     .scaledToFit()
                     .padding(EdgeInsets(top: 80, leading: 0, bottom: 0, trailing: 0))
                 
-                Text(showResult(viewModel.isWin).1)
+                Text(showResult(ScoreViewModel.shared.isWin).1)
                     .foregroundColor(.white)
                     .font(.system(size: 34))
                     .fontWeight(.semibold)
                     .padding(.bottom, 28)
                 
                 Button(action: {
-                    pageManager.pageState = .startView
-                    viewModel.session.sendMessage([Constants.command: Constants.startView], replyHandler: nil)
+                    PageManager.shared.pageState = .startView
+                    ScoreViewModel.shared.session.sendMessage([Constants.command: Constants.startView], replyHandler: nil)
                 }) {
                     Label(buttonText, systemImage: symbols.restart.name)
                         .labelStyle(.titleAndIcon)
@@ -80,7 +77,7 @@ struct PlayResultView: View {
 struct PlayResultView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            PlayResultView(pageManager: PageManager.shared, viewModel: ScoreViewModel())
+            PlayResultView()
         }
     }
 }

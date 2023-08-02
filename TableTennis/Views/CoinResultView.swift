@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct CoinResultView: View {
-    @ObservedObject var viewModel: ScoreViewModel
-    
     let colors = Colors.self
     let buttonText = Constants.setButton
     
@@ -33,20 +31,20 @@ struct CoinResultView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Text(checkServer(viewModel.servePlayer).0)
+                Text(checkServer(ScoreViewModel.shared.servePlayer).0)
                     .font(.system(size: 24))
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
                     .padding(.top, 60)
                 
-                Image(checkServer(viewModel.servePlayer).1)
+                Image(checkServer(ScoreViewModel.shared.servePlayer).1)
                     .resizable()
                     .scaledToFit()
                     .padding(.bottom, 8)
                 
                 Button {
                	    PageManager.shared.pageState = .scoreView
-                    viewModel.session.sendMessage([Constants.command: Constants.scoreView], replyHandler: nil)
+                    ScoreViewModel.shared.session.sendMessage([Constants.command: Constants.scoreView], replyHandler: nil)
                 } label: {
                     Text(buttonText)
                         .foregroundColor(.white)
@@ -68,6 +66,6 @@ struct CoinResultView: View {
 
 struct CoinResultView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinResultView(viewModel: ScoreViewModel())
+        CoinResultView()
     }
 }

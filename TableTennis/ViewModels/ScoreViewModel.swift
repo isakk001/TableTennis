@@ -9,7 +9,15 @@ import Foundation
 import WatchConnectivity
 
 final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
-
+    
+    static let shared = ScoreViewModel()
+    private override init() {
+        self.session = WCSession.default
+        super.init()
+        session.delegate = self
+        session.activate()
+    }
+    
     @Published var player1: Int = 0
     @Published var player2: Int = 0
     @Published var isWin: Int = 0
@@ -23,13 +31,6 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
     @Published var shouldStartAnimation: Bool = false
     
     var session: WCSession
-
-    init(session: WCSession = .default) {
-        self.session = session
-        super.init()
-        session.delegate = self
-        session.activate()
-    }
 
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         if let command = message[Constants.command] as? String {

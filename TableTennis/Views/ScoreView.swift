@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PlayerScoreView: View {
-    @ObservedObject var viewModel: ScoreViewModel
     
+    @ObservedObject var scoreViewModel = ScoreViewModel.shared
     var player: Int
     
     let mark = Constants.iconPhone
@@ -34,14 +34,14 @@ struct PlayerScoreView: View {
         ZStack {
             ZStack {
                 RoundedRectangle(cornerRadius: Options.radius.value)
-                    .fill(setFillsColor(checkServer(viewModel.servePlayer, player)))
+                    .fill(setFillsColor(checkServer(ScoreViewModel.shared.servePlayer, player)))
                     .padding(EdgeInsets(top: -12, leading: 56, bottom: -12, trailing: 56))
                 
                 VStack {
                     Button {
-                        viewModel.plusScore(player: player)
-                        viewModel.session.sendMessage(["player\(player + 1)" : getPlayerScore(player)], replyHandler: nil)
-                        viewModel.session.sendMessage(["set\(player + 1)" : getPlayerSet(player)], replyHandler: nil)
+                        ScoreViewModel.shared.plusScore(player: player)
+                        ScoreViewModel.shared.session.sendMessage(["player\(player + 1)" : getPlayerScore(player)], replyHandler: nil)
+                        ScoreViewModel.shared.session.sendMessage(["set\(player + 1)" : getPlayerSet(player)], replyHandler: nil)
                     } label: {
                         Image(systemName: symbols.circlePlus.name)
                             .font(.system(size: 30))
@@ -56,9 +56,9 @@ struct PlayerScoreView: View {
                         .foregroundColor(.white)
                     
                     Button {
-                        viewModel.minusScore(player: player)
-                        viewModel.session.sendMessage(["player\(player + 1)" : getPlayerScore(player)], replyHandler: nil)
-                        viewModel.session.sendMessage([Constants.servePlayer : viewModel.servePlayer], replyHandler: nil)
+                        ScoreViewModel.shared.minusScore(player: player)
+                        ScoreViewModel.shared.session.sendMessage(["player\(player + 1)" : getPlayerScore(player)], replyHandler: nil)
+                        ScoreViewModel.shared.session.sendMessage([Constants.servePlayer : ScoreViewModel.shared.servePlayer], replyHandler: nil)
                     } label: {
                         Image(systemName: symbols.circleMinus.name)
                             .font(.system(size: 30))
@@ -67,7 +67,7 @@ struct PlayerScoreView: View {
                     }
                 }
                 
-                if let markView = markServer(checkServer(viewModel.servePlayer, player), player) {
+                if let markView = markServer(checkServer(ScoreViewModel.shared.servePlayer, player), player) {
                     ZStack {
                         markView
                     }
@@ -79,17 +79,17 @@ struct PlayerScoreView: View {
     
     func getPlayerScore(_ player: Int) -> Int {
         if player == 0 {
-            return viewModel.player1
+            return scoreViewModel.player1
         } else {
-            return viewModel.player2
+            return scoreViewModel.player2
         }
     }
     
     func getPlayerSet(_ player: Int) -> Int {
         if player == 0 {
-            return viewModel.set1
+            return scoreViewModel.set1
         } else {
-            return viewModel.set2
+            return scoreViewModel.set2
         }
     }
     
@@ -149,9 +149,6 @@ struct PlayerScoreView: View {
 }
 
 struct ScoreView: View {
-    
-    @ObservedObject var viewModel: ScoreViewModel
-    @ObservedObject var pageManager: PageManager
     @State var endGame = false
     
     let symbols = Symbols.self
@@ -163,35 +160,35 @@ struct ScoreView: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 12) {
-                GameHeader(viewModel: viewModel, pageManager: pageManager)
+                GameHeader()
                 HStack(spacing: -28) {
-                    PlayerScoreView(viewModel: viewModel, player: 0)
+                    PlayerScoreView(player: 0)
                     
                     Text(":")
                         .font(.system(size: 160))
                         .foregroundColor(.white)
                         .padding(.bottom, 40)
                     
-                    PlayerScoreView(viewModel: viewModel, player: 1)
+                    PlayerScoreView(player: 1)
                 }
             }
-            .onChange(of: viewModel.set1) { newValue in
+            .onChange(of: ScoreViewModel.shared.set1) { newValue in
                 if newValue == 3 {
-                    viewModel.isWin = 0
-                    pageManager.pageState = .resultView
-                    viewModel.session.sendMessage([Constants.command: Constants.resultView], replyHandler: nil)
+                    ScoreViewModel.shared.isWin = 0
+                    PageManager.shared.pageState = .resultView
+                    ScoreViewModel.shared.session.sendMessage([Constants.command: Constants.resultView], replyHandler: nil)
                 }
             }
-            .onChange(of: viewModel.set2) { newValue in
+            .onChange(of: ScoreViewModel.shared.set2) { newValue in
                 if newValue == 3 {
-                    viewModel.isWin = 1
-                    pageManager.pageState = .resultView
-                    viewModel.session.sendMessage([Constants.command: Constants.resultView], replyHandler: nil)
+                    ScoreViewModel.shared.isWin = 1
+                    PageManager.shared.pageState = .resultView
+                    ScoreViewModel.shared.session.sendMessage([Constants.command: Constants.resultView], replyHandler: nil)
                 }
             }
         }
         .onAppear {
-            viewModel.endGame()
+            ScoreViewModel.shared.endGame()
         }
         .navigationBarBackButtonHidden()
     }
@@ -200,7 +197,7 @@ struct ScoreView: View {
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            ScoreView(viewModel: ScoreViewModel(), pageManager: PageManager.shared)
+            ScoreView()
         }
     }
 }

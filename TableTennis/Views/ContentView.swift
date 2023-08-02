@@ -9,20 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var pageManager = PageManager.shared
-    @StateObject var viewModel = ScoreViewModel()
+    @StateObject var viewModel = ScoreViewModel.shared
     
     var body: some View {
         switch pageManager.pageState {
         case .startView:
-            StartView(viewModel: viewModel)
+            StartView()
         case .coinTossView:
-            CoinTossView(viewModel: viewModel)
+            CoinTossView()
         case .coinResultView:
-            CoinResultView(viewModel: viewModel)
+            CoinResultView()
         case .scoreView:
-            ScoreView(viewModel: viewModel, pageManager: pageManager)
+            ScoreView()
         case .resultView:
-            PlayResultView(pageManager: pageManager, viewModel: viewModel)
+            PlayResultView()
         }
     }
 }

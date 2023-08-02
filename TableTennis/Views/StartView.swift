@@ -22,7 +22,6 @@ struct CustomButtonStyle: ButtonStyle {
 
 struct StartView: View {
     @State private var showScoreView = false
-    @ObservedObject var viewModel: ScoreViewModel
     
     let colors = Colors.self
     let buttonText = Constants.playButton
@@ -38,7 +37,7 @@ struct StartView: View {
                 Button(action: {
                     self.showScoreView = true
                     PageManager.shared.pageState = .coinTossView
-                    viewModel.session.sendMessage([Constants.command: Constants.coinTossView], replyHandler: nil)
+                    ScoreViewModel.shared.session.sendMessage([Constants.command: Constants.coinTossView], replyHandler: nil)
                 }) {
                     Text(buttonText)
                         .fontWeight(.semibold)
@@ -71,6 +70,6 @@ struct TitleView: View {
 
 struct StartView_Previews: PreviewProvider {
     static var previews: some View {
-        StartView(viewModel: ScoreViewModel())
+        StartView()
     }
 }

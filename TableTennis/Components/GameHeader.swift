@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct GameHeader: View {
-    @ObservedObject var viewModel: ScoreViewModel
-    @ObservedObject var pageManager: PageManager
-    
     let symbols = Symbols.self
     let colors = Colors.self
     let radius: CGFloat = 30
@@ -38,9 +35,9 @@ struct GameHeader: View {
             
             HStack(spacing: 0) {
                 Button(action: {
-                    viewModel.isWin = viewModel.checkWinner()
-                    pageManager.pageState = .resultView
-                    viewModel.session.sendMessage([Constants.command: Constants.resultView], replyHandler: nil)
+                    ScoreViewModel.shared.isWin = ScoreViewModel.shared.checkWinner()
+                    PageManager.shared.pageState = .resultView
+                    ScoreViewModel.shared.session.sendMessage([Constants.command: Constants.resultView], replyHandler: nil)
                 }) {
                     ZStack {
                         Image(systemName: symbols.end.name)
@@ -62,7 +59,7 @@ struct GameHeader: View {
                     
                     Spacer()
                     
-                    Text("\(viewModel.set1)-\(viewModel.set2)")
+                    Text("\(ScoreViewModel.shared.set1)-\(ScoreViewModel.shared.set2)")
                         .font(.system(size: 32))
                         .fontWeight(.bold)
                         .fontWidth(.compressed)
@@ -80,9 +77,9 @@ struct GameHeader: View {
                     .background(Color(colors.backgroundPrimary.name))
                 
                 Button(action: {
-                    viewModel.endGame()
-                    viewModel.session.sendMessage([Constants.command: Constants.startView], replyHandler: nil)
-                    pageManager.pageState = .startView
+                    ScoreViewModel.shared.endGame()
+                    ScoreViewModel.shared.session.sendMessage([Constants.command: Constants.startView], replyHandler: nil)
+                    PageManager.shared.pageState = .startView
                 }) {
                     ZStack {
                         Image(systemName: symbols.restart.name)
@@ -101,6 +98,6 @@ struct GameHeader: View {
 
 struct GameHeader_Previews: PreviewProvider {
     static var previews: some View {
-        GameHeader(viewModel: ScoreViewModel(), pageManager: PageManager.shared)
+        GameHeader()
     }
 }
