@@ -37,30 +37,30 @@ final class ScoreViewModel: NSObject, WCSessionDelegate, ObservableObject {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if let command = message["command"] as? String {
+        if let command = message[Constants.command] as? String {
             DispatchQueue.main.async {
-                if command == "StartView" {
+                if command == Constants.startView {
                     PageManager.shared.pageState = .startView
-                } else if command == "CoinTossView" {
+                } else if command == Constants.coinTossView {
                     PageManager.shared.pageState = .coinTossView
-                } else if command == "CoinResultView" {
+                } else if command == Constants.coinResultView {
                     PageManager.shared.pageState = .coinResultView
-                } else if command == "ScoreView" {
+                } else if command == Constants.scoreView {
                     PageManager.shared.pageState = .scoreView
-                } else if command == "ResultView" {
+                } else if command == Constants.resultView {
                     PageManager.shared.isGameEnd = true
                     PageManager.shared.pageState = .scoreView
-                } else if command == "CoinToss" {
+                } else if command == Constants.coinToss {
                     self.shouldStartAnimation = true
                 }
             }
         } else {
             DispatchQueue.main.async {
-                self.player1 = message["player1"] as? Int ?? self.player1
-                self.player2 = message["player2"] as? Int ?? self.player2
-                self.set1 = message["set1"] as? Int ?? self.set1
-                self.set2 = message["set2"] as? Int ?? self.set2
-                self.servePlayer = message["servePlayer"] as? Int ?? self.servePlayer
+                self.player1 = message[Constants.player1] as? Int ?? self.player1
+                self.player2 = message[Constants.player2] as? Int ?? self.player2
+                self.set1 = message[Constants.set1] as? Int ?? self.set1
+                self.set2 = message[Constants.set2] as? Int ?? self.set2
+                self.servePlayer = message[Constants.servePlayer] as? Int ?? self.servePlayer
             }
         }
     }

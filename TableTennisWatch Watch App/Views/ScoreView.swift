@@ -14,7 +14,7 @@ struct PlayerScoreView: View {
     var player: Int
     
     let symbols = Symbols.self
-    let mark = "Icon_Watch"
+    let mark = Constants.iconWatch
     
     var body: some View {
         VStack(spacing: -4) {
@@ -127,9 +127,9 @@ struct ScoreView: View {
         var label: String {
             switch self {
             case .you:
-                return "YOU"
+                return Constants.you_watchOS
             case .partner:
-                return "PTR"
+                return Constants.partner_watchOS
             }
         }
     }
@@ -162,14 +162,14 @@ struct ScoreView: View {
             }
             .padding(.bottom, -15)
             .onChange(of: viewModel.player1) { newValue in
-                viewModel.session.sendMessage(["player1" : viewModel.player1], replyHandler: nil)
-                viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
+                viewModel.session.sendMessage([Constants.player1 : viewModel.player1], replyHandler: nil)
+                viewModel.session.sendMessage([Constants.servePlayer : viewModel.servePlayer], replyHandler: nil)
                 WKInterfaceDevice.current().play(.notification)
             }
             .onChange(of: viewModel.player2) { newValue in
                 //                        WKInterfaceDevice.current().play(.notification)
-                viewModel.session.sendMessage(["player2" : viewModel.player2], replyHandler: nil)
-                viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
+                viewModel.session.sendMessage([Constants.player2 : viewModel.player2], replyHandler: nil)
+                viewModel.session.sendMessage([Constants.servePlayer : viewModel.servePlayer], replyHandler: nil)
                 WKInterfaceDevice.current().play(.notification)
             }
             .onChange(of: viewModel.set1) { newValue in

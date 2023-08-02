@@ -17,9 +17,9 @@ struct PlayResultView: View {
         var detail: (String, String) {
             switch self {
             case .win:
-                return ("Result_Win", "YOU WIN!")
+                return (Constants.resultWin, Constants.youWin)
             case .lose:
-                return ("Result_Lose", "YOU LOSE!")
+                return (Constants.resultLose, Constants.youLose)
             }
         }
     }

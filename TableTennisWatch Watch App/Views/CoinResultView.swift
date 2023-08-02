@@ -12,7 +12,7 @@ struct CoinResultView: View {
     @ObservedObject var viewModel: ScoreViewModel
     
     let id = "img"
-    let buttonText = "Set"
+    let buttonText = Constants.setButton
     
     enum Server {
         case you
@@ -21,9 +21,9 @@ struct CoinResultView: View {
         var result: (String, String) {
             switch self {
             case .you:
-                return ("First Server: You", "Coin_You")
+                return (Constants.firstServerYou, Constants.coinYou)
             case .partner:
-                return ("First Server: Partner", "Coin_Partner")
+                return (Constants.firstServerPartner, Constants.coinPartner)
             }
         }
     }
@@ -43,7 +43,7 @@ struct CoinResultView: View {
             
             Button {
                 PageManager.shared.pageState = .scoreView
-                viewModel.session.sendMessage(["command": "ScoreView"], replyHandler: nil)
+                viewModel.session.sendMessage([Constants.command: Constants.scoreView], replyHandler: nil)
             } label: {
                 Text(buttonText)
                     .fontWeight(.semibold)

@@ -22,15 +22,15 @@ struct PlayResultView: View {
         var detail: (String, String) {
             switch self {
             case .win:
-                return ("Result_Win", "You WIN!")
+                return (Constants.resultWin, Constants.youWin)
             case .lose:
-                return ("Result_Lose", "Partner WIN!")
+                return (Constants.resultLose, Constants.partnerWin)
             }
         }
     }
     
     var symbols = Symbols.self
-    let buttonText = "Restart"
+    let buttonText = Constants.restartButton
     
     var body: some View {
         ZStack {
@@ -51,7 +51,7 @@ struct PlayResultView: View {
                 
                 Button(action: {
                     pageManager.pageState = .startView
-                    viewModel.session.sendMessage(["command": "StartView"], replyHandler: nil)
+                    viewModel.session.sendMessage([Constants.command: Constants.startView], replyHandler: nil)
                 }) {
                     Label(buttonText, systemImage: symbols.restart.name)
                         .labelStyle(.titleAndIcon)

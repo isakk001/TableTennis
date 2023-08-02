@@ -28,8 +28,8 @@ class iphoneScoreModel: NSObject, ObservableObject, WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         DispatchQueue.main.async {
-            self.player1 = message["player1"] as? Int ?? self.player1
-            self.player2 = message["player2"] as? Int ?? self.player2
+            self.player1 = message[Constants.player1] as? Int ?? self.player1
+            self.player2 = message[Constants.player2] as? Int ?? self.player2
         }
     }
     

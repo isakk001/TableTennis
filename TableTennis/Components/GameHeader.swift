@@ -24,9 +24,9 @@ struct GameHeader: View {
         var label: String {
             switch self {
             case .you:
-                return "You"
+                return Constants.you_iOS
             case.partner:
-                return "Partner"
+                return Constants.partner_iOS
             }
         }
     }
@@ -40,7 +40,7 @@ struct GameHeader: View {
                 Button(action: {
                     viewModel.isWin = viewModel.checkWinner()
                     pageManager.pageState = .resultView
-                    viewModel.session.sendMessage(["command": "ResultView"], replyHandler: nil)
+                    viewModel.session.sendMessage([Constants.command: Constants.resultView], replyHandler: nil)
                 }) {
                     ZStack {
                         Image(systemName: symbols.end.name)
@@ -81,7 +81,7 @@ struct GameHeader: View {
                 
                 Button(action: {
                     viewModel.endGame()
-                    viewModel.session.sendMessage(["command": "StartView"], replyHandler: nil)
+                    viewModel.session.sendMessage([Constants.command: Constants.startView], replyHandler: nil)
                     pageManager.pageState = .startView
                 }) {
                     ZStack {

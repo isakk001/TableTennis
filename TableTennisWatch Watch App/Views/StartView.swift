@@ -73,8 +73,8 @@ struct StartView: View {
 }
 
 struct LogoView: View {
-    let logo = "AppLogo"
-    let phrase = "Let's play Table Tennis!"
+    let logo = Constants.appLogo
+    let phrase = Constants.titlePhrase
     
     var body: some View {
         VStack {
@@ -92,7 +92,7 @@ struct LogoView: View {
 struct StartPlayView : View {
     @ObservedObject var viewModel: ScoreViewModel
     
-    @State var buttonText = "Play"
+    @State var buttonText = Constants.playButton
     
     var body: some View {
         VStack {
@@ -107,7 +107,7 @@ struct StartPlayView : View {
                 withAnimation(.linear(duration: 0.2)) {
                     PageManager.shared.pageState = .coinTossView
                 }
-                viewModel.session.sendMessage(["command": "CoinTossView"], replyHandler: nil)
+                viewModel.session.sendMessage([Constants.command: Constants.coinTossView], replyHandler: nil)
             } label: {
                 Text(buttonText)
                     .fontWeight(.semibold)

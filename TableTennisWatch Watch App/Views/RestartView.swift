@@ -21,9 +21,9 @@ struct RestartView: View {
             let symbols = Symbols.self
             switch self {
             case .end:
-                return (symbols.end.name, "End")
+                return (symbols.end.name, Constants.endButton)
             case .restart:
-                return (symbols.restart.name, "Restart")
+                return (symbols.restart.name, Constants.restartButton)
             }
         }
     }
@@ -35,7 +35,7 @@ struct RestartView: View {
                     Button {
                         PageManager.shared.isGameEnd = true
                         PageManager.shared.tabState = 1
-                        viewModel.session.sendMessage(["command": "ResultView"], replyHandler: nil)
+                        viewModel.session.sendMessage([Constants.command: Constants.resultView], replyHandler: nil)
                         viewModel.checkWinner()
                     } label: {
                             Image(systemName: System.end.button.0)
@@ -52,7 +52,7 @@ struct RestartView: View {
             VStack {
                 Button {
                     PageManager.shared.isGameEnd = false
-                    viewModel.session.sendMessage(["command": "StartView"], replyHandler: nil)
+                    viewModel.session.sendMessage([Constants.command: Constants.startView], replyHandler: nil)
                     PageManager.shared.pageState = .startView
                     PageManager.shared.tabState = 1
                     viewModel.checkWinner()

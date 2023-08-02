@@ -18,6 +18,8 @@
 		5B04C3AA2A720F4500B89F0C /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04C3A92A720F4500B89F0C /* Set.swift */; };
 		5BA4F5C52A7743BB006B9131 /* PlayResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA4F5C42A7743BB006B9131 /* PlayResultView.swift */; };
 		5BA4F5D02A775A6A006B9131 /* GameHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA4F5CF2A775A6A006B9131 /* GameHeader.swift */; };
+		BF0042E52A79DFCA0009C7EA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0042E42A79DFCA0009C7EA /* Constants.swift */; };
+		BF0042E62A79DFCA0009C7EA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0042E42A79DFCA0009C7EA /* Constants.swift */; };
 		BF833BBF2A74BD6300F17B33 /* ScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF833BBE2A74BD6300F17B33 /* ScoreViewModel.swift */; };
 		BF833BC42A74BE6400F17B33 /* ScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF833BC32A74BE6400F17B33 /* ScoreViewModel.swift */; };
 		BFA69ACC2A735877007DC6B9 /* CoinTossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA69ACB2A735876007DC6B9 /* CoinTossView.swift */; };
@@ -79,6 +81,7 @@
 		5B04C3A92A720F4500B89F0C /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		5BA4F5C42A7743BB006B9131 /* PlayResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayResultView.swift; sourceTree = "<group>"; };
 		5BA4F5CF2A775A6A006B9131 /* GameHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHeader.swift; sourceTree = "<group>"; };
+		BF0042E42A79DFCA0009C7EA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BF833BBE2A74BD6300F17B33 /* ScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewModel.swift; sourceTree = "<group>"; };
 		BF833BC32A74BE6400F17B33 /* ScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewModel.swift; sourceTree = "<group>"; };
 		BFA69ACB2A735876007DC6B9 /* CoinTossView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTossView.swift; sourceTree = "<group>"; };
@@ -234,6 +237,7 @@
 			children = (
 				5B01619F2A794A1F00CD96C8 /* Colors.swift */,
 				5B0161A22A794A4000CD96C8 /* Symbols.swift */,
+				BF0042E42A79DFCA0009C7EA /* Constants.swift */,
 				F194F5662A6D16F500D94EC8 /* TableTennis */,
 				F194F57A2A6D187100D94EC8 /* TableTennisWatch Watch App */,
 				F194F5652A6D16F500D94EC8 /* Products */,
@@ -417,6 +421,7 @@
 				FFA10C042A7782040056B16A /* ContentView.swift in Sources */,
 				F194F5682A6D16F500D94EC8 /* TableTennisApp.swift in Sources */,
 				5B04C3A82A720F3B00B89F0C /* Score.swift in Sources */,
+				BF0042E52A79DFCA0009C7EA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1EF1AEE2A70CA120084E728 /* RestartView.swift in Sources */,
+				BF0042E62A79DFCA0009C7EA /* Constants.swift in Sources */,
 				5B0161A12A794A1F00CD96C8 /* Colors.swift in Sources */,
 				F13E15092A76C1D200C876AB /* PlayResultView.swift in Sources */,
 				F13E150B2A76D16200C876AB /* CoinResultView.swift in Sources */,

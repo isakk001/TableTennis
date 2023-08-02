@@ -12,7 +12,7 @@ struct PlayerScoreView: View {
     
     var player: Int
     
-    let mark = "Icon_Phone"
+    let mark = Constants.iconPhone
     let symbols = Symbols.self
     let colors = Colors.self
     
@@ -58,7 +58,7 @@ struct PlayerScoreView: View {
                     Button {
                         viewModel.minusScore(player: player)
                         viewModel.session.sendMessage(["player\(player + 1)" : getPlayerScore(player)], replyHandler: nil)
-                        viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
+                        viewModel.session.sendMessage([Constants.servePlayer : viewModel.servePlayer], replyHandler: nil)
                     } label: {
                         Image(systemName: symbols.circleMinus.name)
                             .font(.system(size: 30))
@@ -179,14 +179,14 @@ struct ScoreView: View {
                 if newValue == 3 {
                     viewModel.isWin = 0
                     pageManager.pageState = .resultView
-                    viewModel.session.sendMessage(["command": "ResultView"], replyHandler: nil)
+                    viewModel.session.sendMessage([Constants.command: Constants.resultView], replyHandler: nil)
                 }
             }
             .onChange(of: viewModel.set2) { newValue in
                 if newValue == 3 {
                     viewModel.isWin = 1
                     pageManager.pageState = .resultView
-                    viewModel.session.sendMessage(["command": "ResultView"], replyHandler: nil)
+                    viewModel.session.sendMessage([Constants.command: Constants.resultView], replyHandler: nil)
                 }
             }
         }

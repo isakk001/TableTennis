@@ -75,21 +75,21 @@ struct Score: View {
         if gesture.translation.height > 0 {
             if player == .player1 {
                 viewModel.player1 += 1
-                viewModel.session.sendMessage(["player1": viewModel.player1], replyHandler: nil)
+                viewModel.session.sendMessage([Constants.player1: viewModel.player1], replyHandler: nil)
                 print("sessionTest(iphone) : \(viewModel.player1)")
             } else {
                 viewModel.player2 += 1
-                viewModel.session.sendMessage(["player2": viewModel.player2], replyHandler: nil)
+                viewModel.session.sendMessage([Constants.player2: viewModel.player2], replyHandler: nil)
                 print("sessionTest(iphone) : \(viewModel.player2)")
             }
         } else {
             if player == .player1 {
                 viewModel.player1 -= 1
-                viewModel.session.sendMessage(["player1": viewModel.player1], replyHandler: nil)
+                viewModel.session.sendMessage([Constants.player1: viewModel.player1], replyHandler: nil)
                 print("sessionTest(iphone) : \(viewModel.player1)")
             } else {
                 viewModel.player2 -= 1
-                viewModel.session.sendMessage(["player2": viewModel.player2], replyHandler: nil)
+                viewModel.session.sendMessage([Constants.player2: viewModel.player2], replyHandler: nil)
                 print("sessionTest(iphone) : \(viewModel.player2)")
             }
         }

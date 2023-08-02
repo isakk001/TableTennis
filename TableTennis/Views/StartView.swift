@@ -25,7 +25,7 @@ struct StartView: View {
     @ObservedObject var viewModel: ScoreViewModel
     
     let colors = Colors.self
-    let buttonText = "Play"
+    let buttonText = Constants.playButton
     
     var body: some View {
         ZStack {
@@ -38,7 +38,7 @@ struct StartView: View {
                 Button(action: {
                     self.showScoreView = true
                     PageManager.shared.pageState = .coinTossView
-                    viewModel.session.sendMessage(["command": "CoinTossView"], replyHandler: nil)
+                    viewModel.session.sendMessage([Constants.command: Constants.coinTossView], replyHandler: nil)
                 }) {
                     Text(buttonText)
                         .fontWeight(.semibold)
@@ -50,8 +50,8 @@ struct StartView: View {
 }
 
 struct TitleView: View {
-    let logo = "AppLogo"
-    let phrase = "Let's play Table Tennis!"
+    let logo = Constants.appLogo
+    let phrase = Constants.titlePhrase
     
     var body: some View {
         VStack {

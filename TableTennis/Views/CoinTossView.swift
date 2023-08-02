@@ -17,7 +17,7 @@ struct CoinTossView: View {
     private let rotationAngle = 90.0
     
     let colors = Colors.self
-    let buttonText = "Toss"
+    let buttonText = Constants.tossButton
     
     enum Description {
         case beforeToss
@@ -26,9 +26,9 @@ struct CoinTossView: View {
         var text: (String, String) {
             switch self {
             case .beforeToss:
-                return ("Let's decide the first server.", "")
+                return (Constants.tossPhrase_iOS, "")
             case .afterToss:
-                return ("Coin_You", "Coin_Partner")
+                return (Constants.coinYou, Constants.coinPartner)
             }
         }
     }
@@ -54,7 +54,7 @@ struct CoinTossView: View {
                 
                 Button {
                     guard isCoinTossed() == false else { return }
-                    viewModel.session.sendMessage(["command": "CoinToss"], replyHandler: nil)
+                    viewModel.session.sendMessage([Constants.command: Constants.coinToss], replyHandler: nil)
                     startAnimation()
                 } label: {
                     if isCoinTossed() == false {
@@ -118,7 +118,7 @@ struct CoinTossView: View {
             withAnimation(.linear(duration: 0.2)) {
                 PageManager.shared.pageState = .coinResultView
             }
-            viewModel.session.sendMessage(["command": "CoinResultView"], replyHandler: nil)
+            viewModel.session.sendMessage([Constants.command: Constants.coinResultView], replyHandler: nil)
         }
     }
     

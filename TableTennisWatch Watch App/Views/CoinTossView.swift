@@ -17,7 +17,7 @@ struct CoinTossView: View {
     private let duration = 3.0
     private let rotationAngle = 90.0
     
-    let buttonText = "Toss"
+    let buttonText = Constants.tossButton
     let id = "img"
     
     enum Description {
@@ -27,9 +27,9 @@ struct CoinTossView: View {
         var text: (String, String) {
             switch self {
             case .beforeToss:
-                return ("Let's decide \nthe first server.", "")
+                return (Constants.tossPhrase_watchOS, "")
             case .afterToss:
-                return ("Coin_You", "Coin_Partner")
+                return (Constants.coinYou, Constants.coinPartner)
             }
         }
     }
@@ -53,7 +53,7 @@ struct CoinTossView: View {
             
             Button {
                 guard isCoinTossed() == false else { return }
-                viewModel.session.sendMessage(["command": "CoinToss"], replyHandler: nil)
+                viewModel.session.sendMessage([Constants.command: Constants.coinToss], replyHandler: nil)
                 startAnimation()
             } label: {
                 if isCoinTossed() == false {
@@ -65,7 +65,7 @@ struct CoinTossView: View {
         }
         .onAppear {
             viewModel.setServePlayer()
-            viewModel.session.sendMessage(["servePlayer" : viewModel.servePlayer], replyHandler: nil)
+            viewModel.session.sendMessage([Constants.servePlayer : viewModel.servePlayer], replyHandler: nil)
             if viewModel.servePlayer == 0 {
                 self.maxRotations = 16
             } else {
@@ -116,7 +116,7 @@ struct CoinTossView: View {
             withAnimation(.linear(duration: 0.2)) {
                 PageManager.shared.pageState = .coinResultView
             }
-            viewModel.session.sendMessage(["command": "CoinResultView"], replyHandler: nil)
+            viewModel.session.sendMessage([Constants.command: Constants.coinResultView], replyHandler: nil)
         }
     }
     
