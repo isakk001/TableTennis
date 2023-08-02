@@ -34,7 +34,7 @@ struct RestartView: View {
                 VStack {
                     Button {
                         PageManager.shared.isGameEnd = true
-                        PageManager.shared.tabState = 1
+                        PageManager.shared.tapState = 1
                         viewModel.session.sendMessage([Constants.command: Constants.resultView], replyHandler: nil)
                         viewModel.checkWinner()
                     } label: {
@@ -54,7 +54,7 @@ struct RestartView: View {
                     PageManager.shared.isGameEnd = false
                     viewModel.session.sendMessage([Constants.command: Constants.startView], replyHandler: nil)
                     PageManager.shared.pageState = .startView
-                    PageManager.shared.tabState = 1
+                    PageManager.shared.tapState = 1
                     viewModel.checkWinner()
                 } label: {
                     Image(systemName: System.restart.button.0)
@@ -66,10 +66,17 @@ struct RestartView: View {
                     .multilineTextAlignment(.center)
             }
         }
-        .padding(.top, 28)
+        .padding(setPaddingValue(PageManager.shared.isGameEnd))
     }
 }
 
+func setPaddingValue(_ isEnd: Bool) -> CGFloat {
+    if isEnd {
+        return 60
+    } else {
+        return 0
+    }
+}
 
 
 struct RestartView_Previews: PreviewProvider {

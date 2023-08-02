@@ -33,7 +33,7 @@ class PageManager : ObservableObject {
     private init() {}
     
     @Published var pageState: PageState = .startView
-    @Published var tabState: Int = 1
+    @Published var tapState: Int = 1
     @Published var isGameEnd: Bool = false
 }
 
@@ -55,7 +55,7 @@ struct StartView: View {
             case .coinResultView:
                 CoinResultView(namespace: namespace, viewModel: viewModel)
             case .scoreView:
-                TabView(selection: $pageManager.tabState) {
+                TabView(selection: $pageManager.tapState) {
                     RestartView(viewModel: viewModel)
                         .tag(0)
                     VStack{
