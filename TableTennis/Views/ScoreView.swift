@@ -16,12 +16,24 @@ struct PlayerScoreView: View {
     let symbols = Symbols.self
     let colors = Colors.self
     
-    let uiscreen = UIScreen.main.bounds
+    enum Options {
+        case radius
+        case opacity
+        
+        var value: CGFloat {
+            switch self {
+            case .radius:
+                return 10
+            case .opacity:
+                return 0.7
+            }
+        }
+    }
     
     var body: some View {
         ZStack {
             ZStack {
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: Options.radius.value)
                     .fill(setFillsColor(checkServer(viewModel.servePlayer, player)))
                     .padding(EdgeInsets(top: -12, leading: 56, bottom: -12, trailing: 56))
                 
@@ -34,7 +46,7 @@ struct PlayerScoreView: View {
                         Image(systemName: symbols.circlePlus.name)
                             .font(.system(size: 30))
                             .foregroundColor(.white)
-                            .opacity(0.7)
+                            .opacity(Options.opacity.value)
                     }
                     
                     Text( String(format: "%02d", getPlayerScore(player)))
@@ -51,7 +63,7 @@ struct PlayerScoreView: View {
                         Image(systemName: symbols.circleMinus.name)
                             .font(.system(size: 30))
                             .foregroundColor(.white)
-                            .opacity(0.7)
+                            .opacity(Options.opacity.value)
                     }
                 }
                 
@@ -91,26 +103,22 @@ struct PlayerScoreView: View {
     
     func markServer(_ isServer: Bool, _ player: Int) -> AnyView? {
         var markView: AnyView?
+        let view = ZStack {
+            Image(mark)
+                .resizable()
+                .scaledToFit()
+                .padding(EdgeInsets(top: 8, leading: 0, bottom: 12, trailing: 0))
+        }
         
         if isServer {
             if player == 0 {
                 markView = AnyView(
-                    ZStack {
-                        Image(mark)
-                            .resizable()
-                            .scaledToFit()
-                            .padding(EdgeInsets(top: 8, leading: 0, bottom: 12, trailing: 0))
-                    }
+                    view
                     .padding(EdgeInsets(top: 200, leading: -176, bottom: 0, trailing: 0)))
             } else {
                 markView = AnyView(
-                    ZStack {
-                        Image(mark)
-                            .resizable()
-                            .scaledToFit()
-                            .scaleEffect(x: -1, y: 1)
-                            .padding(EdgeInsets(top: 8, leading: 0, bottom: 12, trailing: 0))
-                    }
+                    view
+                        .scaleEffect(x: -1, y: 1)
                     .padding(EdgeInsets(top: 200, leading: 170, bottom: 0, trailing: -112)))
             }
         }

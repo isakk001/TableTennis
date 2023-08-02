@@ -36,7 +36,7 @@ struct GameHeader: View {
             RoundedRectangle(cornerRadius: 30)
                 .foregroundColor(Color(colors.fillsPrimary.name))
             
-            HStack {
+            HStack(spacing: 0) {
                 Button(action: {
                     viewModel.isWin = viewModel.checkWinner()
                     pageManager.pageState = .resultView

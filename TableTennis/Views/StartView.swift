@@ -9,13 +9,14 @@ import WatchConnectivity
 
 struct CustomButtonStyle: ButtonStyle {
     let colors = Colors.self
+    let radius: CGFloat = 30
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .padding(EdgeInsets(top: 16, leading: 96, bottom: 16, trailing: 96))
+            .padding(EdgeInsets(top: 16, leading: 100, bottom: 16, trailing: 100))
             .foregroundColor(.white)
             .background(LinearGradient(gradient: Gradient(colors: [Color(colors.gradientStart.name), Color(colors.gradientEnd.name)]), startPoint: .bottomLeading, endPoint: .topTrailing))
-            .cornerRadius(30)
+            .cornerRadius(radius)
     }
 }
 
@@ -57,7 +58,7 @@ struct TitleView: View {
             Image(logo)
                 .resizable()
                 .scaledToFit()
-                .padding(EdgeInsets(top: 0, leading: 200, bottom: -5, trailing: 200))
+                .padding(EdgeInsets(top: 0, leading: 200, bottom: -4, trailing: 200))
             
             Text(phrase)
                 .font(.system(size: 25))

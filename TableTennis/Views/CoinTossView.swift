@@ -50,7 +50,7 @@ struct CoinTossView: View {
                     .scaledToFit()
                     .rotation3DEffect(.degrees(animation3d), axis: (x: 1.0, y: 0, z: 0))
                     .scaleEffect(scaleAmount)
-                    .padding(.bottom, 16)
+                    .padding(.bottom, 8)
                 
                 Button {
                     guard isCoinTossed() == false else { return }
@@ -63,7 +63,7 @@ struct CoinTossView: View {
                             .fontWeight(.semibold)
                     }
                 }
-                .buttonStyle(TapSetButtonStyle())
+                .buttonStyle(CustomButtonStyle())
             }
             .onAppear {
                 viewModel.setServePlayer()
@@ -134,26 +134,6 @@ struct CoinTossView: View {
                 }
             }
         }
-    }
-}
-
-struct TapSetButtonStyle: ButtonStyle {
-    let colors = Colors.self
-    
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .padding(EdgeInsets(top: 10, leading: 70, bottom: 10, trailing: 70))
-            .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [
-                        Color(colors.gradientStart.name),
-                        Color(colors.gradientEnd.name)
-                    ]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            )
-            .cornerRadius(30)
     }
 }
 

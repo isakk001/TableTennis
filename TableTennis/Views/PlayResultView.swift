@@ -13,6 +13,7 @@ struct PlayResultView: View {
     @ObservedObject var viewModel: ScoreViewModel
     
     let colors = Colors.self
+    let radius: CGFloat = 30
     
     enum Result {
         case win
@@ -46,7 +47,7 @@ struct PlayResultView: View {
                     .foregroundColor(.white)
                     .font(.system(size: 34))
                     .fontWeight(.semibold)
-                    .padding(.bottom, 36)
+                    .padding(.bottom, 28)
                 
                 Button(action: {
                     pageManager.pageState = .startView
@@ -57,9 +58,9 @@ struct PlayResultView: View {
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .padding(.vertical, 12)
-                        .padding(.horizontal, 52)
+                        .padding(.horizontal, 48)
                         .background(Color(colors.fillsPrimary.name))
-                        .cornerRadius(30)
+                        .cornerRadius(radius)
                 }
                 .padding(.bottom, 36)
             }

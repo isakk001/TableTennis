@@ -42,7 +42,7 @@ struct CoinResultView: View {
                 Image(checkServer(viewModel.servePlayer).1)
                     .resizable()
                     .scaledToFit()
-                    .padding(.bottom, 16)
+                    .padding(.bottom, 8)
                 
                 Button {
                	    PageManager.shared.pageState = .scoreView
@@ -52,7 +52,7 @@ struct CoinResultView: View {
                         .foregroundColor(.white)
                         .fontWeight(.semibold)
                 }
-                .buttonStyle(TapSetButtonStyle())
+                .buttonStyle(CustomButtonStyle())
             }
         }
     }
